@@ -60,7 +60,7 @@ class PaymeSubscribeCards:
         """Верификация карты с помощью кода отправленного по СМС."""
         context: dict = {
             "id": id,
-            "method": self.__methods.get("cards_get_verify_code"),
+            "method": self.__methods.get("cards_verify"),
             "params": {
                 "token": token,
                 "code": verify_code
