@@ -15,7 +15,6 @@ class PaymeSubscribeCards:
 
         self.__headers: dict = {
             "X-Auth": self.__paycom_id,
-            "Cache-Control": self.__CACHE_CONTROL,
         }
         self.__methods: dict = {
             "cards_check": "cards.check",
@@ -145,6 +144,6 @@ You can use all client methods using this
 Payme gives all creaditinals variables.
 """
 payme_subscribe_cards = PaymeSubscribeCards(
-    base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb"
+    base_url="you-need-to-add-payme-base-url",
+    paycom_id="you-need-to-add-pacom-id"
 )

@@ -204,7 +204,7 @@ You can use all client methods using this
 Payme gives all creaditinals variables.
 """
 payme_subscribe_receipts = PaymeSubscribeReceipts(
-    base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb",
-    paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18",
+    base_url="you-need-to-add-payme-base-url",
+    paycom_id="you-need-to-add-pacom-id",
+    paycom_key="you-need-to-add-pacom-key"
 )

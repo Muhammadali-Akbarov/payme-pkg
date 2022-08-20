@@ -1,4 +1,5 @@
+dist/
 venv/
 .vscode/
 __pycache__/
-
+paymentsuz.egg-info/
