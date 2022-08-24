@@ -197,14 +197,3 @@ class PaymeSubscribeReceipts:
         }
 
         return json.dumps(data)
-
-
-"""Initialization new payme client
-You can use all client methods using this
-Payme gives all creaditinals variables.
-"""
-payme_subscribe_receipts = PaymeSubscribeReceipts(
-    base_url="you-need-to-add-payme-base-url",
-    paycom_id="you-need-to-add-pacom-id",
-    paycom_key="you-need-to-add-pacom-key"
-)
