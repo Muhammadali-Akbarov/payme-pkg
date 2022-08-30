@@ -3,3 +3,4 @@ venv/
 .vscode/
 __pycache__/
 paymentsuz.egg-info/
+payme_pkg.egg-info/
