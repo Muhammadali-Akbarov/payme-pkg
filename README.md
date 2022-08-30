@@ -83,8 +83,8 @@ pprint(resp)
 
 ```
 {'jsonrpc': '2.0',
- 'result': 
-    {'card': 
+ 'result': {
+    'card': 
         {
             'expire': '03/99',
             'number': '860006******6311',
