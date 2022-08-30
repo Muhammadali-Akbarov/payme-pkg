@@ -118,11 +118,10 @@ resp = client._card_get_verify_code(
 * Response
 ```
 {'jsonrpc': '2.0',
- 'result': 
-    {
-        'phone': '99890*****66', 
-        'sent': True, 
-        'wait': 60000
+ 'result': {
+    'phone': '99890*****66', 
+    'sent': True, 
+    'wait': 60000
     }
 }
 ```
