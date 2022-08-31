@@ -16,7 +16,7 @@ $ pip install payme-pkg==1.2
 
 ```
 $ git clone https://github.com/Muhammadali-Akbarov/payme_pkg
-$ cd payme_uz
+$ cd payme_pkg
 $ python setup.py install
 ```
 or:
