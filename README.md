@@ -186,15 +186,14 @@ pprint(resp)
 * Response
 ```
 {'jsonrpc': '2.0',
- 'result': 
-    {'card': 
-        {
-            'expire': '03/99',
-            'number': '860006******6311',
-            'recurrent': True,
-            'token': '630e691fd15d8d8d093b379c_70mKyzqS8d1wTWzovIGjt9dKmjpn1KI8Y9XakPrfpbUASTBaZYbC1DjDcjYRmuNJep9gZrTRtHyEGBQYmBaPufuozF51bv4qEPsQnodq1VcD7tYyREwUXjMXXZUeu7Ek0REQCekCvVHX6rtNBpb4vtViJoNVjp94XpTqu0Bn3yYYb0CHu951wFydzRsieGxjGNrvx1oKyBcq0CdOUwoffRIt2VPvx5R2aVmc6ahwyhn387FEEcpO1PnjIJkWKTBWdI35ZPQnb1u1oss5aPg06E279THXRkoTThixbeqiD2JkWSXweNVGGDhTS30V4j61G3NWEPO2H3k4uFmCjjIQSzx4TxKzUgHg1i2q953PRUGjT4JZBRHMDxaN5tWuctEMNmY06p',
-            'type': '22618',
-            'verify': True
+ 'result': {
+    'card': {
+        'expire': '03/99',
+        'number': '860006******6311',
+        'recurrent': True,
+        'token': '630e691fd15d8d8d093b379c_70mKyzqS8d1wTWzovIGjt9dKmjpn1KI8Y9XakPrfpbUASTBaZYbC1DjDcjYRmuNJep9gZrTRtHyEGBQYmBaPufuozF51bv4qEPsQnodq1VcD7tYyREwUXjMXXZUeu7Ek0REQCekCvVHX6rtNBpb4vtViJoNVjp94XpTqu0Bn3yYYb0CHu951wFydzRsieGxjGNrvx1oKyBcq0CdOUwoffRIt2VPvx5R2aVmc6ahwyhn387FEEcpO1PnjIJkWKTBWdI35ZPQnb1u1oss5aPg06E279THXRkoTThixbeqiD2JkWSXweNVGGDhTS30V4j61G3NWEPO2H3k4uFmCjjIQSzx4TxKzUgHg1i2q953PRUGjT4JZBRHMDxaN5tWuctEMNmY06p',
+        'type': '22618',
+        'verify': True
         }
     }
 }
@@ -221,9 +220,9 @@ pprint(resp)
 ```
 * Response
 ```
-{'jsonrpc': '2.0', 
- 'result': 
-     {'success': True
+{'jsonrpc': '2.0',
+ 'result': {
+     'success': True
     }
 }
 ```
