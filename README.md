@@ -89,14 +89,13 @@ pprint(resp)
 ```
 {'jsonrpc': '2.0',
  'result': {
-    'card': 
-        {
-            'expire': '03/99',
-            'number': '860006******6311',
-            'recurrent': True,
-            'token': '630e5ffdd15d8d8d093b379b_2fsaoABWafecn20kofV4PFafFZjeGDWS9adM1PmboQaEZbbaxMcnaskctMbU9Iv8qgrOuKGz8SnjvZvYXDK64m1eS9gA5jZ7BBRaQybMXrDPtFPJ1fwek5B1KoIv5cMiCWYXj7ezpYEdJAKTIQw0Np9HsTXjqco4gQG3m8MOfeH9ovkdm66O6yj45oKXRmJyAK5i0SchXNNomACH3Oq80KyoRE1VoBRxvoKyMkOx0xcepXovxK9d3v26a8z7UtyokwY33N8MupviM3A5WHB5Xh35WZJJyFnxTSi1vvnYnG7uVd6Bb1GjV2yAHnimss8aEZGW5V7ZiPrhf8r6WJAeHciYDGK3msRKZJBQTfjgOdE9tGrEnMezVkxr1JXX0xSn5qqec2',
-            'type': '22618',
-            'verify': False
+    'card': {
+        'expire': '03/99',
+        'number': '860006******6311',
+        'recurrent': True,
+        'token': '630e5ffdd15d8d8d093b379b_2fsaoABWafecn20kofV4PFafFZjeGDWS9adM1PmboQaEZbbaxMcnaskctMbU9Iv8qgrOuKGz8SnjvZvYXDK64m1eS9gA5jZ7BBRaQybMXrDPtFPJ1fwek5B1KoIv5cMiCWYXj7ezpYEdJAKTIQw0Np9HsTXjqco4gQG3m8MOfeH9ovkdm66O6yj45oKXRmJyAK5i0SchXNNomACH3Oq80KyoRE1VoBRxvoKyMkOx0xcepXovxK9d3v26a8z7UtyokwY33N8MupviM3A5WHB5Xh35WZJJyFnxTSi1vvnYnG7uVd6Bb1GjV2yAHnimss8aEZGW5V7ZiPrhf8r6WJAeHciYDGK3msRKZJBQTfjgOdE9tGrEnMezVkxr1JXX0xSn5qqec2',
+        'type': '22618',
+        'verify': False
         }
     }
 }
@@ -111,7 +110,7 @@ from pprint import pprint
 from lib.payme.cards.subscribe_cards import PaymeSubscribeCards
 
 
-client: PaymeSubscribeCards = PaymeSubscribeCards(
+client = PaymeSubscribeCards(
     base_url="https://checkout.test.paycom.uz/api/",
     paycom_id="5e730e8e0b852a417aa49ceb"
 )
