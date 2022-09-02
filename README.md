@@ -44,14 +44,14 @@ Card Numer: 8600 0691 9540 6311 Expire Date: 03/99 SMS Code: 666666
 ## Contents
 
   * [Getting Started](#getting-started)
-  * [Subscribe Cards](#subscribe-cards)
+  * [Subscribe Cards]
     * [Cards Create](#cards-create)
     * [Cards Get Verify Code](#cards-get-verify-code)
     * [Cards Verify](#cards-verify)
     * [Cards Check](#cards-check)
     * [Cards Remove](#cards-remove)
    
-  * [Subscribe Receipts](#subscribe-receipts)
+  * [Subscribe Receipts]
     * [Receipts Create](#receipts-create)
     * [Receipts Create P2P](#receipts-create-p2p)
     * [Receipts Pay](#receipts-pay)
