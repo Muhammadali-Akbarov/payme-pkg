@@ -230,3 +230,153 @@ pprint(resp)
     }
 }
 ```
+## Receipts Create
+Example for receipts create method:
+* Request
+```
+from pprint import pprint
+
+from lib.payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
+
+
+rclient = PaymeSubscribeReceipts(
+    base_url="https://checkout.test.paycom.uz/api/",
+    paycom_id="5e730e8e0b852a417aa49ceb",
+    paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
+)
+
+resp = rclient._receipts_create(
+    amount=10000,
+    order_id="1"
+)
+
+pprint(resp)
+```
+* Response
+```
+{'jsonrpc': '2.0',
+ 'result': {
+    'receipt': {
+        '_id': '631186b6c4420cbf2712a243',
+        'account': [{
+            'main': True,
+            'name': 'transaction',
+            'title': 'Номер чека',
+            'value': '2322'
+        }],
+        'amount': 10000,
+        'cancel_time': 0,
+        'card': None,
+        'category': None,
+        'commission': 0,
+        'create_time': 1662092982287,
+        'currency': 860,
+        'description': '',
+        'detail': None,
+        'error': None,
+        'external': False,
+        'merchant': {
+            '_id': '5e730e8e0b852a417aa49ceb',
+            'address': '',
+            'business_id': '5e730e740b852a417aa49cea',
+            'date': 1584598670296,
+            'epos': {
+                'merchantId': '106600000050000',
+                'terminalId': '20660000'
+            },
+            'logo': None,
+            'name': 'test',
+            'organization': 'ЧП «test test»',
+            'terms': None,
+            'type': 'Internet'
+            },
+        'meta': {
+            'owner': '5e730e8e0b852a417aa49ceb',
+            'source': 'subscribe'
+        },
+        'operation': -1,
+        'pay_time': 0,
+        'processing_id': None,
+        'state': 0,
+        'type': 2
+        }
+    }
+ }
+```
+## Receipts Create
+Example for receipts create method:
+* Request
+```
+from pprint import pprint
+
+from lib.payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
+
+
+rclient = PaymeSubscribeReceipts(
+    base_url="https://checkout.test.paycom.uz/api/",
+    paycom_id="5e730e8e0b852a417aa49ceb",
+    paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
+)
+
+resp = rclient._receipts_pay(
+    invoice_id="631186b6c4420cbf2712a243",
+    token="63118a5dd15d8d8d093b37b7_X2j34OIJPnROfsgzYZCZ0w7OcC50zzwiowTsotEVO1uUbxkzaDrvdOno6jicQTrcRmxvibxrye4vUS3AynTNPaPCTGpfk3RCKmT9NaOAyyTmctAjWsjwvqGR5XUzAP1Xcx12GkhuQi6VJ4BeaIXOokSRu06rRjaivmJQ8HTiJiR9b3OmZtrhkIRNcNXnnp9zYm1mFP4BuqGpS8BMnY0ASIE6ffxWykjgBcDTAfWBFt4mg7O9Dsvx0aj3IB8z3RIbZYtDZJnUVhCZrwW7ONVI9uEAdxNthorjO6PbV7TQ8XCjrztgGf6uCtOwwxasiIUVZN6tCVDk8A8NvVSUzUHXQHVkaPn5heJNa3K4WsffIckq7SwMbiw3UbawipeZKyD3iwk1Km",
+    phone="998901304527"
+)
+
+pprint(resp)
+```
+* Response
+```
+{'jsonrpc': '2.0',
+ 'result': {
+    'receipt': {
+        '_id': '631186b6c4420cbf2712a243',
+        'account': [{
+            'main': True,
+            'name': 'transaction',
+            'title': 'Номер чека',
+            'value': '2322'
+            }],
+        'amount': 10000,
+        'cancel_time': 0,
+        'card': {
+            'expire': '9903',
+            'number': '860006******6311'
+            },
+        'category': None,
+        'commission': 0,
+        'create_time': 1662093985809,
+        'currency': 860,
+        'description': '',
+        'detail': None,
+        'error': None,
+        'external': False,
+        'merchant': {
+            '_id': '5e730e8e0b852a417aa49ceb',
+            'address': '',
+            'business_id': '5e730e740b852a417aa49cea',
+            'date': 1584598670296,
+            'epos': {
+                'merchantId': '106600000050000',
+                'terminalId': '20660000'
+                },
+            'logo': None,
+            'name': 'test',
+            'organization': 'ЧП «test test»',
+            'terms': None,
+            'type': 'Internet'
+            },
+        'meta': {
+            'owner': '5e730e8e0b852a417aa49ceb',
+            'source': 'subscribe'
+            },
+        'operation': -1,
+        'pay_time': 1662093985856,
+        'processing_id': 0,
+        'state': 4,
+        'type': 2
+        }
+    }
+}
+```
