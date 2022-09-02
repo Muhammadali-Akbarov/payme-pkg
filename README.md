@@ -10,7 +10,7 @@ There are two ways to install the library:
 * Installation using pip (a Python package manager):
 
 ```
-$ pip install payme-pkg==1.3
+$ pip install payme-pkg==1.4
 ```
 * Installation from source (requires git):
 
