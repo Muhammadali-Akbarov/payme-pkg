@@ -15,13 +15,13 @@ $ pip install payme-pkg==1.4
 * Installation from source (requires git):
 
 ```
-$ git clone https://github.com/Muhammadali-Akbarov/payme_pkg
+$ git clone https://github.com/Muhammadali-Akbarov/payme-pkg
 $ cd payme_pkg
 $ python setup.py install
 ```
 or:
 ```
-$ pip install git+https://github.com/Muhammadali-Akbarov/payme_pkg
+$ pip install git+https://github.com/Muhammadali-Akbarov/payme-pkg
 ```
 
 ### Library Structure
