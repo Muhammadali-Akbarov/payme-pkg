@@ -164,7 +164,7 @@ class PaymeSubscribeReceipts:
 
         return self.__request(self._parse_to_json(**data))
 
-    def _reciepts_get_all(self, count: int, _from: str, to: str, offset: str) -> dict:
+    def _reciepts_get_all(self, count: int, _from: int, to: int, offset: int) -> dict:
         """Use this method get all complete information,
         on checks for a certain period.
 
