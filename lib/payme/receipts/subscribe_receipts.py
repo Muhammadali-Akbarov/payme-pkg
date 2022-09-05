@@ -10,7 +10,6 @@ class PaymeSubscribeReceipts:
     :param paycom_id string: The paycom_id uses to identify
     :param paycom_key string: The paycom_key uses to identify too
     """
-    __P2P_DESCRIPTION = "P2P Transaction"
 
     def __init__(self, base_url: str, paycom_id: str, paycom_key: str) -> None:
         self.__base_url: str = base_url
@@ -24,7 +23,6 @@ class PaymeSubscribeReceipts:
             "receipts_check": "receipts.check",
             "receipts_cancel": "receipts.cancel",
             "receipts_create": "receipts.create",
-            "receipts_create_p2p": "receipts.p2p",
             "receipts_get_all": "receipts.get_all",
         }
 
@@ -52,23 +50,6 @@ class PaymeSubscribeReceipts:
                 "account": {
                     "order_id": order_id,
                 }
-            }
-        }
-        return self.__request(self._parse_to_json(**data))
-
-    def _receipts_create_p2p(self, token: str, amount: float) -> dict:
-        """Use this method to create a new P2P Transactionm,
-        It works only production mode not test mode.
-
-        :param token string: The card's active token
-        :param amount float: The amount for person to person transaction
-        """
-        data: dict = {
-            "method": self.__methods.get("receipts_create_p2p"),
-            "params": {
-                "token": token,
-                "amount": amount,
-                "description": self.__P2P_DESCRIPTION
             }
         }
         return self.__request(self._parse_to_json(**data))
