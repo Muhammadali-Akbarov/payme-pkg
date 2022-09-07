@@ -53,7 +53,6 @@ Card Numer: 8600 0691 9540 6311 Expire Date: 03/99 SMS Code: 666666
    
   * Subscribe Receipts
     * [Receipts Create](#receipts-create)
-    * [Receipts Create P2P](#receipts-create-p2p)
     * [Receipts Pay](#receipts-pay)
     * [Receipts Send](#receipts-send)
     * [Receipts Cancel](#receipts-cancel)
