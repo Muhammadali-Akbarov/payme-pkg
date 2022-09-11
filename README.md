@@ -67,7 +67,7 @@ Example for cards create method for to generate token from card:
 ```
 from pprint import pprint
 
-from lib.payme.cards.subscribe_cards import PaymeSubscribeCards
+from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 
 client = PaymeSubscribeCards(
@@ -107,7 +107,7 @@ Example for cards create method for to generate token from card:
 ```
 from pprint import pprint
 
-from lib.payme.cards.subscribe_cards import PaymeSubscribeCards
+from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 
 client = PaymeSubscribeCards(
@@ -139,7 +139,7 @@ Example for cards create method for to generate token from card:
 ```
 from pprint import pprint
 
-from lib.payme.cards.subscribe_cards import PaymeSubscribeCards
+from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 
 client = PaymeSubscribeCards(
@@ -177,7 +177,7 @@ Example for cards create method for to generate token from card:
 ```
 from pprint import pprint
 
-from lib.payme.cards.subscribe_cards import PaymeSubscribeCards
+from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 
 client = PaymeSubscribeCards(
@@ -213,7 +213,7 @@ Example for cards create method for to generate token from card:
 ```
 from pprint import pprint
 
-from lib.payme.cards.subscribe_cards import PaymeSubscribeCards
+from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 
 client = PaymeSubscribeCards(
@@ -242,7 +242,7 @@ Example for receipts create method:
 ```
 from pprint import pprint
 
-from lib.payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
+from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 
 rclient = PaymeSubscribeReceipts(
@@ -318,7 +318,7 @@ Example for receipts pay method:
 ```
 from pprint import pprint
 
-from lib.payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
+from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 
 rclient = PaymeSubscribeReceipts(
@@ -399,7 +399,7 @@ Example for receipts send method:
 ```
 from pprint import pprint
 
-from lib.payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
+from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 
 rclient = PaymeSubscribeReceipts(
@@ -431,7 +431,7 @@ Example for receipts cancel method:
 ```
 from pprint import pprint
 
-from lib.payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
+from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 
 rclient = PaymeSubscribeReceipts(
@@ -511,7 +511,7 @@ Example for receipts check method:
 ```
 from pprint import pprint
 
-from lib.payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
+from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 
 rclient = PaymeSubscribeReceipts(
@@ -542,7 +542,7 @@ Example for receipts get method:
 ```
 from pprint import pprint
 
-from lib.payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
+from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 
 rclient = PaymeSubscribeReceipts(
@@ -618,7 +618,7 @@ Example for receipts get all method:
 ```
 from pprint import pprint
 
-from lib.payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
+from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 
 rclient = PaymeSubscribeReceipts(
