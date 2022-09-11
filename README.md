@@ -1,7 +1,7 @@
 # Integration Payme API with Python | Payment Service 
 Sourcode and Resources for Python & Payme <hr>
 Support Telegram - http://t.me/Muhammadalive <br>
-Documentation & More https://developer.help.paycom.uz/ru/
+Documentation & More https://developer.help.paycom.uz/ru/ <br>
 Video Documentation & More https://www.youtube.com/watch?v=sJORIyykHcw
 <hr>
 
