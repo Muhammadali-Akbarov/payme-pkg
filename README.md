@@ -103,7 +103,7 @@ pprint(resp)
 ```
 
 ## Cards Get Verify Code
-Example for cards create method for to generate token from card:
+Example for cards get verify:
 * Request
 ```
 from pprint import pprint
@@ -135,7 +135,7 @@ pprint(resp)
 ```
 
 ## Cards Verify
-Example for cards create method for to generate token from card:
+Example for cards verify method:
 * Request
 ```
 from pprint import pprint
@@ -173,7 +173,7 @@ pprint(resp)
 ```
 
 ## Cards Check
-Example for cards create method for to generate token from card:
+Example for cards check:
 * Request
 ```
 from pprint import pprint
