@@ -1,40 +1,53 @@
 # Integration Payme API with Python | Payment Service 
 Sourcode and Resources for Python & Payme <hr>
+Sandbox Payme - https://test.paycom.uz/ <br>
 Support Telegram - http://t.me/Muhammadalive <br>
-Documentation & More https://developer.help.paycom.uz/ru/ <br>
-Video Documentation & More https://www.youtube.com/watch?v=sJORIyykHcw
+Payme Buiness - https://merchant.payme.uz/business <br>
+Payme API Documentation https://developer.help.paycom.uz/ru/ <br>
+Payme Package Installation https://www.youtube.com/watch?v=sJORIyykHcw
 <hr>
 
 ## Getting started
-There are two ways to install the library:
 
-* Installation using pip (a Python package manager):
+Installation using pip
 
 ```
 $ pip install payme-pkg
 ```
-* Installation from source (requires git):
-
-```
-$ git clone https://github.com/Muhammadali-Akbarov/payme-pkg
-$ cd payme-pkg
-$ python setup.py install
-```
-or:
-```
-$ pip install git+https://github.com/Muhammadali-Akbarov/payme-pkg
-```
-
 ### Library Structure
 ```
-payme
-    ├── cards
-    │   ├── __init__.py
-    │   └── subscribe_cards.py
-    ├── __init__.py
-    └── receipts
-        ├── __init__.py
-        └── subscribe_receipts.py
+─── payme
+       ├── __init__.py
+       ├── admin.py
+       ├── apps.py
+       ├── cards
+       │   ├── __init__.py
+       │   └── subscribe_cards.py
+       ├── errors
+       │   ├── __init__.py
+       │   └── exceptions.py
+       ├── methods
+       │   ├── __init__.py
+       │   ├── cancel_transaction.py
+       │   ├── check_perform_transaction.py
+       │   ├── check_transaction.py
+       │   ├── create_transaction.py
+       │   └── perform_transaction.py
+       ├── migrations
+       │   ├── 0001_initial.py
+       │   └── __init__.py
+       ├── models.py
+       ├── receipts
+       │   ├── __init__.py
+       │   └── subscribe_receipts.py
+       ├── serializers.py
+       ├── urls.py
+       ├── utils
+       │   ├── __init__.py
+       │   ├── get_params.py
+       │   ├── logger.py
+       │   └── support.py
+       └── views.py
 ```
 ### Test Cards
 ```
