@@ -64,6 +64,10 @@ urlpatterns = [
     ...
 ]
 ```
+Run migrations
+```
+$ python manage.py migrate
+```
 🎉 Congratulations you have been integrated merchant api methods with django, keep reading docs!
 
 ## Cards Create
