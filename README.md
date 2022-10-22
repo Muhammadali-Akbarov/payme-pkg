@@ -16,7 +16,7 @@ Card Numer: 8600 0691 9540 6311 Expire Date: 03/99 SMS Code: 666666
 ```
 
 ## Documentation
-  * [Merchant API](#merchant-django)
+  * [Merchant API](#merchant-api)
   * Subscribe Cards
     * [Cards Create](#cards-create)
     * [Cards Get Verify Code](#cards-get-verify-code)
@@ -33,7 +33,7 @@ Card Numer: 8600 0691 9540 6311 Expire Date: 03/99 SMS Code: 666666
     * [Receipts Get](#receipts-get)
     * [Receipts Get All ](#receipts-get-all)
 
-# Merchant Django
+# Merchant API
 
 ## Installation to Django
 
