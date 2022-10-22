@@ -1,55 +1,15 @@
-# Integration Payme API with Python | Payment Service 
-Sourcode and Resources for Python & Payme <hr>
-Sandbox Payme - https://test.paycom.uz/ <br>
-Support Telegram - http://t.me/Muhammadalive <br>
-Payme Buiness - https://merchant.payme.uz/business <br>
-Payme API Documentation https://developer.help.paycom.uz/ru/ <br>
-Payme Package Installation https://www.youtube.com/watch?v=sJORIyykHcw
-<hr>
+# Payme Uzbekistan Integration Uzcard and Humo
+<p align="center">
+    <img style="width: 70%;" src="https://www.gazeta.uz/media/img/2019/07/GDpmEM15631750293941_b.jpg"></img>
+</p>
 
-## Getting started
 
-Installation using pip
+## Installation
 
 ```
 $ pip install payme-pkg
 ```
-### Library Structure
-```
-─── payme
-       ├── __init__.py
-       ├── admin.py
-       ├── apps.py
-       ├── cards
-       │   ├── __init__.py
-       │   └── subscribe_cards.py
-       ├── errors
-       │   ├── __init__.py
-       │   └── exceptions.py
-       ├── methods
-       │   ├── __init__.py
-       │   ├── cancel_transaction.py
-       │   ├── check_perform_transaction.py
-       │   ├── check_transaction.py
-       │   ├── create_transaction.py
-       │   └── perform_transaction.py
-       ├── migrations
-       │   ├── 0001_initial.py
-       │   └── __init__.py
-       ├── models.py
-       ├── receipts
-       │   ├── __init__.py
-       │   └── subscribe_receipts.py
-       ├── serializers.py
-       ├── urls.py
-       ├── utils
-       │   ├── __init__.py
-       │   ├── get_params.py
-       │   ├── logger.py
-       │   └── support.py
-       └── views.py
-```
-### Test Cards
+### Test-Credentials
 ```
 Card Numer: 8600 4954 7331 6478 Expire Date: 03/99 SMS Code: 666666 
 Card Numer: 8600 0691 9540 6311 Expire Date: 03/99 SMS Code: 666666 
