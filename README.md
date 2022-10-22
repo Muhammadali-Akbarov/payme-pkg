@@ -68,7 +68,7 @@ Run migrations
 ```
 $ python manage.py migrate
 ```
-🎉 Congratulations you have been integrated merchant api methods with django, keep reading docs!
+🎉 Congratulations you have been integrated merchant api methods with django, keep reading docs.After successfull migrations check your admin panel and see results what happened.
 
 ## Cards Create
 Example for cards create method for to generate token from card:
