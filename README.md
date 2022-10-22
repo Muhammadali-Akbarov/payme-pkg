@@ -15,9 +15,8 @@ Card Numer: 8600 4954 7331 6478 Expire Date: 03/99 SMS Code: 666666
 Card Numer: 8600 0691 9540 6311 Expire Date: 03/99 SMS Code: 666666 
 ```
 
-## Contents
-
-  * [Getting Started](#getting-started)
+## Documentation
+  * [Merchant Django](#merchant-django)
   * Subscribe Cards
     * [Cards Create](#cards-create)
     * [Cards Get Verify Code](#cards-get-verify-code)
@@ -33,6 +32,40 @@ Card Numer: 8600 0691 9540 6311 Expire Date: 03/99 SMS Code: 666666
     * [Receipts Check](#receipts-check)
     * [Receipts Get](#receipts-get)
     * [Receipts Get All ](#receipts-get-all)
+
+# Merchant Django
+
+## Installation to Django
+
+Add `'payme'` in to your settings.
+```python
+INSTALLED_APPS = [
+    ...
+    'payme',
+    ...
+]
+```
+Add `'payme'` credentials inside to settings.
+```python
+PAYME: dict = {
+    "min_amount": "minimum-amount-integer-field",
+    "account": "payme-account-name",
+    "paycom_key": "payme-key"
+}
+```
+Add a `payme` path to core of urlpatterns:
+```python
+from django.urls import path
+from django.urls import include
+
+urlpatterns = [
+    ...
+    path("payments/", include("payme.urls"))
+    ...
+]
+```
+🎉 Congratulations you have been integrated merchant api methods with django, keep reading docs!
+
 ## Cards Create
 Example for cards create method for to generate token from card:
 
