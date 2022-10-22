@@ -16,7 +16,7 @@ Card Numer: 8600 0691 9540 6311 Expire Date: 03/99 SMS Code: 666666
 ```
 
 ## Documentation
-  * [Merchant Django](#merchant-django)
+  * [Merchant API](#merchant-django)
   * Subscribe Cards
     * [Cards Create](#cards-create)
     * [Cards Get Verify Code](#cards-get-verify-code)
