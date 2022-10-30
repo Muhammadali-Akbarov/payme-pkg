@@ -110,10 +110,10 @@ class MerchantAPIView(APIView):
 
         merchant_key = password.split(':')[-1]
 
-        if merchant_key == settings.PAYME.get('paycom_key'):
+        if merchant_key == settings.PAYME.get('PAYME_KEY'):
             is_payme = True
 
-        if merchant_key != settings.PAYME.get('paycom_key'):
+        if merchant_key != settings.PAYME.get('PAYME_KEY'):
             logged(
                 logged_message="Invalid key in request!",
                 logged_type="error"

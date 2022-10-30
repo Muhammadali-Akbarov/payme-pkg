@@ -48,9 +48,12 @@ INSTALLED_APPS = [
 Add `'payme'` credentials inside to settings.
 ```python
 PAYME: dict = {
-    "min_amount": "minimum-amount-integer-field",
-    "account": "payme-account-name",
-    "paycom_key": "payme-key"
+    'PAYME_ID': 'payme-id',
+    'PAYME_KEY': 'payme-key',
+    'PAYME_URL': 'payme-checkout-url',
+    'PAYME_CALL_BACK_URL': 'your-callback-url', # merchant api callback url
+    'PAYME_MIN_AMOUNT': 'payme-min-amount', # integer field
+    'PAYME_ACCOUNT': 'order-id',
 }
 ```
 Add a `payme` path to core of urlpatterns:

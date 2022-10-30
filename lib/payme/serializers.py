@@ -36,7 +36,7 @@ class MerchatTransactionsModelSerializer(serializers.ModelSerializer):
         Validator for Transactions Amount
         """
         if amount is not None:
-            if int(amount) <= settings.PAYME.get("min_amount"):
+            if int(amount) <= settings.PAYME.get("PAYME_MIN_AMOUNT"):
                 raise IncorrectAmount()
 
         return amount
