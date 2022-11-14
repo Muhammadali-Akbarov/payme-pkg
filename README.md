@@ -2,7 +2,7 @@
 <p align="center">
     <img style="width: 70%;" src="https://www.gazeta.uz/media/img/2019/07/GDpmEM15631750293941_b.jpg"></img>
 </p>
-## Installation
+
 Support Group - https://t.me/+Ng1axYLNyBAyYTRi
 
 ## Installation
