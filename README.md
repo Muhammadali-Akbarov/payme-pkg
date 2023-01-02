@@ -764,4 +764,29 @@ pprint(resp)
     }
   ]
 }
+
 ```
+## Generate Payment Link 
+Example to generate link:
+* Request
+```
+
+from pprint import pprint
+
+from payme.methods.generate_link import GeneratePayLink
+
+res_pay = GeneratePayLink(
+    order_id=999,
+    amount=9999
+    )
+
+link = res_pay.generate_link()
+
+pprint(link)
+
+```
+* Response 
+```
+
+Link: https://checkout.paycom.uz/bT01ZTczMGU4ZTBiODUyYTQxN2FhNDljZWI7YWMub3JkZXItaWQ9OTk5O2E9OTk5OTtjPXlvdXItY2FsbGJhY2stdXJs
+
