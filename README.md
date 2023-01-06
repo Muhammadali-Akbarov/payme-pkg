@@ -18,6 +18,7 @@ Card Numer: 8600 0691 9540 6311 Expire Date: 03/99 SMS Code: 666666
 
 ## Documentation
   * [Merchant API](#merchant-api)
+  * [Generate Pay Link](#generate-pay-link)
   * Subscribe Cards
     * [Cards Create](#cards-create)
     * [Cards Get Verify Code](#cards-get-verify-code)
@@ -74,6 +75,28 @@ $ python manage.py migrate
 ```
 🎉 Congratulations you have been integrated merchant api methods with django, keep reading docs.After successfull migrations check your admin panel and see results what happened.
 
+## Generate Pay Link
+Example to generate link:
+
+* Input
+
+```python
+from pprint import pprint
+
+from payme.methods.generate_link import GeneratePayLink
+
+pay_link = GeneratePayLink(
+  order_id=999,
+  amount=9999
+).generate_link()
+
+pprint(pay_link)
+```
+* Output
+
+```
+Link: https://checkout.paycom.uz/bT01ZTczMGU4ZTBiODUyYTQxN2FhNDljZWI7YWMub3JkZXItaWQ9OTk5O2E9OTk5OTtjPXlvdXItY2FsbGJhY2stdXJs
+```
 ## Cards Create
 Example for cards create method for to generate token from card:
 
@@ -764,29 +787,4 @@ pprint(resp)
     }
   ]
 }
-
-```
-## Generate Payment Link 
-Example to generate link:
-* Request
-```
-
-from pprint import pprint
-
-from payme.methods.generate_link import GeneratePayLink
-
-res_pay = GeneratePayLink(
-    order_id=999,
-    amount=9999
-    )
-
-link = res_pay.generate_link()
-
-pprint(link)
-
-```
-* Response 
-```
-
-Link: https://checkout.paycom.uz/bT01ZTczMGU4ZTBiODUyYTQxN2FhNDljZWI7YWMub3JkZXItaWQ9OTk5O2E9OTk5OTtjPXlvdXItY2FsbGJhY2stdXJs
 
