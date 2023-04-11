@@ -3,7 +3,8 @@
     <img style="width: 70%;" src="https://www.gazeta.uz/media/img/2019/07/GDpmEM15631750293941_b.jpg"></img>
 </p>
 
-Support Group - https://t.me/+Ng1axYLNyBAyYTRi
+Support Group - https://t.me/+Ng1axYLNyBAyYTRi <br/>
+Implementation Sample - https://github.com/Muhammadali-Akbarov/payme-sample
 
 ## Installation
 
