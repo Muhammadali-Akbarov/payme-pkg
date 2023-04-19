@@ -114,7 +114,7 @@ client = PaymeSubscribeCards(
     paycom_id="5e730e8e0b852a417aa49ceb"
 )
 
-resp = client._cards_create(
+resp = client.cards_create(
     number="8600069195406311",
     expire="0399",
     save=True,
@@ -154,7 +154,7 @@ client = PaymeSubscribeCards(
     paycom_id="5e730e8e0b852a417aa49ceb"
 )
 
-resp = client._card_get_verify_code(
+resp = client.card_get_verify_code(
     token="630e5ffdd15d8d8d093b379b_2fsaoABWafecn20kofV4PFafFZjeGDWS9adM1PmboQaEZbbaxMcnaskctMbU9Iv8qgrOuKGz8SnjvZvYXDK64m1eS9gA5jZ7BBRaQybMXrDPtFPJ1fwek5B1KoIv5cMiCWYXj7ezpYEdJAKTIQw0Np9HsTXjqco4gQG3m8MOfeH9ovkdm66O6yj45oKXRmJyAK5i0SchXNNomACH3Oq80KyoRE1VoBRxvoKyMkOx0xcepXovxK9d3v26a8z7UtyokwY33N8MupviM3A5WHB5Xh35WZJJyFnxTSi1vvnYnG7uVd6Bb1GjV2yAHnimss8aEZGW5V7ZiPrhf8r6WJAeHciYDGK3msRKZJBQTfjgOdE9tGrEnMezVkxr1JXX0xSn5qqec2"
 )
 
@@ -186,7 +186,7 @@ client = PaymeSubscribeCards(
     paycom_id="5e730e8e0b852a417aa49ceb"
 )
 
-resp = client._cards_verify(
+resp = client.cards_verify(
     verify_code="666666",
     token="630e691fd15d8d8d093b379c_70mKyzqS8d1wTWzovIGjt9dKmjpn1KI8Y9XakPrfpbUASTBaZYbC1DjDcjYRmuNJep9gZrTRtHyEGBQYmBaPufuozF51bv4qEPsQnodq1VcD7tYyREwUXjMXXZUeu7Ek0REQCekCvVHX6rtNBpb4vtViJoNVjp94XpTqu0Bn3yYYb0CHu951wFydzRsieGxjGNrvx1oKyBcq0CdOUwoffRIt2VPvx5R2aVmc6ahwyhn387FEEcpO1PnjIJkWKTBWdI35ZPQnb1u1oss5aPg06E279THXRkoTThixbeqiD2JkWSXweNVGGDhTS30V4j61G3NWEPO2H3k4uFmCjjIQSzx4TxKzUgHg1i2q953PRUGjT4JZBRHMDxaN5tWuctEMNmY06p"
 )
@@ -224,7 +224,7 @@ client = PaymeSubscribeCards(
     paycom_id="5e730e8e0b852a417aa49ceb"
 )
 
-resp = client._cards_check(
+resp = client.cards_check(
     token="630e691fd15d8d8d093b379c_70mKyzqS8d1wTWzovIGjt9dKmjpn1KI8Y9XakPrfpbUASTBaZYbC1DjDcjYRmuNJep9gZrTRtHyEGBQYmBaPufuozF51bv4qEPsQnodq1VcD7tYyREwUXjMXXZUeu7Ek0REQCekCvVHX6rtNBpb4vtViJoNVjp94XpTqu0Bn3yYYb0CHu951wFydzRsieGxjGNrvx1oKyBcq0CdOUwoffRIt2VPvx5R2aVmc6ahwyhn387FEEcpO1PnjIJkWKTBWdI35ZPQnb1u1oss5aPg06E279THXRkoTThixbeqiD2JkWSXweNVGGDhTS30V4j61G3NWEPO2H3k4uFmCjjIQSzx4TxKzUgHg1i2q953PRUGjT4JZBRHMDxaN5tWuctEMNmY06p"
 )
 
@@ -260,7 +260,7 @@ client = PaymeSubscribeCards(
     paycom_id="5e730e8e0b852a417aa49ceb"
 )
 
-resp = client._cards_remove(
+resp = client.cards_remove(
     token="630e691fd15d8d8d093b379c_70mKyzqS8d1wTWzovIGjt9dKmjpn1KI8Y9XakPrfpbUASTBaZYbC1DjDcjYRmuNJep9gZrTRtHyEGBQYmBaPufuozF51bv4qEPsQnodq1VcD7tYyREwUXjMXXZUeu7Ek0REQCekCvVHX6rtNBpb4vtViJoNVjp94XpTqu0Bn3yYYb0CHu951wFydzRsieGxjGNrvx1oKyBcq0CdOUwoffRIt2VPvx5R2aVmc6ahwyhn387FEEcpO1PnjIJkWKTBWdI35ZPQnb1u1oss5aPg06E279THXRkoTThixbeqiD2JkWSXweNVGGDhTS30V4j61G3NWEPO2H3k4uFmCjjIQSzx4TxKzUgHg1i2q953PRUGjT4JZBRHMDxaN5tWuctEMNmY06p"
 )
 
@@ -290,7 +290,7 @@ rclient = PaymeSubscribeReceipts(
     paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
 )
 
-resp = rclient._receipts_create(
+resp = rclient.receipts_create(
     amount=10000,
     order_id="1"
 )
@@ -366,7 +366,7 @@ rclient = PaymeSubscribeReceipts(
     paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
 )
 
-resp = rclient._receipts_pay(
+resp = rclient.receipts_pay(
     invoice_id="631186b6c4420cbf2712a243",
     token="63118a5dd15d8d8d093b37b7_X2j34OIJPnROfsgzYZCZ0w7OcC50zzwiowTsotEVO1uUbxkzaDrvdOno6jicQTrcRmxvibxrye4vUS3AynTNPaPCTGpfk3RCKmT9NaOAyyTmctAjWsjwvqGR5XUzAP1Xcx12GkhuQi6VJ4BeaIXOokSRu06rRjaivmJQ8HTiJiR9b3OmZtrhkIRNcNXnnp9zYm1mFP4BuqGpS8BMnY0ASIE6ffxWykjgBcDTAfWBFt4mg7O9Dsvx0aj3IB8z3RIbZYtDZJnUVhCZrwW7ONVI9uEAdxNthorjO6PbV7TQ8XCjrztgGf6uCtOwwxasiIUVZN6tCVDk8A8NvVSUzUHXQHVkaPn5heJNa3K4WsffIckq7SwMbiw3UbawipeZKyD3iwk1Km",
     phone="998901304527"
@@ -447,7 +447,7 @@ rclient = PaymeSubscribeReceipts(
     paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
 )
 
-resp = rclient._receipts_send(
+resp = rclient.receipts_send(
     invoice_id="631186b6c4420cbf2712a243",
     phone="998901304527"
 )
@@ -479,7 +479,7 @@ rclient = PaymeSubscribeReceipts(
     paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
 )
 
-resp = rclient._receipts_cancel(
+resp = rclient.receipts_cancel(
     invoice_id="63119303c4420cbf2712a245"
 )
 
@@ -559,7 +559,7 @@ rclient = PaymeSubscribeReceipts(
     paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
 )
 
-resp = rclient._receipts_check(
+resp = rclient.receipts_check(
     invoice_id="63119303c4420cbf2712a245"
 )
 
@@ -590,7 +590,7 @@ rclient = PaymeSubscribeReceipts(
     paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
 )
 
-resp = rclient._reciepts_get(
+resp = rclient.reciepts_get(
     invoice_id="6311946bc4420cbf2712a247"
 )
 
@@ -666,7 +666,7 @@ rclient = PaymeSubscribeReceipts(
     paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
 )
 
-resp = rclient._reciepts_get_all(
+resp = rclient.reciepts_get_all(
     count=2,
     _from=1636398000000,
     to=1636398000000,
