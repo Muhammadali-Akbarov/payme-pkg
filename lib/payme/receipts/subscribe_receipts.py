@@ -1,19 +1,32 @@
-import json
-import requests
+from payme.utils.to_json import to_json
+from payme.decorators.decorators import payme_request
+
 
 
 class PaymeSubscribeReceipts:
-    """The PaymeSubscribeReceipts class inclues
+    """
+    The PaymeSubscribeReceipts class inclues
     all paycom methods which are belongs receipts part.
 
-    :param base_url string: The base url of the paycom api
-    :param paycom_id string: The paycom_id uses to identify
-    :param paycom_key string: The paycom_key uses to identify too
-    """
+    Parameters
+    ----------
+    base_url string: The base url of the paycom api
+    paycom_id string: The paycom_id uses to identify
+    paycom_key string: The paycom_key uses to identify too
 
-    def __init__(self, base_url: str, paycom_id: str, paycom_key: str) -> None:
-        self.__base_url: str = base_url
-        self.__headers: dict = {
+    Full method documentation
+    -------------------------
+    https://developer.help.paycom.uz/metody-subscribe-api/
+    """
+    def __init__(
+        self,
+        base_url: str,
+        paycom_id: str,
+        paycom_key: str,
+        timeout: int = 5
+    ) -> "PaymeSubscribeReceipts":
+        self.base_url: str = base_url
+        self.headers: dict = {
             "X-Auth": f"{paycom_id}:{paycom_key}"
         }
         self.__methods: dict = {
@@ -25,23 +38,35 @@ class PaymeSubscribeReceipts:
             "receipts_create": "receipts.create",
             "receipts_get_all": "receipts.get_all",
         }
+        self.timeout = timeout
 
-    def __request(self, data: dict) -> dict:
-        req_data: dict = {
-            "data": data,
-            "url": self.__base_url,
-            "headers": self.__headers,
-        }
-        return requests.post(**req_data).json()
+    @payme_request
+    def __request(self, data) -> dict:
+        """
+        Use this private method to request.
+        On success,response will be OK with format JSON.
 
-    def _receipts_create(self, amount: float, order_id: int) -> dict:
-        """Use this method to create a new payment receipt.
+        Parameters
+        ----------
+        data: dict — Includes request data.
 
-        :param amount float: Payment amount in tiyins
-        :param order_id int: Order object ID
+        Returns dictionary Payme Response
+        ---------------------------------
+        """
+        return data
 
-        Full method documentation:
-        https://developer.help.paycom.uz/uz/metody-subscribe-api/receipts.create
+    def receipts_create(self, amount: float, order_id: int) -> dict:
+        """
+        Use this method to create a new payment receipt.
+
+        Parameters
+        ----------
+        amount: float — Payment amount in tiyins
+        order_id: int — Order object ID
+
+        Full method documentation
+        -------------------------
+        https://developer.help.paycom.uz/metody-subscribe-api/receipts.create
         """
         data: dict = {
             "method": self.__methods.get("receipts_create"),
@@ -52,17 +77,21 @@ class PaymeSubscribeReceipts:
                 }
             }
         }
-        return self.__request(self._parse_to_json(**data))
+        return self.__request(to_json(**data))
 
-    def _receipts_pay(self, invoice_id: str, token: str, phone: str) -> dict:
-        """Use this method to pay for an exist receipt.
+    def receipts_pay(self, invoice_id: str, token: str, phone: str) -> dict:
+        """
+        Use this method to pay for an exist receipt.
 
-        :param invoice_id: invoice id for indentity transaction
-        :param token string: The card's active token
-        :param phone string: The payer's phone number
+        Parameters
+        ----------
+        invoice_id: str — Invoice id for indentity transaction
+        token: str — The card's active token
+        phone: str —The payer's phone number
 
-        Full method documentation:
-        https://developer.help.paycom.uz/uz/metody-subscribe-api/receipts.pay
+        Full method documentation
+        -------------------------
+        https://developer.help.paycom.uz/metody-subscribe-api/receipts.pay
         """
         data: dict = {
             "method": self.__methods.get("receipts_pay"),
@@ -74,16 +103,20 @@ class PaymeSubscribeReceipts:
                 }
             }
         }
-        return self.__request(self._parse_to_json(**data))
+        return self.__request(to_json(**data))
 
-    def _receipts_send(self, invoice_id: str, phone: str) -> dict:
-        """Use this method to send a receipt for payment in an SMS message.
+    def receipts_send(self, invoice_id: str, phone: str) -> dict:
+        """
+        Use this method to send a receipt for payment in an SMS message.
 
-        :param invoice_id: The invoice id for indentity transaction
-        :param phone string: The payer's phone number
+        Parameters
+        ----------
+        invoice_id: str — The invoice id for indentity transaction
+        phone: str — The payer's phone number
 
-        Full method documentation:
-        https://developer.help.paycom.uz/uz/metody-subscribe-api/receipts.send
+        Full method documentation
+        -------------------------
+        https://developer.help.paycom.uz/metody-subscribe-api/receipts.send
         """
         data: dict = {
             "method": self.__methods.get('receipts_send'),
@@ -92,15 +125,19 @@ class PaymeSubscribeReceipts:
                 "phone": phone
             }
         }
-        return self.__request(self._parse_to_json(**data))
+        return self.__request(to_json(**data))
 
-    def _receipts_cancel(self, invoice_id: str) -> dict:
-        """Use this method a paid check in the queue for cancellation.
+    def receipts_cancel(self, invoice_id: str) -> dict:
+        """
+        Use this method a paid check in the queue for cancellation.
 
-        :param invoice_id string: The invoice id for indentity transaction
+        Parameters
+        ----------
+        invoice_id: str — The invoice id for indentity transaction
 
-        Full method documentation:
-        https://developer.help.paycom.uz/uz/metody-subscribe-api/receipts.cancel
+        Full method documentation
+        -------------------------
+        https://developer.help.paycom.uz/metody-subscribe-api/receipts.cancel
         """
         data: dict = {
             "method": self.__methods.get('receipts_cancel'),
@@ -109,15 +146,19 @@ class PaymeSubscribeReceipts:
             }
         }
 
-        return self.__request(self._parse_to_json(**data))
+        return self.__request(to_json(**data))
 
-    def _receipts_check(self, invoice_id: str) -> dict:
-        """Use this method check for an exist receipt.
+    def receipts_check(self, invoice_id: str) -> dict:
+        """
+        Use this method check for an exist receipt.
 
-        :param invoice_id string: The invoice id for indentity transaction
+        Parameters
+        ----------
+        invoice_id: str — The invoice id for indentity transaction
 
-        Full method documentation:
-        https://developer.help.paycom.uz/uz/metody-subscribe-api/receipts.check
+        Full method documentation
+        -------------------------
+        https://developer.help.paycom.uz/metody-subscribe-api/receipts.check
         """
         data: dict = {
             "method": self.__methods.get('receipts_check'),
@@ -126,15 +167,19 @@ class PaymeSubscribeReceipts:
             }
         }
 
-        return self.__request(self._parse_to_json(**data))
+        return self.__request(to_json(**data))
 
-    def _reciepts_get(self, invoice_id: str) -> dict:
-        """Use this method check status for an exist receipt.
+    def reciepts_get(self, invoice_id: str) -> dict:
+        """
+        Use this method check status for an exist receipt.
 
-        :param invoice_id string: The invoice id for indentity transaction
+        Parameters
+        ----------
+        invoice_id: str — The invoice id for indentity transaction
 
-        Full method documentation:
-        https://developer.help.paycom.uz/uz/metody-subscribe-api/receipts.get
+        Full method documentation
+        -------------------------
+        https://developer.help.paycom.uz/metody-subscribe-api/receipts.get
         """
         data: dict = {
             "method": self.__methods.get('receipts_get'),
@@ -143,38 +188,30 @@ class PaymeSubscribeReceipts:
             }
         }
 
-        return self.__request(self._parse_to_json(**data))
+        return self.__request(to_json(**data))
 
-    def _reciepts_get_all(self, count: int, _from: int, to: int, offset: int) -> dict:
-        """Use this method get all complete information,
-        on checks for a certain period.
+    def reciepts_get_all(self, count: int, _from: int, _to: int, offset: int) -> dict:
+        """
+        Use this method get all complete information, on checks for a certain period.
 
-        :param count int: The number of checks. Maximum value - 50
-        :param _from string: The date of the beginning
-        :param to string: The date of the ending
-        :param offset string: The number of subsequent skipped checks.
+        Parameters
+        ----------
+        count: int — The number of checks. Maximum value - 50
+        _from: str — The date of the beginning
+        _to: int — The date of the ending
+        offset: str — The number of subsequent skipped checks.
 
-        Full method documentation:
-        https://developer.help.paycom.uz/uz/metody-subscribe-api/receipts.get_all
+        Full method documentation
+        -------------------------
+        https://developer.help.paycom.uz/metody-subscribe-api/receipts.get_all
         """
         data: str = {
             "method": self.__methods.get('receipts_get_all'),
             "params": {
                 "count": count,
                 "from": _from,
-                "to": to,
+                "to": _to,
                 "offset": offset
             }
         }
-        return self.__request(self._parse_to_json(**data))
-
-    @staticmethod
-    def _parse_to_json(**kwargs) -> dict:
-        """Use this static method to data dumps.
-        """
-        data: dict = {
-            "method": kwargs.pop("method"),
-            "params": kwargs.pop("params"),
-        }
-
-        return json.dumps(data)
+        return self.__request(to_json(**data))

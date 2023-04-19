@@ -1,13 +1,22 @@
 import time
 
-from payme.utils.get_params import get_params
+from django.db import DatabaseError
 
-from payme.utils.logger import logged
+from payme.utils.logging import logger
+from payme.utils.get_params import get_params
 from payme.models import MerchatTransactionsModel
 from payme.serializers import MerchatTransactionsModelSerializer
 
 
 class PerformTransaction:
+    """
+    PerformTransaction class
+    That's used to perform a transaction.
+
+    Full method documentation
+    -------------------------
+    https://developer.help.paycom.uz/metody-merchant-api/performtransaction
+    """
     def __call__(self, params: dict) -> dict:
         serializer = MerchatTransactionsModelSerializer(
             data=get_params(params)
@@ -16,15 +25,10 @@ class PerformTransaction:
         clean_data: dict = serializer.validated_data
         response: dict = None
         try:
-            logged_message = "started check trx in db(perform_transaction)"
             transaction = \
                 MerchatTransactionsModel.objects.get(
                     _id=clean_data.get("_id"),
                 )
-            logged(
-                logged_message=logged_message,
-                logged_type="info",
-            )
             transaction.state = 2
             if transaction.perform_time == 0:
                 transaction.perform_time = int(time.time() * 1000)
@@ -37,11 +41,7 @@ class PerformTransaction:
                     "state": int(transaction.state),
                 }
             }
-        except Exception as e:
-            logged_message = "error during get transaction in db {}{}"
-            logged(
-                logged_message=logged_message.format(e, clean_data.get("id")),
-                logged_type="error",
-            )
+        except DatabaseError as error:
+            logger.error("error while getting transaction in db: %s", error)
 
         return response

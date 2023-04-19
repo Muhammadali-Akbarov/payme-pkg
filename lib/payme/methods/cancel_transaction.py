@@ -1,22 +1,28 @@
 import time
+
 from django.db import transaction
 
-from payme.utils.get_params import get_params
-
+from payme.utils.logging import logger
 from payme.models import MerchatTransactionsModel
-from payme.serializers import MerchatTransactionsModelSerializer
 from payme.errors.exceptions import PerformTransactionDoesNotExist
+from payme.serializers import MerchatTransactionsModelSerializer as MTMS
 
 
 class CancelTransaction:
+    """
+    CancelTransaction class
+    That is used to cancel a transaction.
+
+    Full method documentation
+    -------------------------
+    https://developer.help.paycom.uz/metody-merchant-api/canceltransaction
+    """
 
     @transaction.atomic
     def __call__(self, params: dict):
-        serializer = MerchatTransactionsModelSerializer(
-            data=get_params(params)
+        clean_data: dict = MTMS.get_validated_data(
+            params=params
         )
-        serializer.is_valid(raise_exception=True)
-        clean_data: dict = serializer.validated_data
         try:
             with transaction.atomic():
                 transactions: MerchatTransactionsModel = \
@@ -32,8 +38,9 @@ class CancelTransaction:
                 transactions.reason = clean_data.get("reason")
                 transactions.save()
 
-        except PerformTransactionDoesNotExist:
-            raise PerformTransactionDoesNotExist()
+        except PerformTransactionDoesNotExist as error:
+            logger.error("Paycom transaction does not exist: %s", error)
+            raise PerformTransactionDoesNotExist() from error
 
         response: dict = {
             "result": {

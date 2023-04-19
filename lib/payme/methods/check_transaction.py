@@ -1,29 +1,30 @@
-from payme.utils.logger import logged
-from payme.utils.get_params import get_params
 
+from django.db import DatabaseError
+
+from payme.utils.logging import logger
 from payme.models import MerchatTransactionsModel
-from payme.serializers import MerchatTransactionsModelSerializer
+from payme.serializers import MerchatTransactionsModelSerializer as MTMS
 
 
 class CheckTransaction:
+    """
+    CheckTransaction class
+    That's used to check transaction
+
+    Full method documentation
+    -------------------------
+    https://developer.help.paycom.uz/metody-merchant-api/checkperformtransaction
+    """
     def __call__(self, params: dict) -> None:
-        response: dict = None
-        serializer = MerchatTransactionsModelSerializer(
-            data=get_params(params)
+        clean_data: dict = MTMS.get_validated_data(
+            params=params
         )
-        serializer.is_valid(raise_exception=True)
-        clean_data: dict = serializer.validated_data
 
         try:
-            logged_message = "started check transaction in db"
             transaction = \
                 MerchatTransactionsModel.objects.get(
                     _id=clean_data.get("_id"),
                 )
-            logged(
-                logged_message=logged_message,
-                logged_type="info",
-            )
             response = {
                 "result": {
                     "create_time": int(transaction.created_at_ms),
@@ -37,11 +38,7 @@ class CheckTransaction:
             if transaction.reason is not None:
                 response["result"]["reason"] = int(transaction.reason)
 
-        except Exception as e:
-            logged_message = "error during get transaction in db {}{}"
-            logged(
-                logged_message=logged_message.format(e, clean_data.get("id")),
-                logged_type="error",
-            )
+        except DatabaseError as error:
+            logger.error("Error getting transaction in database: %s", error)
 
         return response

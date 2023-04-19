@@ -2,6 +2,10 @@ from django.db import models
 
 
 class MerchatTransactionsModel(models.Model):
+    """
+    MerchatTransactionsModel class \
+        That's used for managing transactions in database.
+    """
     _id = models.CharField(max_length=255, null=True, blank=False)
     transaction_id = models.CharField(max_length=255, null=True, blank=False)
     order_id = models.BigIntegerField(null=True, blank=True)
@@ -20,11 +24,13 @@ class MerchatTransactionsModel(models.Model):
 
 
 class Order(models.Model):
+    """
+    Order class \
+        That's used for managing order process
+    """
     amount = models.IntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "ORDER ID: {order_id}".format(
-            order_id=self.id
-        )
+        return f"ORDER ID: {self.id} - AMOUNT: {self.amount}"

@@ -1,20 +1,32 @@
-import json
-import requests
+from payme.utils.to_json import to_json
+from payme.decorators.decorators import payme_request
 
 
 class PaymeSubscribeCards:
-    """The PaymeSubscribeCards class inclues
+    """
+    The PaymeSubscribeCards class inclues
     all paycom methods which are belongs to cards.
 
-    :param base_url string: The base url of the paycom api
-    :param paycom_id string: The paycom_id uses to identify
-    """
-    def __init__(self, base_url: str, paycom_id: str) -> None:
-        self.__base_url: str = base_url
-        self.__paycom_id: str = paycom_id
+    Parameters
+    ----------
+    base_url: str — The base url of the paycom api
+    paycom_id: str — The paycom_id uses to identify
+    timeout: int — How many seconds to wait for the server to send data
 
-        self.__headers: dict = {
-            "X-Auth": self.__paycom_id,
+    Full method documentation
+    -------------------------
+    https://developer.help.paycom.uz/metody-subscribe-api/
+    """
+    def __init__(
+        self,
+        base_url: str,
+        paycom_id: str,
+        timeout=5
+    ) -> "PaymeSubscribeCards":
+        self.base_url: str = base_url
+        self.timeout: int = timeout
+        self.headers: dict = {
+            "X-Auth": paycom_id,
         }
         self.__methods: dict = {
             "cards_check": "cards.check",
@@ -24,29 +36,39 @@ class PaymeSubscribeCards:
             "cards_get_verify_code": "cards.get_verify_code",
         }
 
-    def __request(self, card_info: dict) -> dict:
-        """Use this private method to request.On success,
-        response will be OK with format JSON.
-
-        :param card_info dict: Includes card data information.
+    @payme_request
+    def __request(self, data) -> dict:
         """
-        req_data: dict = {
-            "data": card_info,
-            "url": self.__base_url,
-            "headers": self.__headers,
-        }
+        Use this private method to request.
+        On success,response will be OK with format JSON.
 
-        return requests.post(**req_data).json()
+        Parameters
+        ----------
+        data: dict — Includes request data.
 
-    def _cards_create(self, number: str, expire: str, save: bool) -> dict:
-        """Use this method to create a new card's token.
+        Returns dictionary Payme Response
+        ---------------------------------
+        """
+        return data
 
-        :param number string: The card number maximum length 18 char
-        :param expire string: The card expiration string maximum length 5 char
-        :param save bool: Type of token
+    def cards_create(self, number: str, expire: str, save: bool = True) -> dict:
+        """
+        Use this method to create a new card's token.
 
-        Full method documentation:
-        https://developer.help.paycom.uz/uz/metody-subscribe-api/cards.create
+        Parameters
+        ----------
+        number: str — The card number maximum length 18 char
+        expire: str — The card expiration string maximum length 5 char
+        save: bool \
+            Type of token. Optional parameter
+            The option is enabled or disabled depending on the application's business logic
+            If the flag is true, the token can be used for further payments
+            if the flag is false the token can only be used once
+            The one-time token is deleted after payment
+
+        Full method documentation
+        -------------------------
+        https://developer.help.paycom.uz/metody-subscribe-api/cards.create
         """
         data: dict = {
             "method": self.__methods.get("cards_create"),
@@ -58,15 +80,19 @@ class PaymeSubscribeCards:
                 "save": save,
             }
         }
-        return self.__request(self._parse_to_json(**data))
+        return self.__request(to_json(**data))
 
-    def _card_get_verify_code(self, token: str) -> dict:
-        """Use this method to get the verification code.
+    def card_get_verify_code(self, token: str) -> dict:
+        """
+        Use this method to get the verification code.
 
-        :param token string: The card's non-active token
+        Parameters
+        ----------
+        token: str — The card's non-active token
 
-        Full method documentation:
-        https://developer.help.paycom.uz/uz/metody-subscribe-api/cards.get_verify_code
+        Full method documentation
+        -------------------------
+        https://developer.help.paycom.uz/metody-subscribe-api/cards.get_verify_code
         """
         data: dict = {
             "method": self.__methods.get('cards_get_verify_code'),
@@ -74,16 +100,20 @@ class PaymeSubscribeCards:
                 "token": token,
             }
         }
-        return self.__request(self._parse_to_json(**data))
+        return self.__request(to_json(**data))
 
-    def _cards_verify(self, verify_code: int, token: str) -> dict:
-        """Verification of the card using the code sent via SMS.
+    def cards_verify(self, verify_code: int, token: str) -> dict:
+        """
+        Verification of the card using the code sent via SMS.
 
-        :param verify_code string: Code for verification
-        :param token string: The card's non-active token
+        Parameters
+        ----------
+        verify_code: int — Code for verification
+        token: str — The card's non-active token
 
-        Full method documentation:
-        https://developer.help.paycom.uz/uz/metody-subscribe-api/cards.verify
+        Full method documentation
+        -------------------------
+        https://developer.help.paycom.uz/metody-subscribe-api/cards.verify
         """
         data: dict = {
             "method": self.__methods.get("cards_verify"),
@@ -92,15 +122,19 @@ class PaymeSubscribeCards:
                 "code": verify_code
             }
         }
-        return self.__request(self._parse_to_json(**data))
+        return self.__request(to_json(**data))
 
-    def _cards_check(self, token: str) -> dict:
-        """Checking the card token active or non-active.
+    def cards_check(self, token: str) -> dict:
+        """
+        Checking the card token active or non-active.
 
-        :param token: The card's token for checking
+        Parameters
+        ----------
+        token: str — The card's non-active token
 
-        Full method documentation:
-        https://developer.help.paycom.uz/uz/metody-subscribe-api/cards.check
+        Full method documentation
+        -------------------------
+        https://developer.help.paycom.uz/metody-subscribe-api/cards.check
         """
         data: dict = {
             "method": self.__methods.get("cards_check"),
@@ -109,15 +143,19 @@ class PaymeSubscribeCards:
             }
         }
 
-        return self.__request(self._parse_to_json(**data))
+        return self.__request(to_json(**data))
 
-    def _cards_remove(self, token: str) -> dict:
-        """Delete card's token on success returns success.
+    def cards_remove(self, token: str) -> dict:
+        """
+        Delete card's token on success returns success.
 
-        :param token: The card's token for deleting
+        Parameters
+        ----------
+        token: str — The card's non-active token
 
-        Full method documentation:
-        https://developer.help.paycom.uz/uz/metody-subscribe-api/cards.remove
+        Full method documentation
+        -------------------------
+        https://developer.help.paycom.uz/metody-subscribe-api/cards.remove
         """
         data: dict = {
             "method": self.__methods.get("cards_remove"),
@@ -125,15 +163,4 @@ class PaymeSubscribeCards:
                 "token": token,
             }
         }
-        return self.__request(self._parse_to_json(**data))
-
-    @staticmethod
-    def _parse_to_json(**kwargs) -> dict:
-        """Use this static method to data dumps.
-        """
-        data: dict = {
-            "method": kwargs.pop("method"),
-            "params": kwargs.pop("params"),
-        }
-
-        return json.dumps(data)
+        return self.__request(to_json(**data))

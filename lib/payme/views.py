@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 
-from payme.utils.logger import logged
+from payme.utils.logging import logger
 
 from payme.errors.exceptions import MethodNotFound
 from payme.errors.exceptions import PermissionDenied
@@ -21,31 +21,40 @@ from payme.methods.check_perform_transaction import CheckPerformTransaction
 
 
 class MerchantAPIView(APIView):
+    """
+    MerchantAPIView class provides payme call back functionality.
+    """
     permission_classes = ()
     authentication_classes = ()
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request) -> Response:
+        """
+        Payme sends post request to our call back url.
+        That methods are includes 5 methods
+            - CheckTransaction
+            - CreateTransaction
+            - CancelTransaction
+            - PerformTransaction
+            - CheckPerformTransaction
+        """
         password = request.META.get('HTTP_AUTHORIZATION')
         if self.authorize(password):
             incoming_data: dict = request.data
             incoming_method: str = incoming_data.get("method")
-            logged_message: str = "Incoming {data}"
 
-            logged(
-                logged_message=logged_message.format(
-                    method=incoming_method,
-                    data=incoming_data
-                ),
-                logged_type="info"
-            )
+            logger.info("Call back data is incoming %s", incoming_data)
+
             try:
                 paycom_method = self.get_paycom_method_by_name(
                     incoming_method=incoming_method
                 )
-            except ValidationError:
-                raise MethodNotFound()
-            except PerformTransactionDoesNotExist:
-                raise PerformTransactionDoesNotExist()
+            except ValidationError as error:
+                logger.error("Validation Error occurred: %s", error)
+                raise MethodNotFound() from error
+
+            except PerformTransactionDoesNotExist as error:
+                logger.error("PerformTransactionDoesNotExist Error occurred: %s", error)
+                raise PerformTransactionDoesNotExist() from error
 
             paycom_method = paycom_method(incoming_data.get("params"))
 
@@ -66,16 +75,13 @@ class MerchantAPIView(APIView):
         }
 
         try:
-            MerchantMethod = available_methods[incoming_method]
-        except Exception:
-            error_message = "Unavailable method: %s" % incoming_method
-            logged(
-                logged_message=error_message,
-                logged_type="error"
-            )
-            raise MethodNotFound(error_message=error_message)
+            merchant_method = available_methods[incoming_method]
+        except Exception as error:
+            error_message = "Unavailable method: %s", incoming_method
+            logger.error(error_message)
+            raise MethodNotFound(error_message=error_message) from error
 
-        merchant_method = MerchantMethod()
+        merchant_method = merchant_method()
 
         return merchant_method
 
@@ -90,23 +96,18 @@ class MerchantAPIView(APIView):
 
         if not isinstance(password, str):
             error_message = "Request from an unauthorized source!"
-            logged(
-                logged_message=error_message,
-                logged_type="error"
-            )
+            logger.error(error_message)
             raise PermissionDenied(error_message=error_message)
 
         password = password.split()[-1]
 
         try:
             password = base64.b64decode(password).decode('utf-8')
-        except (binascii.Error, UnicodeDecodeError):
+        except (binascii.Error, UnicodeDecodeError) as error:
             error_message = "Error when authorize request to merchant!"
-            logged(
-                logged_message=error_message,
-                logged_type="error"
-            )
-            raise PermissionDenied(error_message=error_message)
+            logger.error(error_message)
+
+            raise PermissionDenied(error_message=error_message) from error
 
         merchant_key = password.split(':')[-1]
 
@@ -114,10 +115,7 @@ class MerchantAPIView(APIView):
             is_payme = True
 
         if merchant_key != settings.PAYME.get('PAYME_KEY'):
-            logged(
-                logged_message="Invalid key in request!",
-                logged_type="error"
-            )
+            logger.error("Invalid key in request!")
 
         if is_payme is False:
             raise PermissionDenied(

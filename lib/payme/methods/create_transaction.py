@@ -2,14 +2,22 @@ import uuid
 import time
 import datetime
 
+from payme.utils.logging import logger
 from payme.utils.get_params import get_params
-
 from payme.models import MerchatTransactionsModel
 from payme.errors.exceptions import TooManyRequests
 from payme.serializers import MerchatTransactionsModelSerializer
 
 
 class CreateTransaction:
+    """
+    CreateTransaction class
+    That's used to create transaction
+
+    Full method documentation
+    -------------------------
+    https://developer.help.paycom.uz/metody-merchant-api/createtransaction
+    """
     def __call__(self, params: dict) -> dict:
         serializer = MerchatTransactionsModelSerializer(
             data=get_params(params)
@@ -26,8 +34,9 @@ class CreateTransaction:
                 if transaction._id != serializer.validated_data.get("_id"):
                     raise TooManyRequests()
 
-        except TooManyRequests:
-            raise TooManyRequests()
+        except TooManyRequests as error:
+            logger.error("Too many requests for transaction %s", error)
+            raise TooManyRequests() from error
 
         if transaction is None:
             transaction, _ = \

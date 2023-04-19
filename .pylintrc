@@ -1,0 +1,7 @@
+[MASTER]
+disable=no-member,
+        no-self-use,
+        missing-module-docstring,
+        too-few-public-methods,
+        django-not-configured,
+        
