@@ -33,7 +33,7 @@ try:
     else:
         raise ImportError("amount field is not defined in your custom order model")
 
-except ImportError:
+except (ImportError, AttributeError):
     CUSTOM_ORDER = None
     logger.warning("Your have no payme custom order model")
 
@@ -48,3 +48,7 @@ except ImportError:
 
         def __str__(self):
             return f"ORDER ID: {self.id} - AMOUNT: {self.amount}"
+
+        class Meta:
+            # pylint: disable=missing-class-docstring
+            managed = False
