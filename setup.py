@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='payme-pkg',
-    version='2.0',
+    version='2.2',
     license='MIT',
     author="Muhammadali Akbarov",
     author_email='muhammadali17abc@gmail.com',
@@ -12,7 +12,8 @@ setup(
     url='https://github.com/Muhammadali-Akbarov/payme-pkg',
     keywords='paymeuz paycomuz payme-merchant merchant-api subscribe-api payme-pkg payme-api',
     install_requires=[
-        'requests==2.28.1',
+        'requests==2.*',
+        'dataclasses==0.*',
         'djangorestframework==3.14.0'
       ],
 )
