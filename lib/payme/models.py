@@ -1,4 +1,8 @@
 from django.db import models
+from django.conf import settings
+from django.utils.module_loading import import_string
+
+from payme.utils.logging import logger
 
 
 class MerchatTransactionsModel(models.Model):
@@ -22,15 +26,25 @@ class MerchatTransactionsModel(models.Model):
     def __str__(self):
         return str(self._id)
 
+try:
+    CUSTOM_ORDER = import_string(settings.ORDER_MODEL)
+    if 'amount' in CUSTOM_ORDER.__doc__:
+        Order = CUSTOM_ORDER
+    else:
+        raise ImportError("amount field is not defined in your custom order model")
 
-class Order(models.Model):
-    """
-    Order class \
-        That's used for managing order process
-    """
-    amount = models.IntegerField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+except ImportError:
+    CUSTOM_ORDER = None
+    logger.warning("Your have no payme custom order model")
 
-    def __str__(self):
-        return f"ORDER ID: {self.id} - AMOUNT: {self.amount}"
+    class Order(models.Model):
+        """
+        Order class \
+            That's used for managing order process
+        """
+        amount = models.IntegerField(null=True, blank=True)
+        created_at = models.DateTimeField(auto_now_add=True)
+        updated_at = models.DateTimeField(auto_now=True)
+
+        def __str__(self):
+            return f"ORDER ID: {self.id} - AMOUNT: {self.amount}"

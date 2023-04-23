@@ -58,6 +58,8 @@ PAYME: dict = {
     'PAYME_MIN_AMOUNT': 'payme-min-amount', # integer field
     'PAYME_ACCOUNT': 'order-id',
 }
+
+ORDER_MODEL = 'your_app.models.Your_Order_Model'
 ```
 Add a `payme` path to core of urlpatterns:
 ```python
