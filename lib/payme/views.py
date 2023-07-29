@@ -18,6 +18,7 @@ from payme.methods.cancel_transaction import CancelTransaction
 from payme.methods.create_transaction import CreateTransaction
 from payme.methods.perform_transaction import PerformTransaction
 from payme.methods.check_perform_transaction import CheckPerformTransaction
+from payme.methods.get_statement import GetStatement
 
 
 class MerchantAPIView(APIView):
@@ -31,11 +32,12 @@ class MerchantAPIView(APIView):
         """
         Payme sends post request to our call back url.
         That methods are includes 5 methods
-            - CheckTransaction
-            - CreateTransaction
-            - CancelTransaction
-            - PerformTransaction
             - CheckPerformTransaction
+            - CreateTransaction
+            - PerformTransaction
+            - CancelTransaction
+            - CheckTransaction
+            - GetStatement
         """
         password = request.META.get('HTTP_AUTHORIZATION')
         if self.authorize(password):
@@ -67,11 +69,12 @@ class MerchantAPIView(APIView):
         :param incoming_method: string -> incoming method name
         """
         available_methods: dict = {
-            "CheckTransaction": CheckTransaction,
+            "CheckPerformTransaction": CheckPerformTransaction,
             "CreateTransaction": CreateTransaction,
-            "CancelTransaction": CancelTransaction,
             "PerformTransaction": PerformTransaction,
-            "CheckPerformTransaction": CheckPerformTransaction
+            "CancelTransaction": CancelTransaction,
+            "CheckTransaction": CheckTransaction,
+            "GetStatement": GetStatement
         }
 
         try:

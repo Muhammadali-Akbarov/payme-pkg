@@ -1,4 +1,3 @@
-
 from django.db import DatabaseError
 
 from payme.utils.logging import logger
