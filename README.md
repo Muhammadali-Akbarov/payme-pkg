@@ -1,6 +1,7 @@
 # Payme Uzbekistan Integration Uzcard and Humo
+
 <p align="center">
-    <img style="width: 70%;" src="https://www.gazeta.uz/media/img/2019/07/GDpmEM15631750293941_b.jpg"></img>
+    <img style="width: 60%;" src="https://www.gazeta.uz/media/img/2019/07/GDpmEM15631750293941_b.jpg"></img>
 </p>
 
 Support Group - https://t.me/+Ng1axYLNyBAyYTRi <br/>
@@ -8,39 +9,45 @@ Implementation Sample - https://github.com/Muhammadali-Akbarov/payme-sample
 
 ## Installation
 
+```shell
+pip install payme-pkg
 ```
-$ pip install payme-pkg
-```
+
 ### Test-Credentials
+
 ```
-Card Numer: 8600 4954 7331 6478 Expire Date: 03/99 SMS Code: 666666 
-Card Numer: 8600 0691 9540 6311 Expire Date: 03/99 SMS Code: 666666 
+Card Numer: 8600 4954 7331 6478 Expire Date: 03/99 SMS Code: 666666
+Card Numer: 8600 0691 9540 6311 Expire Date: 03/99 SMS Code: 666666
 ```
 
 ## Documentation
-  * [Merchant API](#merchant-api)
-  * [Generate Pay Link](#generate-pay-link)
-  * Subscribe Cards
-    * [Cards Create](#cards-create)
-    * [Cards Get Verify Code](#cards-get-verify-code)
-    * [Cards Verify](#cards-verify)
-    * [Cards Check](#cards-check)
-    * [Cards Remove](#cards-remove)
-   
-  * Subscribe Receipts
-    * [Receipts Create](#receipts-create)
-    * [Receipts Pay](#receipts-pay)
-    * [Receipts Send](#receipts-send)
-    * [Receipts Cancel](#receipts-cancel)
-    * [Receipts Check](#receipts-check)
-    * [Receipts Get](#receipts-get)
-    * [Receipts Get All ](#receipts-get-all)
+
+- [Merchant API](#merchant-api)
+- [Generate Pay Link](#generate-pay-link)
+
+- Subscribe Cards
+
+  - [Cards Create](#cards-create)
+  - [Cards Get Verify Code](#cards-get-verify-code)
+  - [Cards Verify](#cards-verify)
+  - [Cards Check](#cards-check)
+  - [Cards Remove](#cards-remove)
+
+- Subscribe Receipts
+  - [Receipts Create](#receipts-create)
+  - [Receipts Pay](#receipts-pay)
+  - [Receipts Send](#receipts-send)
+  - [Receipts Cancel](#receipts-cancel)
+  - [Receipts Check](#receipts-check)
+  - [Receipts Get](#receipts-get)
+  - [Receipts Get All ](#receipts-get-all)
 
 # Merchant API
 
 ## Installation to Django
 
 Add `'payme'` in to your settings.
+
 ```python
 INSTALLED_APPS = [
     ...
@@ -48,7 +55,9 @@ INSTALLED_APPS = [
     ...
 ]
 ```
+
 Add `'payme'` credentials inside to settings.
+
 ```python
 PAYME: dict = {
     'PAYME_ID': 'payme-id',
@@ -61,7 +70,9 @@ PAYME: dict = {
 
 ORDER_MODEL = 'your_app.models.Your_Order_Model'
 ```
+
 Add a `payme` path to core of urlpatterns:
+
 ```python
 from django.urls import path
 from django.urls import include
@@ -72,16 +83,20 @@ urlpatterns = [
     ...
 ]
 ```
+
 Run migrations
+
+```shell
+python manage.py migrate
 ```
-$ python manage.py migrate
-```
-🎉 Congratulations you have been integrated merchant api methods with django, keep reading docs.After successfull migrations check your admin panel and see results what happened.
+
+🎉 Congratulations you have been integrated merchant api methods with django, keep reading docs. After successfull migrations check your admin panel and see results what happened.
 
 ## Generate Pay Link
+
 Example to generate link:
 
-* Input
+- Input
 
 ```python
 from pprint import pprint
@@ -95,21 +110,23 @@ pay_link = GeneratePayLink(
 
 pprint(pay_link)
 ```
-* Output
+
+- Output
 
 ```
 Link: https://checkout.paycom.uz/bT01ZTczMGU4ZTBiODUyYTQxN2FhNDljZWI7YWMub3JkZXItaWQ9OTk5O2E9OTk5OTtjPXlvdXItY2FsbGJhY2stdXJs
 ```
+
 ## Cards Create
+
 Example for cards create method for to generate token from card:
 
-* Request
+- Request
 
-```
+```python
 from pprint import pprint
 
 from payme.cards.subscribe_cards import PaymeSubscribeCards
-
 
 client = PaymeSubscribeCards(
     base_url="https://checkout.test.paycom.uz/api/",
@@ -119,14 +136,15 @@ client = PaymeSubscribeCards(
 resp = client.cards_create(
     number="8600069195406311",
     expire="0399",
-    save=True,
+    save=True
 )
 
 pprint(resp)
 ```
-* Response
 
-```
+- Response
+
+```json
 {
   "jsonrpc": "2.0",
   "result": {
@@ -143,9 +161,12 @@ pprint(resp)
 ```
 
 ## Cards Get Verify Code
+
 Example for cards get verify:
-* Request
-```
+
+- Request
+
+```python
 from pprint import pprint
 
 from payme.cards.subscribe_cards import PaymeSubscribeCards
@@ -162,8 +183,10 @@ resp = client.card_get_verify_code(
 
 pprint(resp)
 ```
-* Response
-```
+
+- Response
+
+```json
 {
   "jsonrpc": "2.0",
   "result": {
@@ -175,9 +198,12 @@ pprint(resp)
 ```
 
 ## Cards Verify
+
 Example for cards verify method:
-* Request
-```
+
+- Request
+
+```python
 from pprint import pprint
 
 from payme.cards.subscribe_cards import PaymeSubscribeCards
@@ -195,8 +221,10 @@ resp = client.cards_verify(
 
 pprint(resp)
 ```
-* Response
-```
+
+- Response
+
+```json
 {
   "jsonrpc": "2.0",
   "result": {
@@ -213,9 +241,12 @@ pprint(resp)
 ```
 
 ## Cards Check
+
 Example for cards check:
-* Request
-```
+
+- Request
+
+```python
 from pprint import pprint
 
 from payme.cards.subscribe_cards import PaymeSubscribeCards
@@ -232,8 +263,10 @@ resp = client.cards_check(
 
 pprint(resp)
 ```
-* Response
-```
+
+- Response
+
+```json
 {
   "jsonrpc": "2.0",
   "result": {
@@ -248,10 +281,14 @@ pprint(resp)
   }
 }
 ```
+
 ## Cards Remove
+
 Example for cards create method for to generate token from card:
-* Request
-```
+
+- Request
+
+```python
 from pprint import pprint
 
 from payme.cards.subscribe_cards import PaymeSubscribeCards
@@ -268,8 +305,10 @@ resp = client.cards_remove(
 
 pprint(resp)
 ```
-* Response
-```
+
+- Response
+
+```json
 {
   "jsonrpc": "2.0",
   "result": {
@@ -277,10 +316,14 @@ pprint(resp)
   }
 }
 ```
+
 ## Receipts Create
+
 Example for receipts create method:
-* Request
-```
+
+- Request
+
+```python
 from pprint import pprint
 
 from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
@@ -299,8 +342,10 @@ resp = rclient.receipts_create(
 
 pprint(resp)
 ```
-* Response
-```
+
+- Response
+
+```json
 {
   "jsonrpc": "2.0",
   "result": {
@@ -353,10 +398,14 @@ pprint(resp)
   }
 }
 ```
+
 ## Receipts Pay
+
 Example for receipts pay method:
-* Request
-```
+
+- Request
+
+```python
 from pprint import pprint
 
 from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
@@ -376,8 +425,10 @@ resp = rclient.receipts_pay(
 
 pprint(resp)
 ```
-* Response
-```
+
+- Response
+
+```json
 {
   "jsonrpc": "2.0",
   "id": 123,
@@ -434,10 +485,14 @@ pprint(resp)
   }
 }
 ```
+
 ## Receipts Send
+
 Example for receipts send method:
-* Request
-```
+
+- Request
+
+```python
 from pprint import pprint
 
 from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
@@ -456,8 +511,10 @@ resp = rclient.receipts_send(
 
 pprint(resp)
 ```
-* Response
-```
+
+- Response
+
+```json
 {
   "jsonrpc": "2.0",
   "id": 123,
@@ -466,10 +523,14 @@ pprint(resp)
   }
 }
 ```
+
 ## Receipts Cancel
+
 Example for receipts cancel method:
-* Request
-```
+
+- Request
+
+```python
 from pprint import pprint
 
 from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
@@ -487,8 +548,10 @@ resp = rclient.receipts_cancel(
 
 pprint(resp)
 ```
-* Response
-```
+
+- Response
+
+```json
 {
   "jsonrpc": "2.0",
   "id": 123,
@@ -546,10 +609,14 @@ pprint(resp)
   }
 }
 ```
+
 ## Receipts Check
+
 Example for receipts check method:
-* Request
-```
+
+- Request
+
+```python
 from pprint import pprint
 
 from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
@@ -567,8 +634,10 @@ resp = rclient.receipts_check(
 
 pprint(resp)
 ```
-* Response
-```
+
+- Response
+
+```json
 {
   "jsonrpc": "2.0",
   "id": 123,
@@ -577,10 +646,14 @@ pprint(resp)
   }
 }
 ```
+
 ## Receipts Get
+
 Example for receipts get method:
-* Request
-```
+
+- Request
+
+```python
 from pprint import pprint
 
 from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
@@ -598,8 +671,10 @@ resp = rclient.reciepts_get(
 
 pprint(resp)
 ```
-* Response
-```
+
+- Response
+
+```json
 {
   "jsonrpc": "2.0",
   "id": 123,
@@ -653,10 +728,14 @@ pprint(resp)
   }
 }
 ```
+
 ## Receipts Get All
+
 Example for receipts get all method:
-* Request
-```
+
+- Request
+
+```python
 from pprint import pprint
 
 from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
@@ -677,8 +756,10 @@ resp = rclient.reciepts_get_all(
 
 pprint(resp)
 ```
-* Response
-```
+
+- Response
+
+```json
 {
   "jsonrpc": "2.0",
   "id": 123,
@@ -790,4 +871,4 @@ pprint(resp)
     }
   ]
 }
-
+```
