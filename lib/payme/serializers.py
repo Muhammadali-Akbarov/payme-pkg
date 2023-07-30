@@ -15,10 +15,14 @@ class MerchatTransactionsModelSerializer(serializers.ModelSerializer):
     MerchatTransactionsModelSerializer class \
         That's used to serialize merchat transactions data.
     """
+    start_date = serializers.IntegerField(allow_null=True)
+    end_date = serializers.IntegerField(allow_null=True)
+
     class Meta:
         # pylint: disable=missing-class-docstring
         model: MerchatTransactionsModel = MerchatTransactionsModel
         fields: str = "__all__"
+        extra_fields = ['start_date', 'end_date']
 
     def validate(self, attrs) -> dict:
         """
