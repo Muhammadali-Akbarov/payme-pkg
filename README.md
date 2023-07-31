@@ -130,7 +130,7 @@ from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 client = PaymeSubscribeCards(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb"
+    paycom_id=$paycom_id
 )
 
 resp = client.cards_create(
@@ -174,7 +174,7 @@ from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 client = PaymeSubscribeCards(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb"
+    paycom_id=$paycom_id
 )
 
 resp = client.card_get_verify_code(
@@ -211,7 +211,7 @@ from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 client = PaymeSubscribeCards(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb"
+    paycom_id=$paycom_id
 )
 
 resp = client.cards_verify(
@@ -254,7 +254,7 @@ from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 client = PaymeSubscribeCards(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb"
+    paycom_id=$paycom_id
 )
 
 resp = client.cards_check(
@@ -296,7 +296,7 @@ from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 client = PaymeSubscribeCards(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb"
+    paycom_id=$paycom_id
 )
 
 resp = client.cards_remove(
@@ -331,8 +331,8 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb",
-    paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
+    paycom_id=$paycom_id,
+    paycom_key=$paycom_key
 )
 
 resp = rclient.receipts_create(
@@ -413,8 +413,8 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb",
-    paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
+    paycom_id=$paycom_id,
+    paycom_key=$paycom_key
 )
 
 resp = rclient.receipts_pay(
@@ -500,8 +500,8 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb",
-    paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
+    paycom_id=$paycom_id,
+    paycom_key=$paycom_key
 )
 
 resp = rclient.receipts_send(
@@ -538,8 +538,8 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb",
-    paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
+    paycom_id=$paycom_id,
+    paycom_key=$paycom_key
 )
 
 resp = rclient.receipts_cancel(
@@ -624,8 +624,8 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb",
-    paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
+    paycom_id=$paycom_id,
+    paycom_key=$paycom_key
 )
 
 resp = rclient.receipts_check(
@@ -661,8 +661,8 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb",
-    paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
+    paycom_id=$paycom_id,
+    paycom_key=$paycom_key
 )
 
 resp = rclient.reciepts_get(
@@ -743,8 +743,8 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id="5e730e8e0b852a417aa49ceb",
-    paycom_key="#MWnwHNYATJo%W@XvO5nISiY&mG7PEuzDX18"
+    paycom_id=$paycom_id,
+    paycom_key=$paycom_key
 )
 
 resp = rclient.reciepts_get_all(
