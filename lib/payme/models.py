@@ -26,6 +26,7 @@ class MerchatTransactionsModel(models.Model):
     def __str__(self):
         return str(self._id)
 
+
 try:
     CUSTOM_ORDER = import_string(settings.ORDER_MODEL)
     if 'amount' in CUSTOM_ORDER.__doc__:
@@ -35,7 +36,7 @@ try:
 
 except (ImportError, AttributeError):
     CUSTOM_ORDER = None
-    logger.warning("Your have no payme custom order model")
+    logger.warning("You have no payme custom order model")
 
     class Order(models.Model):
         """
