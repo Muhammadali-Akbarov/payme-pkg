@@ -12,7 +12,7 @@ def get_params(params: dict) -> dict:
     clean_params["time"] = params.get("time")
     clean_params["amount"] = params.get("amount")
     clean_params["reason"] = params.get("reason")
-    
+
     # get statement method params
     clean_params["start_date"] = params.get("from")
     clean_params["end_date"] = params.get("to")

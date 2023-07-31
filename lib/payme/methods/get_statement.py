@@ -30,7 +30,7 @@ class GetStatement:
         try:
             transactions = \
                 MerchatTransactionsModel.objects.filter(
-                    created_at__gte=start_date, 
+                    created_at__gte=start_date,
                     created_at__lte=end_date
                 )
 
