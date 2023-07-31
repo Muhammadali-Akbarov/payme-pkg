@@ -12,8 +12,10 @@ def get_params(params: dict) -> dict:
     clean_params["time"] = params.get("time")
     clean_params["amount"] = params.get("amount")
     clean_params["reason"] = params.get("reason")
-    clean_params["from"] = params.get("from")
-    clean_params["to"] = params.get("to")
+    
+    # get statement method params
+    clean_params["start_date"] = params.get("from")
+    clean_params["end_date"] = params.get("to")
 
     if account is not None:
         account_name: str = settings.PAYME.get("PAYME_ACCOUNT")

@@ -1,11 +1,9 @@
-
-from datetime import datetime
-
 from django.db import DatabaseError
 
 from payme.utils.logging import logger
 from payme.models import MerchatTransactionsModel
 from payme.serializers import MerchatTransactionsModelSerializer as MTMS
+from payme.utils.make_aware_datetime import make_aware_datetime as mad
 
 
 class GetStatement:
@@ -18,19 +16,22 @@ class GetStatement:
     -------------------------
     https://developer.help.paycom.uz/metody-merchant-api/getstatement
     """
-    async def __call__(self, params: dict):
+
+    def __call__(self, params: dict):
         clean_data: dict = MTMS.get_validated_data(
             params=params
         )
 
-        _from = int(clean_data.get("from"))
-        _to = int(clean_data.get("to"))
+        start_date, end_date = mad(
+            int(clean_data.get("start_date")),
+            int(clean_data.get("end_date"))
+        )
 
         try:
             transactions = \
                 MerchatTransactionsModel.objects.filter(
-                    date__gte=datetime.fromtimestamp(_from),
-                    date__lte=datetime.fromtimestamp(_to)
+                    created_at__gte=start_date, 
+                    created_at__lte=end_date
                 )
 
             if not transactions:  # no transactions found for the period
