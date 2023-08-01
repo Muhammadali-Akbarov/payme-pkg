@@ -1,16 +1,11 @@
 # pylint: disable=invalid-name
-from django.db import models
-from django.db import migrations
+from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-    """
-    Migration class for Django Migrations.
-    """
+    # pylint: disable=missing-class-docstring
     initial = True
-
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
@@ -49,5 +44,6 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
             ],
+            options={'managed': False}
         ),
     ]

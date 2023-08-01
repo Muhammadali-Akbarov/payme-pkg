@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils.module_loading import import_string
+from django.core.exceptions import FieldError
 
 from payme.utils.logging import logger
 
@@ -29,14 +30,19 @@ class MerchatTransactionsModel(models.Model):
 
 try:
     CUSTOM_ORDER = import_string(settings.ORDER_MODEL)
-    if 'amount' in CUSTOM_ORDER.__doc__:
-        Order = CUSTOM_ORDER
-    else:
-        raise ImportError("amount field is not defined in your custom order model")
 
+    if not isinstance(CUSTOM_ORDER, models.base.ModelBase):
+        raise TypeError("The input must be an instance of models.Model class")
+
+    # pylint: disable=protected-access
+    if 'amount' not in [f.name for f in CUSTOM_ORDER._meta.fields]:
+        raise FieldError("Missing 'amount' field in your custom order model")
+
+    Order = CUSTOM_ORDER
 except (ImportError, AttributeError):
-    CUSTOM_ORDER = None
     logger.warning("You have no payme custom order model")
+
+    CUSTOM_ORDER = None
 
     class Order(models.Model):
         """
