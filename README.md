@@ -5,7 +5,7 @@
 </p>
 
 Support Group - https://t.me/+Ng1axYLNyBAyYTRi <br/>
-Implementation Sample - https://github.com/Muhammadali-Akbarov/payme-sample
+Implementation Sample - https://github.com/PayTechUz/payme-sample
 
 ## Installation
 
