@@ -57,7 +57,7 @@ class CreateTransaction:
                 }
             }
 
-        return response
+        return order_id, response
 
     @staticmethod
     def _convert_ms_to_datetime(time_ms: str) -> int:

@@ -13,12 +13,12 @@ from payme.errors.exceptions import MethodNotFound
 from payme.errors.exceptions import PermissionDenied
 from payme.errors.exceptions import PerformTransactionDoesNotExist
 
+from payme.methods.get_statement import GetStatement
 from payme.methods.check_transaction import CheckTransaction
 from payme.methods.cancel_transaction import CancelTransaction
 from payme.methods.create_transaction import CreateTransaction
 from payme.methods.perform_transaction import PerformTransaction
 from payme.methods.check_perform_transaction import CheckPerformTransaction
-from payme.methods.get_statement import GetStatement
 
 
 class MerchantAPIView(APIView):
@@ -58,12 +58,29 @@ class MerchantAPIView(APIView):
                 logger.error("PerformTransactionDoesNotExist Error occurred: %s", error)
                 raise PerformTransactionDoesNotExist() from error
 
-            paycom_method = paycom_method(incoming_data.get("params"))
+            order_id, action = paycom_method(incoming_data.get("params"))
 
-        return Response(data=paycom_method)
+        if isinstance(paycom_method, CreateTransaction):
+            self.create_transaction(
+                order_id=order_id,
+                action=action,
+            )
 
-    @staticmethod
-    def get_paycom_method_by_name(incoming_method: str) -> object:
+        if isinstance(paycom_method, PerformTransaction):
+            self.perform_transaction(
+                order_id=order_id,
+                action=action,
+            )
+
+        if isinstance(paycom_method, CancelTransaction):
+            self.cancel_transaction(
+                order_id=order_id,
+                action=action,
+            )
+
+        return Response(data=action)
+
+    def get_paycom_method_by_name(self, incoming_method: str) -> object:
         """
         Use this static method to get the paycom method by name.
         :param incoming_method: string -> incoming method name
@@ -126,3 +143,21 @@ class MerchantAPIView(APIView):
             )
 
         return is_payme
+
+    def create_transaction(self, order_id, action) -> None:
+        """
+        need implement in your view class
+        """
+        pass
+
+    def perform_transaction(self, order_id, action) -> None:
+        """
+        need implement in your view class
+        """
+        pass
+
+    def cancel_transaction(self,order_id, action) -> None:
+        """
+        need implement in your view class
+        """
+        pass

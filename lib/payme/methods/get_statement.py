@@ -9,7 +9,7 @@ from payme.utils.make_aware_datetime import make_aware_datetime as mad
 class GetStatement:
     """
     GetStatement class
-    Transaction information is used for reconciliation 
+    Transaction information is used for reconciliation
     of merchant and Payme Business transactions.
 
     Full method documentation
@@ -62,4 +62,4 @@ class GetStatement:
             logger.error("Error getting transaction in database: %s", error)
             response = {"result": {"transactions": []}}
 
-        return response
+        return None, response

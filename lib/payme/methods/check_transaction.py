@@ -40,4 +40,4 @@ class CheckTransaction:
         except DatabaseError as error:
             logger.error("Error getting transaction in database: %s", error)
 
-        return response
+        return None, response

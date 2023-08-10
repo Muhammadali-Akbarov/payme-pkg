@@ -1,7 +1,6 @@
 [MASTER]
 disable=no-member,
-        no-self-use,
-        missing-module-docstring,
+        unnecessary-pass,
+        useless-option-value,
         too-few-public-methods,
-        django-not-configured
-        
+        missing-module-docstring

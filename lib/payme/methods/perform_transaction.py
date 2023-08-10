@@ -44,4 +44,4 @@ class PerformTransaction:
         except DatabaseError as error:
             logger.error("error while getting transaction in db: %s", error)
 
-        return response
+        return transaction.order_id, response
