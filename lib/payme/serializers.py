@@ -46,9 +46,11 @@ class MerchatTransactionsModelSerializer(serializers.ModelSerializer):
         """
         Validator for Transactions Amount.
         """
-        if amount is not None:
-            if int(amount) <= settings.PAYME.get("PAYME_MIN_AMOUNT"):
-                raise IncorrectAmount()
+        if amount is None:
+            raise IncorrectAmount()
+
+        if int(amount) <= int(settings.PAYME.get("PAYME_MIN_AMOUNT", 0)):
+            raise IncorrectAmount("Payment amount is less than allowed.")
 
         return amount
 
@@ -61,9 +63,7 @@ class MerchatTransactionsModelSerializer(serializers.ModelSerializer):
         order_id: str -> Order Indentation.
         """
         try:
-            Order.objects.get(
-                id=order_id,
-            )
+            Order.objects.get(id=order_id)
         except Order.DoesNotExist as error:
             logger.error("Order does not exist order_id: %s", order_id)
             raise PerformTransactionDoesNotExist() from error
