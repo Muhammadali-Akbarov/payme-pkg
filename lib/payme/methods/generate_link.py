@@ -52,23 +52,23 @@ class GeneratePayLink:
         )
 
     @staticmethod
-    def to_soum(amount: Decimal) -> Decimal:
-        """
-        Convert from tiyin to soum.
+    def to_tiyin(amount: Decimal) -> Decimal:
+        """ 
+        Convert from soum to tiyin. 
 
-        Parameters
-        ----------
-        amount: Decimal -> order amount
+        Parameters 
+        ---------- 
+        amount: Decimal -> order amount 
         """
         return amount * 100
 
     @staticmethod
-    def to_tiyin(amount: Decimal) -> Decimal:
-        """
-        Convert from tiyin to soum.
+    def to_soum(amount: Decimal) -> Decimal:
+        """ 
+        Convert from tiyin to soum. 
 
-        Parameters
-        ----------
-        amount: Decimal -> order amount
+        Parameters 
+        ---------- 
+        amount: Decimal -> order amount 
         """
         return amount / 100
