@@ -71,15 +71,33 @@ PAYME: dict = {
 ORDER_MODEL = 'your_app.models.Your_Order_Model'
 ```
 
+Create a new View that about handling call backs
+```python
+from payme.views import MerchantAPIView
+
+
+class PaymeCallBackAPIView(MerchantAPIView):
+    def create_transaction(self, order_id, action, *args, **kwargs) -> None:
+        print(f"create_transaction for order_id: {order_id}, response: {action}")
+
+    def perform_transaction(self, order_id, action, *args, **kwargs) -> None:
+        print(f"perform_transaction for order_id: {order_id}, response: {action}")
+
+    def cancel_transaction(self, order_id, action, *args, **kwargs) -> None:
+        print(f"cancel_transaction for order_id: {order_id}, response: {action}")
+```
+
 Add a `payme` path to core of urlpatterns:
 
 ```python
 from django.urls import path
 from django.urls import include
 
+from your_app.views import PaymeCallBackAPIView
+
 urlpatterns = [
     ...
-    path("payments/", include("payme.urls"))
+    path("payments/merchant/", PaymeCallBackAPIView.as_view()),
     ...
 ]
 ```
