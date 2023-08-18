@@ -1,5 +1,4 @@
 import base64
-from decimal import Decimal
 from dataclasses import dataclass
 
 from django.conf import settings
@@ -19,7 +18,7 @@ class GeneratePayLink:
     Parameters
     ----------
     order_id: int — The order_id for paying
-    amount: int — The amount belong to the order
+    amount: float — The amount belong to the order
 
     Returns str — pay link
     ----------------------
@@ -29,7 +28,7 @@ class GeneratePayLink:
     https://developer.help.paycom.uz/initsializatsiya-platezhey/
     """
     order_id: str
-    amount: Decimal
+    amount: float
 
     def generate_link(self) -> str:
         """
@@ -52,23 +51,23 @@ class GeneratePayLink:
         )
 
     @staticmethod
-    def to_tiyin(amount: Decimal) -> Decimal:
+    def to_tiyin(amount: float) -> float:
         """ 
         Convert from soum to tiyin. 
 
         Parameters 
         ---------- 
-        amount: Decimal -> order amount 
+        amount: float -> order amount 
         """
         return amount * 100
 
     @staticmethod
-    def to_soum(amount: Decimal) -> Decimal:
+    def to_soum(amount: float) -> float:
         """ 
         Convert from tiyin to soum. 
 
         Parameters 
         ---------- 
-        amount: Decimal -> order amount 
+        amount: float -> order amount 
         """
         return amount / 100
