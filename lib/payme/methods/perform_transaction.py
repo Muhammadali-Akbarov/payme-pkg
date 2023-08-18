@@ -2,10 +2,10 @@ import time
 
 from django.db import DatabaseError
 
-from payme.utils.logging import logger
-from payme.utils.get_params import get_params
 from payme.models import MerchatTransactionsModel
 from payme.serializers import MerchatTransactionsModelSerializer
+from payme.utils.get_params import get_params
+from payme.utils.logging import logger
 
 
 class PerformTransaction:
@@ -17,6 +17,7 @@ class PerformTransaction:
     -------------------------
     https://developer.help.paycom.uz/metody-merchant-api/performtransaction
     """
+
     def __call__(self, params: dict) -> dict:
         serializer = MerchatTransactionsModelSerializer(
             data=get_params(params)

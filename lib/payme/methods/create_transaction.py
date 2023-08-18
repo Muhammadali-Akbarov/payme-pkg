@@ -1,12 +1,12 @@
-import uuid
-import time
 import datetime
+import time
+import uuid
 
-from payme.utils.logging import logger
-from payme.utils.get_params import get_params
-from payme.models import MerchatTransactionsModel
 from payme.errors.exceptions import TooManyRequests
+from payme.models import MerchatTransactionsModel
 from payme.serializers import MerchatTransactionsModelSerializer
+from payme.utils.get_params import get_params
+from payme.utils.logging import logger
 
 
 class CreateTransaction:
@@ -18,6 +18,7 @@ class CreateTransaction:
     -------------------------
     https://developer.help.paycom.uz/metody-merchant-api/createtransaction
     """
+
     def __call__(self, params: dict) -> dict:
         serializer = MerchatTransactionsModelSerializer(
             data=get_params(params)
@@ -61,8 +62,7 @@ class CreateTransaction:
 
     @staticmethod
     def _convert_ms_to_datetime(time_ms: str) -> int:
-        """Use this format to convert from time ms to datetime format.
-        """
+        """Use this format to convert from time ms to datetime format."""
         readable_datetime = datetime.datetime.fromtimestamp(time_ms / 1000)
 
         return readable_datetime

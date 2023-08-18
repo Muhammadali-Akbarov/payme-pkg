@@ -2,10 +2,10 @@ import time
 
 from django.db import transaction
 
-from payme.utils.logging import logger
-from payme.models import MerchatTransactionsModel
 from payme.errors.exceptions import PerformTransactionDoesNotExist
+from payme.models import MerchatTransactionsModel as MTM
 from payme.serializers import MerchatTransactionsModelSerializer as MTMS
+from payme.utils.logging import logger
 
 
 class CancelTransaction:
@@ -25,16 +25,17 @@ class CancelTransaction:
         )
         try:
             with transaction.atomic():
-                transactions: MerchatTransactionsModel = \
-                    MerchatTransactionsModel.objects.filter(
-                        _id=clean_data.get('_id'),
-                    ).first()
+                transactions = MTM.objects.filter(
+                    _id=clean_data.get('_id')
+                ).first()
+
                 if transactions.cancel_time == 0:
                     transactions.cancel_time = int(time.time() * 1000)
                 if transactions.perform_time == 0:
                     transactions.state = -1
                 if transactions.perform_time != 0:
                     transactions.state = -2
+
                 transactions.reason = clean_data.get("reason")
                 transactions.save()
 
