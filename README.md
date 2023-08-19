@@ -1,10 +1,11 @@
 # Payme Uzbekistan Integration Uzcard and Humo
-
 <p align="center">
-    <img style="width: 60%;" src="https://www.gazeta.uz/media/img/2019/07/GDpmEM15631750293941_b.jpg"></img>
+<a href="https://youtu.be/r2RO3kJVP7g">
+<img style="width: 60%;" src="https://i.postimg.cc/LX5LHVSM/payme-pkg-m4a.gif">
+</a>
 </p>
-
-Support Group - https://t.me/+Ng1axYLNyBAyYTRi <br/>
+Support Group - <a href="https://t.me/+Ng1axYLNyBAyYTRi">Telegram</a> <br/>
+YouTube - <a href="https://youtu.be/sJORIyykHcw">Watch Video</a><br/>
 Implementation Sample - https://github.com/PayTechUz/payme-sample
 
 ## Installation
