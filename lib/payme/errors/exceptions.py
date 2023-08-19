@@ -87,3 +87,10 @@ class PaymeTimeoutException(Exception):
     """
     Payme timeout exception that means that payme is working slowly.
     """
+
+
+class QRCodeError(Exception):
+    """
+    QRCodeError Exception \
+        Raises when an error occurs while generating a QR code.
+    """
