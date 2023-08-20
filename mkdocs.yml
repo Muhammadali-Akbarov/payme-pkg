@@ -1,6 +1,6 @@
 # Project information
-site_name: "Documentation 'payme-pkg'"
-site_description: 🟢 Merchant Api and Subscribe Api Integration 2023—08
+site_name: "Payme-pkg uchun yo'riqnoma"
+site_description: 🟢 Merchant API and Subscribe API Integration 2023—08
 site_author: Hoosnick
 site_url: https://paytechuz.github.io/payme-pkg
 docs_dir: docs/src
@@ -18,7 +18,7 @@ copyright: Copyright &copy; 2023 PayTechUz
 theme:
   name: material
   custom_dir: docs/src/overrides
-  language: en
+  language: uz
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -35,9 +35,9 @@ theme:
   font:
     text: Ubuntu
     code: Roboto Mono
-  icon:
-    logo: material/cash-multiple
-  # logo: assets/logo.png
+  # icon:
+  #   logo: material/cash-multiple
+  logo: assets/logo.png
 
 # Extras
 extra:
@@ -71,7 +71,7 @@ nav:
 plugins:
   - search
   - i18n:
-      default_language: en
+      default_language: uz
       default_language_only: false
       docs_structure: folder
 
@@ -79,13 +79,14 @@ plugins:
         en:
           name: "<img style='height: 10px; border: 0px;'' alt='en' src='https://flagicons.lipis.dev/flags/4x3/us.svg' title='english' /> English"
           build: true
+          site_name: "Documentation for payme-pkg"
         uz:
           name: "<img style='height: 10px; border: 0px;' alt='uz' src='https://flagicons.lipis.dev/flags/4x3/uz.svg' title='uzbek' /> O'zbekcha"
           build: true
         ru:
           name: "<img style='height: 10px; border: 0px;'' alt='ru' src='https://flagicons.lipis.dev/flags/4x3/ru.svg' title='russian' /> Русский"
           build: true
-          site_name: "Документация 'payme-pkg'"
+          site_name: "Документация для payme-pkg"
 
       nav_translations:
         en:
