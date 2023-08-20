@@ -4,7 +4,7 @@ site_description: 🟢 Merchant Api and Subscribe Api Integration 2023—08
 site_author: Hoosnick
 site_url: https://hoosnick.github.io/payme-pkg
 docs_dir: docs/src
-site_dir: docs
+site_dir: payme
 
 # Repository
 repo_name: hoosnick/payme-pkg
