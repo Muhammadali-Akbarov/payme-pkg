@@ -1,5 +1,0 @@
----
-title: Kirish
----
-
-# **Xush kelibsiz!**
