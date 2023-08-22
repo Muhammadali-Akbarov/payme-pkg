@@ -1,0 +1,928 @@
+{
+    "info": {
+        "_postman_id": "7a2b3ba8-d989-415f-b26a-cdbce1d52d01",
+        "name": "paytechuz-payme",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Merchant-API",
+            "item": [
+                {
+                    "name": "create-transaction",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8000/payments/merchant/",
+                            "path": [
+                                "payments",
+                                "merchant"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "AUTHORIZATION",
+                                "value": "Basic XXX"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "*/*",
+                                "disabled": true
+                            },
+                            {
+                                "key": "User-Agent",
+                                "value": "Thunder Client (https://www.thunderclient.com)",
+                                "disabled": true
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"CreateTransaction\",\n    \"params\": {\n        \"account\": {\n            \"order_id\": \"4\"\n        },\n        \"amount\": 100,\n        \"id\": \"64266c93432361b4e0342bdd\",\n        \"time\": 1680239763901\n    }\n}\n"
+                        }
+                    }
+                },
+                {
+                    "name": "incorrect-order",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8000/payments/merchant/",
+                            "path": [
+                                "payments",
+                                "merchant"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "AUTHORIZATION",
+                                "value": "Basic XXX"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "*/*",
+                                "disabled": true
+                            },
+                            {
+                                "key": "User-Agent",
+                                "value": "Thunder Client (https://www.thunderclient.com)",
+                                "disabled": true
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"id\": 67828,\n    \"method\": \"CheckPerformTransaction\",\n    \"params\": {\n        \"amount\": 999999999,\n        \"account\": {\n            \"order_id\": \"999999999\"\n        }\n    }\n}\n"
+                        }
+                    }
+                },
+                {
+                    "name": "check-transaction",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8000/payments/merchant/",
+                            "path": [
+                                "payments",
+                                "merchant"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "AUTHORIZATION",
+                                "value": "Basic XXX"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "*/*",
+                                "disabled": true
+                            },
+                            {
+                                "key": "User-Agent",
+                                "value": "Thunder Client (https://www.thunderclient.com)",
+                                "disabled": true
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"CheckTransaction\",\n    \"params\": {\n        \"id\": \"6346454fc67a522e0887022b\"\n    }\n}\n"
+                        }
+                    }
+                },
+                {
+                    "name": "incorrect-auth",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8000/payments/merchant/?AUTHORIZATION=Basic XXX",
+                            "query": [
+                                {
+                                    "key": "AUTHORIZATION",
+                                    "value": "Basic XXX"
+                                }
+                            ],
+                            "variable": [],
+                            "path": [
+                                "payments",
+                                "merchant"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "*/*",
+                                "disabled": true
+                            },
+                            {
+                                "key": "User-Agent",
+                                "value": "Thunder Client (https://www.thunderclient.com)",
+                                "disabled": true
+                            }
+                        ],
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    }
+                },
+                {
+                    "name": "perform-transaction ",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8000/payments/merchant/",
+                            "path": [
+                                "payments",
+                                "merchant"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "AUTHORIZATION",
+                                "value": "Basic XXX"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "*/*",
+                                "disabled": true
+                            },
+                            {
+                                "key": "User-Agent",
+                                "value": "Thunder Client (https://www.thunderclient.com)",
+                                "disabled": true
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"CancelTransaction\",\n    \"params\": {\n        \"id\": \"64266c93432361b4e0342bdd\",\n        \"reason\": 5\n    }\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "check-perform-transaction",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8000/payments/merchant/",
+                            "path": [
+                                "payments",
+                                "merchant"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "AUTHORIZATION",
+                                "value": "Basic XXX"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "*/*",
+                                "disabled": true
+                            },
+                            {
+                                "key": "User-Agent",
+                                "value": "Thunder Client (https://www.thunderclient.com)",
+                                "disabled": true
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"CheckPerformTransaction\",\n    \"params\": {\n        \"amount\": 100,\n        \"account\": {\n            \"order_id\": \"3\"\n        }\n    }\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "cancel-transaction",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8000/payments/merchant/",
+                            "path": [
+                                "payments",
+                                "merchant"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "AUTHORIZATION",
+                                "value": "Basic XXX"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "*/*",
+                                "disabled": true
+                            },
+                            {
+                                "key": "User-Agent",
+                                "value": "Thunder Client (https://www.thunderclient.com)",
+                                "disabled": true
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"CheckPerformTransaction\",\n    \"params\": {\n        \"amount\": 100,\n        \"account\": {\n            \"order_id\": \"3\"\n        }\n    }\n}"
+                        }
+                    }
+                },
+                {
+                    "name": "get-statement",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "http://localhost:8000/payments/merchant/",
+                            "path": [
+                                "payments",
+                                "merchant"
+                            ],
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "8000"
+                        },
+                        "header": [
+                            {
+                                "key": "AUTHORIZATION",
+                                "value": "Basic XXX"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "*/*",
+                                "disabled": true
+                            },
+                            {
+                                "key": "User-Agent",
+                                "value": "Thunder Client (https://www.thunderclient.com)",
+                                "disabled": true
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            },
+                            "raw": "{\n    \"method\" : \"GetStatement\",\n    \"params\" : {\n        \"from\" : 1666462755066,\n        \"to\" : 1690672447727\n    }\n}"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "cards_create",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "5e730e8e0b852a417aa49ceb"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": \"paytechuz\",\n    \"method\": \"cards.create\",\n    \"params\": {\"card\": {\"number\": \"8600495473316478\",\"expire\": \"0399\"},\n    \"save\": true\n    }\n}"
+                }
+            }
+        },
+        {
+            "name": "cards_get_veriy_code",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "$payme_id"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": \"paytechyz\",\n    \"method\": \"cards.get_verify_code\",\n    \"params\": {\n        \"token\": \"63468a065a046a41490e664e_GQdx3ewoSpAIUieZ55EVBT9o3XauKiITgDjIzMhdsTBho8ctGV8sKXE7M47uyNMSGt4b9hMvcKMssNvs74UV03J7TZ6QIHfR5z8regqQjaS58x0ABm91TNpH07rd7TGxsoHN4WEs1iIr2W9MUUHCAyZePsBmcuYfvbOBbfeV4xcXh9kTsPEwV768KjEjtCjokNeER1i0pbJrnCoGoRyAr37ZaYsu28IOBQzzzGCThoVxIn3uM6pQFeW1xuDKD5cMRk9tQNc2zJWaoHQ6eHTR7EadOkUEJXIYgyeYBXkiYBN1pW58Msb89Kt4tMDhJKanCwQbBo4eiUdxWtI8xRfksXdgGDjqvCNKrsciw5MSrDdcRqupo61WvXD0d4IianWyTEfS5p\"\n    }\n}"
+                }
+            }
+        },
+        {
+            "name": "cards_verify",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "$payme_id"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": \"paytechuz\",\n    \"method\": \"cards.verify\",\n    \"params\": {\n        \"token\": \"63317a19d15d8d8d093b3b73_sF6OYNgJ5zXd2BXNpEZgDZJQVyPnaVAQY7ziO6nDx11ZyX67gCTQxspvWN2ZMGaWfKG8YuKsgoRecgN3IrnYhQxubavr7Z8zreOAXF4GRJW8M2gNfF4RnCu2cYCYzQ2dIRRvp3uS5b2B48aVsyQGwo0v3tQqNAdOfYskgiwbChNObvo4TnzewRYaGZbpqfEiN78anY03EMShjU6mRh0YouIRENr4VCXd4eBAoAVWAas8ZikYHYh0aTBFMproAKx2Pf2ZYuiBsyO2f2cTYpuu1kRciHJZ2ZEN5TRupJKgg06pwxBK5pu5dsOXomQWNGCvOetsahOPmX0nU25E5cEfGHfRDMIUWOjbR2MbginPdP9BXS50Q2Q1DOQO0pHSmf9nRvXKTm\",\n        \"code\": \"666666\"\n    }\n}"
+                }
+            }
+        },
+        {
+            "name": "cards_remove",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "$payme_id"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": \"paytechuz\",\n    \"method\": \"cards.remove\",\n    \"params\": {\n        \"token\": \"63119afed15d8d8d093b37bf_FZKC9EDMu7Ke7wPvEoYpMgyA1wFDWynDewB9AQSkYk6ic2isbQdYatJuVN1GknSmhEwftPxVZ1wZPw6TzJc4BYqWRmPyV3eyqJz4cK9D91aEkZ5TNBkMnhxxgXefDryHGYdpSqUuMV914QwpcA5e8cB5yqIaCp8P6W8FBeY6vKcNIfSSBaDniMZfsKV9vSyroqupKWfYcPHig2m5KyN5aBWU12f5yBtpOt6IRwbXoDre3BBVMfTKrXesQfghcrs4bUgOmcPoNDGXh8nxEkucFSNmc5EymAZZ56hSnXpYgtv4QhGxNiX3tSsk6raRMWstJNqMBb4vQABs54Zd8IohboSAGZW3M87CRiVmQEDKwvrC8y4aaNmfV33q03EppQnaJArZDx\"\n    }\n}"
+                }
+            }
+        },
+        {
+            "name": "cards_check",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "$payme_id"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": 123,\n    \"method\": \"cards.check\",\n    \"params\": {\n        \"token\": \"6321688682dcb3b90def1ff5_JMry9v8Ko0SAT8D5HGHZfCxi5RFHIudX9adt6ZqWD3uQgy9VTYGovP9ceIoXOq4KjPe9pyCm33cfGAUJ2WZgrThXRqnNzYrzvKo34fyH3UrEde9kaeqtk79sz4ZN3RNXHn6PwknEqONVi9yhS0Uv16OgY7wsiIfCZufayiwfYAKevCngcprYsZrJNpnheUjS56hnFyaRMR4KaPnEXCJXZkdxuiICk2m8BipM5hYhmfopQImik4j5GOZucTmUj3Ez3vGzwrwM3Z4sEBpmBJpaiaIahbncCosCEG11RDqHWj9jWOJrR3ipc7i0xCHM2zRIq1ICG9nO78rZvQ9v1FRQAuef0fUODQUmcOYcGAuKsdfKFrBwo5rxEHKTVpzuZDGN2zMS5J\"\n    }\n}"
+                }
+            }
+        },
+        {
+            "name": "receipts_create",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "$payme_id"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": \"paytechuz\",\n    \"method\": \"receipts.create\",\n    \"params\": {\n        \"amount\": 400000,\n        \"account\": {\n            \"order_id\": 106\n        }\n    }\n}"
+                }
+            }
+        },
+        {
+            "name": "receipts_pay",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "$payme_id:$payme_key"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": \"paytechuz\",\n    \"method\": \"receipts.pay\",\n    \"params\": {\n        \"id\": \"63119becc4420cbf2712a24c\",\n        \"token\": \"64232286890565aa4e37c2b0_TnOzC2HkPKJu6ndDeHKdyR4cQU6aIvauqqVqKmmmMFMrNTH0sByAQuPpOUTaPswth0Bxj9VKYDUNsgBhRIgIQydvH8C1iyca0wJING9kNvFemDEWUUutbBW5e1Fjh8VxYNak7Qm6Yac1tty6qgDxHnTfFMzfw5Svrq3fM8RjCr5F7IDgySRi02CJiXyNwCZxnhZtgmmimhApsXDySxyFjW1hDERh2hvZYEZMWyohnX6yaadKpOFv0QiOSWYyrMXPa1HfMmpFFaiCzjX6eOBFJJZhuJJsGxqxxgQBeuRBUOtnSAnrmzxj8j1sOEAMnIISjpZo3wABui2h7KpwIEWg9cmsuRHzYiw3NZFPKmWu5Q7WAYXDcuCBx7X5XwtJFIdUo559iN\",\n        \"payer\": {\n            \"phone\": \"998901304527\"\n        }\n    }\n}"
+                }
+            }
+        },
+        {
+            "name": "receipts_send",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "$payme_id:$payme_key"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": \"paytechuz\",\n    \"method\": \"receipts.send\",\n    \"params\": {\n        \"id\": \"63119becc4420cbf2712a24c\",\n        \"phone\": \"998901304527\"\n    }\n}"
+                }
+            }
+        },
+        {
+            "name": "receipts_cancel",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "$payme_id:$payme_key"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": \"paytechuz\",\n    \"method\": \"receipts.cancel\",\n    \"params\": {\n        \"id\": \"63119becc4420cbf2712a24c\"\n    }\n}"
+                }
+            }
+        },
+        {
+            "name": "receipts_check",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "$payme_id:$payme_key"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": \"paytechuz\",\n    \"method\": \"receipts.check\",\n    \"params\": {\n        \"id\": \"635aa3295f103c97ef1c7606\"\n    }\n}"
+                }
+            }
+        },
+        {
+            "name": "reciepts_get",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "$payme_id:$payme_key"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": \"paytechuz\",\n    \"method\": \"receipts.get\",\n    \"params\": {\n        \"id\": \"6311946bc4420cbf2712a247\"\n    }\n}"
+                }
+            }
+        },
+        {
+            "name": "reciepts_get_all",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "$payme_id:$payme_key"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": \"paytechuz\",\n    \"method\": \"receipts.get_all\",\n    \"params\": {\n        \"count\": 2,\n        \"from\": 1612640000,\n        \"to\": 1612726400,\n        \"offset\": 0\n    }\n}"
+                }
+            }
+        },
+        {
+            "name": "get_fiskal_data",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "https://checkout.test.paycom.uz/api/",
+                    "path": [
+                        "api"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "checkout",
+                        "test",
+                        "paycom",
+                        "uz"
+                    ]
+                },
+                "header": [
+                    {
+                        "key": "X-Auth",
+                        "value": "$payme_id:$payme_key"
+                    },
+                    {
+                        "key": "Accept",
+                        "value": "*/*",
+                        "disabled": true
+                    },
+                    {
+                        "key": "User-Agent",
+                        "value": "Thunder Client (https://www.thunderclient.com)",
+                        "disabled": true
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n    \"id\": \"paytechuz\",\n    \"method\": \"receipts.set_fiscal_data\",\n    \"params\": {\n        \"id\": 1,\n        \"fiscal_data\": {\n            \"status_code\": 1,\n            \"message\": 1,\n            \"terminal_id\": 1,\n            \"receipt_id\": 1,\n            \"date\": 1,\n            \"fiscal_sign\": 1,\n            \"qr_code_url\": 1\n        }\n    }\n}"
+                }
+            }
+        }
+    ]
+}
