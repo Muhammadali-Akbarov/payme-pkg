@@ -5,12 +5,10 @@ import typing
 import uuid
 from dataclasses import dataclass
 
-from django.conf import settings
-
-import cairosvg
-
 import websocket
 from websocket import WebSocketApp
+
+from django.conf import settings
 
 from payme.errors.exceptions import QRCodeError
 
@@ -104,13 +102,10 @@ class GeneratePayLink:
         filename: str -> output image name without suffix
         lang: str -> user language. available values: ru, uz, en.
         callback: str -> return url after payment or payment cancellation.
-        bg_color: str -> qr code background color by default it's white.
-        height: int -> height of output qr code image.
-        width: int -> width of output qr code image.
 
         Returns
         ----------
-        str -> path of qr code
+        str -> path of qr code svg
         """
         data = {
             "lang": kwargs.get("lang", "ru"),
@@ -128,15 +123,10 @@ class GeneratePayLink:
             os.makedirs(path)
 
         image_name = uuid.uuid4().hex if not filename else filename
-        image_output_path = f'{path}/{image_name}.png'
+        image_output_path = f'{path}/{image_name}.svg'
 
-        cairosvg.svg2png(
-            bytestring=message.split(',')[-1],
-            output_height=kwargs.get("height", 512),
-            output_width=kwargs.get("width", 512),
-            background_color=kwargs.get("bg_color", "#ffffff"),
-            write_to=image_output_path
-        )
+        with open(image_output_path, 'w') as svg:
+            svg.write(message.split(',')[-1])
 
         return image_output_path
 

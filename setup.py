@@ -15,7 +15,6 @@ setup(
         'requests==2.*',
         'dataclasses==0.*',
         'djangorestframework==3.14.0',
-        'CairoSVG==2.7.1',
         'websocket-client==1.6.1'
     ],
 )
