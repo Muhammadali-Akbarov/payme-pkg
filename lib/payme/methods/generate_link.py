@@ -125,7 +125,7 @@ class GeneratePayLink:
         image_name = uuid.uuid4().hex if not filename else filename
         image_output_path = f'{path}/{image_name}.svg'
 
-        with open(image_output_path, 'w') as svg:
+        with open(image_output_path, 'w', encoding='utf-8') as svg:
             svg.write(message.split(',')[-1])
 
         return image_output_path
