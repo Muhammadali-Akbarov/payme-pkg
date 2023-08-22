@@ -1,11 +1,20 @@
 from django.contrib import admin
 
-from payme.models import CUSTOM_ORDER
-from payme.models import Order as DefaultOrderModel
+from payme.models import (
+    Item, MerchatTransactionsModel,
+    OrderDetail, ShippingDetail
+)
+# pylint: disable=fixme
+# TODO: order Payme models in admin panel
+# 1. OrderDetail
+# 2. Item
+# 3. ShippingDetail
+# 4. MerchatTransactionsModel
 
-from payme.models import MerchatTransactionsModel
-
-if not CUSTOM_ORDER:
-    admin.site.register(DefaultOrderModel)
-
-admin.site.register(MerchatTransactionsModel)
+admin.site.register(
+    [
+        OrderDetail, Item,
+        ShippingDetail,
+        MerchatTransactionsModel,
+    ]
+)

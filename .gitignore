@@ -1,10 +1,19 @@
-core/
-db.sqlite3
-dist/
+# virtual env
+env/
 venv/
+
+# dev test
+core/
+my_app/
+db.sqlite3
+manage.py
+dist/
+
+# ide configs
 .vscode/
 .idea/
+
+# caches
 __pycache__/
 paymentsuz.egg-info/
 payme_pkg.egg-info/
-manage.py
