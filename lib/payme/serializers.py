@@ -42,15 +42,13 @@ class MerchatTransactionsModelSerializer(serializers.ModelSerializer):
 
         return attrs
 
-    def validate_amount(self, amount) -> int:
+    def validate_amount(self, amount: int) -> int:
         """
         Validator for Transactions Amount.
         """
-        if amount is None:
-            raise IncorrectAmount()
-
-        if int(amount) <= int(settings.PAYME.get("PAYME_MIN_AMOUNT", 0)):
-            raise IncorrectAmount("Payment amount is less than allowed.")
+        if amount is not None:
+             if amount <= int(settings.PAYME.get("PAYME_MIN_AMOUNT")):
+                 raise IncorrectAmount("Payment amount is less than allowed.")
 
         return amount
 
