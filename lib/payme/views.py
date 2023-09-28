@@ -31,7 +31,7 @@ class MerchantAPIView(APIView):
     def post(self, request) -> Response:
         """
         Payme sends post request to our call back url.
-        That methods are includes 5 methods
+        That methods are includes 6 methods
             - CheckPerformTransaction
             - CreateTransaction
             - PerformTransaction
