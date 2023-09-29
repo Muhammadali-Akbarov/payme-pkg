@@ -43,7 +43,7 @@ class GetStatement:
                     'time': int(t.created_at.timestamp()),
                     'amount': t.amount,
                     'account': {'order_id': t.order_id},
-                    'create_time': t.created_at_ms,
+                    'create_time': int(t.created_at_ms),
                     'perform_time': t.perform_time,
                     'cancel_time': t.cancel_time,
                     'transaction': t.order_id,
