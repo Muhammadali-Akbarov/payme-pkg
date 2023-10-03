@@ -35,7 +35,7 @@ class GetStatement:
                 )
 
             if not transactions:  # no transactions found for the period
-                return {"result": {"transactions": []}}
+                return None, {"result": {"transactions": []}}
 
             statements = [
                 {
