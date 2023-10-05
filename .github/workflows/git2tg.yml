@@ -1,0 +1,38 @@
+name: Send Git Updates to Telegram Chat
+
+on:
+  workflow_run:
+    workflows: ["*"]
+    types:
+      - issues
+      - pull_request
+      - push
+      - issue_comment
+      - pull_request_review
+      - pull_request_review_comment
+
+jobs:
+  send_updates:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        repository: https://github.com/PayTechUz/payme-pkg
+
+    - name: Get commit messages
+      id: commit_messages
+      run: |
+        git log --format="%h %s" -n 5
+      working-directory: ./payme-pkg
+
+    - name: Send updates to Telegram
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_CHAT_TOPIC: ${{ secrets.TELEGRAM_CHAT_TOPIC }}
+      run: |
+        commit_messages="${{ steps.commit_messages.outputs.stdout }}"
+        message="Recent updates in the repository: $commit_messages"
+        curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" -d "chat_id=${TELEGRAM_CHAT_ID}" -d "message_thread_id=${TELEGRAM_CHAT_TOPIC}" -d "text=${message}"
