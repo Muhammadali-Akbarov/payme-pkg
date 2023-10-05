@@ -17,7 +17,6 @@ jobs:
       id: commit_messages
       run: |
         git log --format="%h %s" -n 5
-      working-directory: ./payme-pkg
 
     - name: Send updates to Telegram
       env:
