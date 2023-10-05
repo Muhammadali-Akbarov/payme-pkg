@@ -11,7 +11,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        repository: https://github.com/PayTechUz/payme-pkg
+        repository: PayTechUz/payme-pkg
 
     - name: Get commit messages
       id: commit_messages
