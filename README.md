@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="https://youtu.be/r2RO3kJVP7g">
-<img style="width: 60%;" src="https://i.postimg.cc/WbD32bHC/payme-pkg-demo-m4a.gif">
+<img style="width: 70%;" src="https://i.postimg.cc/WbD32bHC/payme-pkg-demo-m4a.gif">
 </a>
 </p>
 Support Group - <a href="https://t.me/+Ng1axYLNyBAyYTRi">Telegram</a> <br/>
