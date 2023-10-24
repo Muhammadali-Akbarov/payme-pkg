@@ -2,9 +2,9 @@ name: Testing project
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [ "3.11" ]
+        python-version: ["3.11"]
 
     steps:
       - uses: actions/checkout@v3
@@ -24,6 +24,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements/dev-requirements.txt
+          pip install -r requirements/requirements.txt
 
       - name: Run unit tests
         run: python payme_test.py
