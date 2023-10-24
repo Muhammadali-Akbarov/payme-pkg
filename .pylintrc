@@ -3,4 +3,5 @@ disable=no-member,
         unnecessary-pass,
         useless-option-value,
         too-few-public-methods,
-        missing-module-docstring
+        missing-module-docstring,
+        missing-function-docstring

@@ -1,6 +1,7 @@
 # virtual env
 env/
 venv/
+.env
 
 # dev test
 core/
