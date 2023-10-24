@@ -2,6 +2,7 @@ from tests.base import BaseTestCase
 
 
 class ReceiptsTest(BaseTestCase):
+    # pylint: disable=missing-class-docstring
     def assert_receipts_data(self, response):
         card = response["result"]["receipt"]["card"]
 

@@ -2,6 +2,7 @@ from tests.base import BaseTestCase
 
 
 class SubscribeCardsTest(BaseTestCase):
+    # pylint: disable=missing-class-docstring
     def test_cards_create(self):
         self._test_cards_create()
 
