@@ -1,6 +1,5 @@
-from payme.utils.to_json import to_json
-from payme.decorators.decorators import payme_request
-
+from ..decorators.decorators import payme_request
+from ..utils.to_json import to_json
 
 
 class PaymeSubscribeReceipts:
@@ -18,6 +17,7 @@ class PaymeSubscribeReceipts:
     -------------------------
     https://developer.help.paycom.uz/metody-subscribe-api/
     """
+
     def __init__(
         self,
         base_url: str,

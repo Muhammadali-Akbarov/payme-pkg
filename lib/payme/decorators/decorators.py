@@ -4,7 +4,7 @@ from requests import request
 from requests.exceptions import Timeout
 from requests.exceptions import RequestException
 
-from payme.utils.logging import logger
+from ..utils.logging import logger
 
 from ..errors.exceptions import PaymeTimeoutException
 
