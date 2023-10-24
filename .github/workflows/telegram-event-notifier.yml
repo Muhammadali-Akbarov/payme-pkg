@@ -16,7 +16,6 @@ jobs:
   build:
     name: Telegram Gate
     runs-on: ubuntu-latest
-    environment: git-updates
     steps:
       - name: Notifier
         uses: ethyaan/tgate-action@v1.0.0
