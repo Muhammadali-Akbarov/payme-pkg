@@ -21,4 +21,3 @@ def run_test_cases():
 
 if __name__ == '__main__':
     run_test_cases()
-    BaseTestCase().update_data(token="", invoice_id="")
