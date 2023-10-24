@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 
 from unittest import TestCase
 
-from payme.cards.subscribe_cards import PaymeSubscribeCards
-from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
+from lib.payme.cards.subscribe_cards import PaymeSubscribeCards
+from lib.payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 
 load_dotenv()
