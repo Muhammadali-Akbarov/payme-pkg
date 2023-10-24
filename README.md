@@ -44,6 +44,8 @@ Card Numer: 8600 0691 9540 6311 Expire Date: 03/99 SMS Code: 666666
   - [Receipts Get](#receipts-get)
   - [Receipts Get All ](#receipts-get-all)
 
+- [Testing project](#testing-project)
+
 # Merchant API
 
 ## Installation to Django
@@ -892,4 +894,10 @@ pprint(resp)
     }
   ]
 }
+```
+
+## Testing project
+
+```python
+python payme_test.py
 ```
