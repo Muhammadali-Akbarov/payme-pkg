@@ -10,7 +10,6 @@ jobs:
   build:
     name: Testing project
     runs-on: ubuntu-latest
-    environment: payme-unittest
 
     env:
       PAYCOM_BASE_URL: ${{ secrets.PAYCOM_BASE_URL }}
