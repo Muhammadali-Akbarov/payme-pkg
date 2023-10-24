@@ -8,7 +8,14 @@ on:
 
 jobs:
   build:
+    name: Testing project
     runs-on: ubuntu-latest
+    environment: payme-unittest
+
+    env:
+      PAYCOM_BASE_URL: ${{ secrets.PAYCOM_BASE_URL }}
+      PAYCOM_ID: ${{ secrets.PAYCOM_ID }}
+      PAYCOM_KEY: ${{ secrets.PAYCOM_KEY }}
 
     strategy:
       matrix:
