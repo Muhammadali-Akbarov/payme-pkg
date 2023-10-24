@@ -1,15 +1,15 @@
 import inspect
-from unittest import TextTestRunner, TestLoader
-
-from tests.base import BaseTestCase
+from unittest import TestLoader, TextTestRunner
 
 
 class CustomTestLoader(TestLoader):
-    def getTestCaseNames(self, test_case_class):
-        test_names = super().getTestCaseNames(test_case_class)
+    # pylint: disable=missing-class-docstring
+    def getTestCaseNames(self, testCaseClass):
+        test_names = super().getTestCaseNames(testCaseClass)
         return sorted(
             test_names,
-            key=lambda method_name: inspect.getsourcelines(getattr(test_case_class, method_name))[1],
+            key=lambda method_name: inspect.getsourcelines(
+                getattr(testCaseClass, method_name))[1],
         )
 
 
@@ -21,4 +21,3 @@ def run_test_cases():
 
 if __name__ == '__main__':
     run_test_cases()
-    BaseTestCase().update_data(token="", invoice_id="")
