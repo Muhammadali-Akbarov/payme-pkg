@@ -16,8 +16,8 @@ class CustomTestLoader(TestLoader):
 def run_test_cases():
     loader = CustomTestLoader().discover(start_dir="tests", pattern="test_*.py")
     result = TextTestRunner().run(loader)
-    # if not result.wasSuccessful():
-    #     exit(1)
+    if not result.wasSuccessful():
+        exit(1)
 
 
 if __name__ == '__main__':
