@@ -1,21 +1,21 @@
 import json
 import logging
-import os
 from unittest import TestCase
 
-from dotenv import load_dotenv
+from environs import Env
 
 from lib.payme.cards.subscribe_cards import PaymeSubscribeCards
 from lib.payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
-load_dotenv()
+env = Env()
+env.read_env()
 
 
 class BaseTestCase(TestCase):
     # pylint: disable=missing-class-docstring
-    base_url = os.environ.get("PAYCOM_BASE_URL")
-    paycom_id = os.environ.get("PAYCOM_ID")
-    paycom_key = os.environ.get("PAYCOM_KEY")
+    base_url = env.str("PAYCOM_BASE_URL")
+    paycom_id = env.str("PAYCOM_ID")
+    paycom_key = env.str("PAYCOM_KEY")
 
     card_number = "8600069195406311"
     card_expire = "0399"

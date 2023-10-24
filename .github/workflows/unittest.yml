@@ -11,19 +11,19 @@ jobs:
     name: Testing project
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
     env:
       PAYCOM_BASE_URL: ${{ secrets.PAYCOM_BASE_URL }}
       PAYCOM_ID: ${{ secrets.PAYCOM_ID }}
       PAYCOM_KEY: ${{ secrets.PAYCOM_KEY }}
 
-    strategy:
-      matrix:
-        python-version: ["3.11"]
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
@@ -36,3 +36,4 @@ jobs:
         run: |
           set -e
           python payme_test.py
+  
