@@ -34,4 +34,6 @@ jobs:
           pip install -r requirements/requirements.txt
 
       - name: Run unit tests
-        run: python payme_test.py
+        run: |
+          set -e
+          python payme_test.py
