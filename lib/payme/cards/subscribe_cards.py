@@ -1,5 +1,5 @@
-from payme.utils.to_json import to_json
-from payme.decorators.decorators import payme_request
+from ..decorators.decorators import payme_request
+from ..utils.to_json import to_json
 
 
 class PaymeSubscribeCards:

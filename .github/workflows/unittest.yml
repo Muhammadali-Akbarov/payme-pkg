@@ -2,17 +2,24 @@ name: Testing project
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
+    name: Testing project
     runs-on: ubuntu-latest
+    environment: payme-unittest
+
+    env:
+      PAYCOM_BASE_URL: ${{ secrets.PAYCOM_BASE_URL }}
+      PAYCOM_ID: ${{ secrets.PAYCOM_ID }}
+      PAYCOM_KEY: ${{ secrets.PAYCOM_KEY }}
 
     strategy:
       matrix:
-        python-version: [ "3.11" ]
+        python-version: ["3.11"]
 
     steps:
       - uses: actions/checkout@v3
@@ -24,9 +31,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements/dev-requirements.txt
-
-      - name: Set PYTHONPATH
-        run: export PYTHONPATH="$PYTHONPATH:${{ github.workspace }}/lib"
+          pip install -r requirements/requirements.txt
 
       - name: Run unit tests
         run: python payme_test.py

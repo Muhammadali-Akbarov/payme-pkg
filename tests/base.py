@@ -1,19 +1,18 @@
-import os
 import json
 import logging
+import os
+from unittest import TestCase
 
 from dotenv import load_dotenv
 
-from unittest import TestCase
-
-from payme.cards.subscribe_cards import PaymeSubscribeCards
-from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
-
+from lib.payme.cards.subscribe_cards import PaymeSubscribeCards
+from lib.payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 load_dotenv()
 
 
 class BaseTestCase(TestCase):
+    # pylint: disable=missing-class-docstring
     base_url = os.environ.get("PAYCOM_BASE_URL")
     paycom_id = os.environ.get("PAYCOM_ID")
     paycom_key = os.environ.get("PAYCOM_KEY")
@@ -24,17 +23,17 @@ class BaseTestCase(TestCase):
     fixture_file_path = "tests/fixtures/data.json"
 
     def update_data(self, token=None, invoice_id=None):
-        with open(self.fixture_file_path, "r") as file:
+        with open(self.fixture_file_path, "r", encoding="utf-8") as file:
             data = json.load(file)
 
         data["token"] = token if token or token == "" else data["token"]
         data["invoice_id"] = invoice_id if invoice_id or invoice_id == "" else data["invoice_id"]
 
-        with open(self.fixture_file_path, "w")as file:
+        with open(self.fixture_file_path, "w", encoding="utf-8")as file:
             json.dump(data, file, indent=2)
 
     def get_data(self):
-        with open(self.fixture_file_path, "r") as data:
+        with open(self.fixture_file_path, "r", encoding="utf-8") as data:
             return json.load(data)
 
     def _test_cards_create(self):
@@ -54,7 +53,8 @@ class BaseTestCase(TestCase):
         self.update_data(token=card["token"])
 
     def _test_cards_verify(self):
-        response = self.subscribe_client.card_get_verify_code(token=self.get_data()["token"])
+        response = self.subscribe_client.card_get_verify_code(
+            token=self.get_data()["token"])
         self.assertTrue(response["result"]["sent"])
         self.assertEqual(response["result"]["phone"], "99890*****66")
 
