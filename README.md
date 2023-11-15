@@ -126,7 +126,8 @@ from payme.methods.generate_link import GeneratePayLink
 
 pay_link = GeneratePayLink(
   order_id=999,
-  amount=9999
+  amount=9999,
+  callback_url="your-callback-url", # merchant api callback url (optional). By default, it takes PAYME_PAYME_CALL_BACK_URL from your settings
 ).generate_link()
 
 pprint(pay_link)
