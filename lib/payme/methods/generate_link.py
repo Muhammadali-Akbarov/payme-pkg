@@ -22,7 +22,7 @@ class GeneratePayLink:
     amount: int — The amount belong to the order
     callback_url: str \
         The merchant api callback url to redirect after payment. Optional parameter.
-        By default, it takes PAYME_PAYME_CALL_BACK_URL from your settings
+        By default, it takes PAYME_CALL_BACK_URL from your settings
 
     Returns str — pay link
     ----------------------
