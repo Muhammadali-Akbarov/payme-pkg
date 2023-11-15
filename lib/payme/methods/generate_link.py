@@ -30,6 +30,7 @@ class GeneratePayLink:
     """
     order_id: str
     amount: Decimal
+    callback_url: str = ""
 
     def generate_link(self) -> str:
         """
@@ -43,7 +44,7 @@ class GeneratePayLink:
             payme_account=PAYME_ACCOUNT,
             order_id=self.order_id,
             amount=self.amount,
-            call_back_url=PAYME_CALL_BACK_URL
+            call_back_url=self.callback_url or PAYME_CALL_BACK_URL
         )
         encode_params = base64.b64encode(params.encode("utf-8"))
         return generated_pay_link.format(
