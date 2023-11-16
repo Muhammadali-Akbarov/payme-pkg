@@ -4,7 +4,7 @@ from ..utils.to_json import to_json
 
 class PaymeSubscribeCards:
     """
-    The PaymeSubscribeCards class inclues
+    The PaymeSubscribeCards class includes
     all paycom methods which are belongs to cards.
 
     Parameters

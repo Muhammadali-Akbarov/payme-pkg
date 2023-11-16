@@ -46,13 +46,13 @@ class ReceiptsTest(BaseTestCase):
         self.assertEqual(response["result"]["state"], 4)
 
     def test_receipts_get(self) -> None:
-        response = self.receipts_client.reciepts_get(
+        response = self.receipts_client.receipts_get(
             invoice_id=self.get_data()["invoice_id"],
         )
         self.assert_receipts_data(response)
 
     def test_receipts_get_all(self) -> None:
-        response = self.receipts_client.reciepts_get_all(
+        response = self.receipts_client.receipts_get_all(
             count=2,
             _from=1636398000000,
             _to=1636398000000,

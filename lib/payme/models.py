@@ -6,9 +6,9 @@ from django.core.exceptions import FieldError
 from payme.utils.logging import logger
 
 
-class MerchatTransactionsModel(models.Model):
+class MerchantTransactionsModel(models.Model):
     """
-    MerchatTransactionsModel class \
+    MerchantTransactionsModel class \
         That's used for managing transactions in database.
     """
     _id = models.CharField(max_length=255, null=True, blank=False)
@@ -54,7 +54,7 @@ except (ImportError, AttributeError):
         updated_at = models.DateTimeField(auto_now=True)
 
         def __str__(self):
-            return f"ORDER ID: {self.id} - AMOUNT: {self.amount}"
+            return f"ORDER ID: {self.pk} - AMOUNT: {self.amount}"
 
         class Meta:
             # pylint: disable=missing-class-docstring

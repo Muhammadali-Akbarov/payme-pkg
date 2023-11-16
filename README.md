@@ -689,7 +689,7 @@ rclient = PaymeSubscribeReceipts(
     paycom_key=$paycom_key
 )
 
-resp = rclient.reciepts_get(
+resp = rclient.receipts_get(
     invoice_id="6311946bc4420cbf2712a247"
 )
 
@@ -771,7 +771,7 @@ rclient = PaymeSubscribeReceipts(
     paycom_key=$paycom_key
 )
 
-resp = rclient.reciepts_get_all(
+resp = rclient.receipts_get_all(
     count=2,
     _from=1636398000000,
     to=1636398000000,

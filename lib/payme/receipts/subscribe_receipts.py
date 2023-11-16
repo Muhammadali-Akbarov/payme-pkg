@@ -4,7 +4,7 @@ from ..utils.to_json import to_json
 
 class PaymeSubscribeReceipts:
     """
-    The PaymeSubscribeReceipts class inclues
+    The PaymeSubscribeReceipts class includes
     all paycom methods which are belongs receipts part.
 
     Parameters
@@ -85,7 +85,7 @@ class PaymeSubscribeReceipts:
 
         Parameters
         ----------
-        invoice_id: str — Invoice id for indentity transaction
+        invoice_id: str — Invoice id for identity transaction
         token: str — The card's active token
         phone: str —The payer's phone number
 
@@ -111,7 +111,7 @@ class PaymeSubscribeReceipts:
 
         Parameters
         ----------
-        invoice_id: str — The invoice id for indentity transaction
+        invoice_id: str — The invoice id for identity transaction
         phone: str — The payer's phone number
 
         Full method documentation
@@ -133,7 +133,7 @@ class PaymeSubscribeReceipts:
 
         Parameters
         ----------
-        invoice_id: str — The invoice id for indentity transaction
+        invoice_id: str — The invoice id for identity transaction
 
         Full method documentation
         -------------------------
@@ -169,13 +169,13 @@ class PaymeSubscribeReceipts:
 
         return self.__request(to_json(**data))
 
-    def reciepts_get(self, invoice_id: str) -> dict:
+    def receipts_get(self, invoice_id: str) -> dict:
         """
         Use this method check status for an exist receipt.
 
         Parameters
         ----------
-        invoice_id: str — The invoice id for indentity transaction
+        invoice_id: str — The invoice id for identity transaction
 
         Full method documentation
         -------------------------
@@ -190,7 +190,7 @@ class PaymeSubscribeReceipts:
 
         return self.__request(to_json(**data))
 
-    def reciepts_get_all(self, count: int, _from: int, _to: int, offset: int) -> dict:
+    def receipts_get_all(self, count: int, _from: int, _to: int, offset: int) -> dict:
         """
         Use this method get all complete information, on checks for a certain period.
 

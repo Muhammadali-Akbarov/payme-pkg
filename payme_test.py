@@ -4,12 +4,12 @@ from unittest import TestLoader, TextTestRunner
 
 class CustomTestLoader(TestLoader):
     # pylint: disable=missing-class-docstring
-    def getTestCaseNames(self, testCaseClass):
-        test_names = super().getTestCaseNames(testCaseClass)
+    def getTestCaseNames(self, test_case_class):
+        test_names = super().getTestCaseNames(test_case_class)
         return sorted(
             test_names,
             key=lambda method_name: inspect.getsourcelines(
-                getattr(testCaseClass, method_name))[1],
+                getattr(test_case_class, method_name))[1],
         )
 
 

@@ -4,8 +4,8 @@ from django.db import DatabaseError
 
 from payme.utils.logging import logger
 from payme.utils.get_params import get_params
-from payme.models import MerchatTransactionsModel
-from payme.serializers import MerchatTransactionsModelSerializer
+from payme.models import MerchantTransactionsModel
+from payme.serializers import MerchantTransactionsModelSerializer
 
 
 class PerformTransaction:
@@ -18,7 +18,7 @@ class PerformTransaction:
     https://developer.help.paycom.uz/metody-merchant-api/performtransaction
     """
     def __call__(self, params: dict) -> tuple:
-        serializer = MerchatTransactionsModelSerializer(
+        serializer = MerchantTransactionsModelSerializer(
             data=get_params(params)
         )
         serializer.is_valid(raise_exception=True)
@@ -26,7 +26,7 @@ class PerformTransaction:
         response: dict = None
         try:
             transaction = \
-                MerchatTransactionsModel.objects.get(
+                MerchantTransactionsModel.objects.get(
                     _id=clean_data.get("_id"),
                 )
             transaction.state = 2
