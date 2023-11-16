@@ -128,7 +128,8 @@ from payme.methods.generate_link import GeneratePayLink
 
 pay_link = GeneratePayLink(
   order_id=999,
-  amount=9999
+  amount=9999,
+  callback_url="your-callback-url"
 ).generate_link()
 
 pprint(pay_link)
