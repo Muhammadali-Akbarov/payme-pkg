@@ -154,7 +154,7 @@ class PaymeSubscribeReceipts:
 
         Parameters
         ----------
-        invoice_id: str — The invoice id for indentity transaction
+        invoice_id: str — The invoice id for identity transaction
 
         Full method documentation
         -------------------------
@@ -205,7 +205,7 @@ class PaymeSubscribeReceipts:
         -------------------------
         https://developer.help.paycom.uz/metody-subscribe-api/receipts.get_all
         """
-        data: str = {
+        data: dict = {
             "method": self.__methods.get('receipts_get_all'),
             "params": {
                 "count": count,

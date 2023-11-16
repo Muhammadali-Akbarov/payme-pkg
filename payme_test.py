@@ -13,7 +13,7 @@ class CustomTestLoader(TestLoader):
         )
 
 
-def run_test_cases():
+def run_test_cases() -> None:
     loader = CustomTestLoader().discover(start_dir="tests", pattern="test_*.py")
     result = TextTestRunner().run(loader)
     if not result.wasSuccessful():

@@ -106,7 +106,7 @@ class MerchantAPIView(APIView):
         return merchant_method
 
     @staticmethod
-    def authorize(password: str) -> None:
+    def authorize(password: str) -> bool:
         """
         Authorize the Merchant.
         :param password: string -> Merchant authorization password

@@ -18,7 +18,7 @@ class CreateTransaction:
     -------------------------
     https://developer.help.paycom.uz/metody-merchant-api/createtransaction
     """
-    def __call__(self, params: dict) -> dict:
+    def __call__(self, params: dict) -> tuple:
         serializer = MerchatTransactionsModelSerializer(
             data=get_params(params)
         )
@@ -60,7 +60,7 @@ class CreateTransaction:
         return order_id, response
 
     @staticmethod
-    def _convert_ms_to_datetime(time_ms: str) -> int:
+    def _convert_ms_to_datetime(time_ms: int) -> datetime:
         """Use this format to convert from time ms to datetime format.
         """
         readable_datetime = datetime.datetime.fromtimestamp(time_ms / 1000)

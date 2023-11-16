@@ -17,7 +17,7 @@ class GetStatement:
     https://developer.help.paycom.uz/metody-merchant-api/getstatement
     """
 
-    def __call__(self, params: dict):
+    def __call__(self, params: dict) -> tuple:
         clean_data: dict = MTMS.get_validated_data(
             params=params
         )

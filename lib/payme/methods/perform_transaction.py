@@ -17,7 +17,7 @@ class PerformTransaction:
     -------------------------
     https://developer.help.paycom.uz/metody-merchant-api/performtransaction
     """
-    def __call__(self, params: dict) -> dict:
+    def __call__(self, params: dict) -> tuple:
         serializer = MerchatTransactionsModelSerializer(
             data=get_params(params)
         )
