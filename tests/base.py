@@ -22,7 +22,7 @@ class BaseTestCase(TestCase):
 
     fixture_file_path = "tests/fixtures/data.json"
 
-    def update_data(self, token=None, invoice_id=None):
+    def update_data(self, token: str = None, invoice_id: str = None) -> None:
         with open(self.fixture_file_path, "r", encoding="utf-8") as file:
             data = json.load(file)
 
@@ -32,11 +32,11 @@ class BaseTestCase(TestCase):
         with open(self.fixture_file_path, "w", encoding="utf-8")as file:
             json.dump(data, file, indent=2)
 
-    def get_data(self):
+    def get_data(self) -> dict:
         with open(self.fixture_file_path, "r", encoding="utf-8") as data:
             return json.load(data)
 
-    def _test_cards_create(self):
+    def _test_cards_create(self) -> None:
         response = self.subscribe_client.cards_create(
             self.card_number,
             self.card_expire,
@@ -52,7 +52,7 @@ class BaseTestCase(TestCase):
 
         self.update_data(token=card["token"])
 
-    def _test_cards_verify(self):
+    def _test_cards_verify(self) -> None:
         response = self.subscribe_client.card_get_verify_code(
             token=self.get_data()["token"])
         self.assertTrue(response["result"]["sent"])
@@ -66,7 +66,7 @@ class BaseTestCase(TestCase):
         self.assertTrue(response["result"]["card"]["verify"])
 
     @classmethod
-    def setUpClass(cls):
+    def setUpClass(cls) -> None:
         super().setUpClass()
         logging.disable(logging.CRITICAL)
 
@@ -82,6 +82,6 @@ class BaseTestCase(TestCase):
         )
 
     @classmethod
-    def tearDownClass(cls):
+    def tearDownClass(cls) -> None:
         super().tearDownClass()
         logging.disable(logging.NOTSET)

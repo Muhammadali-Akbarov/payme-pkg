@@ -1,1 +1,1 @@
-from .import subscribe_cards
+from . import subscribe_cards

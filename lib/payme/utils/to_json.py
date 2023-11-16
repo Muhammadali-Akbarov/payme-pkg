@@ -1,5 +1,6 @@
 import json
 
+
 def to_json(**kwargs) -> dict:
     """
     Use this static method to data dumps.

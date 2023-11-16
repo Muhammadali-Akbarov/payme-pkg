@@ -102,13 +102,13 @@ class PaymeSubscribeCards:
         }
         return self.__request(to_json(**data))
 
-    def cards_verify(self, verify_code: int, token: str) -> dict:
+    def cards_verify(self, verify_code: str, token: str) -> dict:
         """
         Verification of the card using the code sent via SMS.
 
         Parameters
         ----------
-        verify_code: int — Code for verification
+        verify_code: str — Code for verification
         token: str — The card's non-active token
 
         Full method documentation
