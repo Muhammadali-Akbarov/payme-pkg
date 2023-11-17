@@ -1,8 +1,8 @@
 from django.db import DatabaseError
 
 from payme.utils.logging import logger
-from payme.models import MerchatTransactionsModel
-from payme.serializers import MerchatTransactionsModelSerializer as MTMS
+from payme.models import MerchantTransactionsModel
+from payme.serializers import MerchantTransactionsModelSerializer as MTMS
 
 
 class CheckTransaction:
@@ -21,7 +21,7 @@ class CheckTransaction:
 
         try:
             transaction = \
-                MerchatTransactionsModel.objects.get(
+                MerchantTransactionsModel.objects.get(
                     _id=clean_data.get("_id"),
                 )
             response = {

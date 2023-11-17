@@ -156,7 +156,7 @@ class MerchantAPIView(APIView):
         """
         pass
 
-    def cancel_transaction(self,order_id, action) -> None:
+    def cancel_transaction(self, order_id, action) -> None:
         """
         need implement in your view class
         """

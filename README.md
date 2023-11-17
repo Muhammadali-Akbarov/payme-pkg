@@ -96,7 +96,6 @@ Add a `payme` path to core of urlpatterns:
 
 ```python
 from django.urls import path
-from django.urls import include
 
 from your_app.views import PaymeCallBackAPIView
 
@@ -113,7 +112,7 @@ Run migrations
 python manage.py migrate
 ```
 
-🎉 Congratulations you have been integrated merchant api methods with django, keep reading docs. After successfull migrations check your admin panel and see results what happened.
+🎉 Congratulations you have been integrated merchant api methods with django, keep reading docs. After successfully migrations check your admin panel and see results what happened.
 
 ## Generate Pay Link
 
@@ -127,7 +126,7 @@ from pprint import pprint
 from payme.methods.generate_link import GeneratePayLink
 
 pay_link = GeneratePayLink(
-  order_id=999,
+  order_id="999",
   amount=9999,
   callback_url="your-callback-url"
 ).generate_link()
@@ -154,7 +153,7 @@ from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 client = PaymeSubscribeCards(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id=$paycom_id
+    paycom_id="your-paycom-id"
 )
 
 resp = client.cards_create(
@@ -198,7 +197,7 @@ from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 client = PaymeSubscribeCards(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id=$paycom_id
+    paycom_id="your-paycom-id"
 )
 
 resp = client.card_get_verify_code(
@@ -235,7 +234,7 @@ from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 client = PaymeSubscribeCards(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id=$paycom_id
+    paycom_id="your-paycom-id"
 )
 
 resp = client.cards_verify(
@@ -278,7 +277,7 @@ from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 client = PaymeSubscribeCards(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id=$paycom_id
+    paycom_id="your-paycom-id"
 )
 
 resp = client.cards_check(
@@ -320,7 +319,7 @@ from payme.cards.subscribe_cards import PaymeSubscribeCards
 
 client = PaymeSubscribeCards(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id=$paycom_id
+    paycom_id="your-paycom-id"
 )
 
 resp = client.cards_remove(
@@ -355,13 +354,13 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id=$paycom_id,
-    paycom_key=$paycom_key
+    paycom_id="your-paycom-id",
+    paycom_key="your-paycom-key"
 )
 
 resp = rclient.receipts_create(
     amount=10000,
-    order_id="1"
+    order_id=1
 )
 
 pprint(resp)
@@ -437,8 +436,8 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id=$paycom_id,
-    paycom_key=$paycom_key
+    paycom_id="your-paycom-id",
+    paycom_key="your-paycom-key"
 )
 
 resp = rclient.receipts_pay(
@@ -524,8 +523,8 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id=$paycom_id,
-    paycom_key=$paycom_key
+    paycom_id="your-paycom-id",
+    paycom_key="your-paycom-key"
 )
 
 resp = rclient.receipts_send(
@@ -562,8 +561,8 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id=$paycom_id,
-    paycom_key=$paycom_key
+    paycom_id="your-paycom-id",
+    paycom_key="your-paycom-key"
 )
 
 resp = rclient.receipts_cancel(
@@ -648,8 +647,8 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id=$paycom_id,
-    paycom_key=$paycom_key
+    paycom_id="your-paycom-id",
+    paycom_key="your-paycom-key"
 )
 
 resp = rclient.receipts_check(
@@ -685,11 +684,11 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id=$paycom_id,
-    paycom_key=$paycom_key
+    paycom_id="your-paycom-id",
+    paycom_key="your-paycom-key"
 )
 
-resp = rclient.reciepts_get(
+resp = rclient.receipts_get(
     invoice_id="6311946bc4420cbf2712a247"
 )
 
@@ -767,14 +766,14 @@ from payme.receipts.subscribe_receipts import PaymeSubscribeReceipts
 
 rclient = PaymeSubscribeReceipts(
     base_url="https://checkout.test.paycom.uz/api/",
-    paycom_id=$paycom_id,
-    paycom_key=$paycom_key
+    paycom_id="your-paycom-id",
+    paycom_key="your-paycom-key"
 )
 
-resp = rclient.reciepts_get_all(
+resp = rclient.receipts_get_all(
     count=2,
     _from=1636398000000,
-    to=1636398000000,
+    _to=1636398000000,
     offset=0
 )
 
@@ -899,6 +898,6 @@ pprint(resp)
 
 ## Testing project
 
-```python
+```shell
 python payme_test.py
 ```

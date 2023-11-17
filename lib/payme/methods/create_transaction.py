@@ -4,9 +4,9 @@ import datetime
 
 from payme.utils.logging import logger
 from payme.utils.get_params import get_params
-from payme.models import MerchatTransactionsModel
+from payme.models import MerchantTransactionsModel
 from payme.errors.exceptions import TooManyRequests
-from payme.serializers import MerchatTransactionsModelSerializer
+from payme.serializers import MerchantTransactionsModelSerializer
 
 
 class CreateTransaction:
@@ -19,14 +19,14 @@ class CreateTransaction:
     https://developer.help.paycom.uz/metody-merchant-api/createtransaction
     """
     def __call__(self, params: dict) -> tuple:
-        serializer = MerchatTransactionsModelSerializer(
+        serializer = MerchantTransactionsModelSerializer(
             data=get_params(params)
         )
         serializer.is_valid(raise_exception=True)
         order_id = serializer.validated_data.get("order_id")
 
         try:
-            transaction = MerchatTransactionsModel.objects.filter(
+            transaction = MerchantTransactionsModel.objects.filter(
                 order_id=order_id
             ).last()
 
@@ -40,7 +40,7 @@ class CreateTransaction:
 
         if transaction is None:
             transaction, _ = \
-                MerchatTransactionsModel.objects.get_or_create(
+                MerchantTransactionsModel.objects.get_or_create(
                     _id=serializer.validated_data.get('_id'),
                     order_id=serializer.validated_data.get('order_id'),
                     transaction_id=uuid.uuid4(),

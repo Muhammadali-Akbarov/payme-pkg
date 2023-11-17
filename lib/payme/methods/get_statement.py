@@ -1,8 +1,8 @@
 from django.db import DatabaseError
 
 from payme.utils.logging import logger
-from payme.models import MerchatTransactionsModel
-from payme.serializers import MerchatTransactionsModelSerializer as MTMS
+from payme.models import MerchantTransactionsModel
+from payme.serializers import MerchantTransactionsModelSerializer as MTMS
 from payme.utils.make_aware_datetime import make_aware_datetime as mad
 
 
@@ -29,7 +29,7 @@ class GetStatement:
 
         try:
             transactions = \
-                MerchatTransactionsModel.objects.filter(
+                MerchantTransactionsModel.objects.filter(
                     created_at__gte=start_date,
                     created_at__lte=end_date
                 )

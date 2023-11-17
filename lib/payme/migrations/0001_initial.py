@@ -9,14 +9,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='MerchatTransactionsModel',
+            name='MerchantTransactionsModel',
             fields=[
                 ('id', models.BigAutoField(
                     auto_created=True,
                     primary_key=True,
                     serialize=False,
                     verbose_name='ID')
-                ),
+                 ),
                 ('_id', models.CharField(max_length=255, null=True)),
                 ('transaction_id', models.CharField(max_length=255, null=True)),
                 ('order_id', models.BigIntegerField(blank=True, null=True)),

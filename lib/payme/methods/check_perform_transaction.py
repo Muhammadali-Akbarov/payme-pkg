@@ -1,5 +1,5 @@
 from payme.utils.get_params import get_params
-from payme.serializers import MerchatTransactionsModelSerializer
+from payme.serializers import MerchantTransactionsModelSerializer
 
 
 class CheckPerformTransaction:
@@ -12,7 +12,7 @@ class CheckPerformTransaction:
     https://developer.help.paycom.uz/metody-merchant-api/checktransaction
     """
     def __call__(self, params: dict) -> tuple:
-        serializer = MerchatTransactionsModelSerializer(
+        serializer = MerchantTransactionsModelSerializer(
             data=get_params(params)
         )
         serializer.is_valid(raise_exception=True)

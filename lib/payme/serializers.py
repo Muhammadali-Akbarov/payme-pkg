@@ -5,28 +5,28 @@ from rest_framework import serializers
 from payme.models import Order
 from payme.utils.logging import logger
 from payme.utils.get_params import get_params
-from payme.models import MerchatTransactionsModel
+from payme.models import MerchantTransactionsModel
 from payme.errors.exceptions import IncorrectAmount
 from payme.errors.exceptions import PerformTransactionDoesNotExist
 
 
-class MerchatTransactionsModelSerializer(serializers.ModelSerializer):
+class MerchantTransactionsModelSerializer(serializers.ModelSerializer):
     """
-    MerchatTransactionsModelSerializer class \
-        That's used to serialize merchat transactions data.
+    MerchantTransactionsModelSerializer class \
+        That's used to serialize merchant transactions data.
     """
     start_date = serializers.IntegerField(allow_null=True)
     end_date = serializers.IntegerField(allow_null=True)
 
     class Meta:
         # pylint: disable=missing-class-docstring
-        model: MerchatTransactionsModel = MerchatTransactionsModel
+        model: MerchantTransactionsModel = MerchantTransactionsModel
         fields: str = "__all__"
         extra_fields = ['start_date', 'end_date']
 
     def validate(self, attrs) -> dict:
         """
-        Validate the data given to the MerchatTransactionsModel.
+        Validate the data given to the MerchantTransactionsModel.
         """
         if attrs.get("order_id") is not None:
             try:
@@ -77,7 +77,7 @@ class MerchatTransactionsModelSerializer(serializers.ModelSerializer):
         ----------
         params: dict — Includes request params.
         """
-        serializer = MerchatTransactionsModelSerializer(
+        serializer = MerchantTransactionsModelSerializer(
             data=get_params(params)
         )
         serializer.is_valid(raise_exception=True)
