@@ -20,3 +20,4 @@ paymentsuz.egg-info/
 payme_pkg.egg-info/
 
 .DS_Store
+build/
