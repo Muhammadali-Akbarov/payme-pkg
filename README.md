@@ -9,6 +9,8 @@ Support Group - <a href="https://t.me/+Ng1axYLNyBAyYTRi">Telegram</a> <br/>
 YouTube - <a href="https://youtu.be/sJORIyykHcw">Watch Video</a><br/>
 Implementation Sample - https://github.com/PayTechUz/payme-sample
 
+If you think this package is helpful, support us with coffee 😉: https://www.buymeacoffee.com/paytechuz
+
 ## Installation
 
 ```shell
