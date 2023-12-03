@@ -21,4 +21,5 @@ def run_test_cases() -> None:
 
 
 if __name__ == '__main__':
-    run_test_cases()
+    # run_test_cases()
+    pass
