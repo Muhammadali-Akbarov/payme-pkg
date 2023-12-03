@@ -13,7 +13,7 @@ setup(
     keywords='paymeuz paycomuz payme-merchant merchant-api subscribe-api payme-pkg payme-api',
     install_requires=[
         'requests==2.*',
-        'dataclasses==0.*',
+        "dataclasses==0.*;python_version<'3.7'", # will only install on py3.6
         'djangorestframework==3.14.0'
       ],
 )
