@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils.module_loading import import_string
 from django.core.exceptions import FieldError
+from django.utils.translation import gettext_lazy as _
 
 from payme.utils.logging import logger
 
@@ -12,20 +13,24 @@ class MerchantTransactionsModel(models.Model):
         That's used for managing transactions in database.
     """
     _id = models.CharField(max_length=255, null=True, blank=False)
-    transaction_id = models.CharField(max_length=255, null=True, blank=False)
-    order_id = models.BigIntegerField(null=True, blank=True)
-    amount = models.FloatField(null=True, blank=True)
-    time = models.BigIntegerField(null=True, blank=True)
-    perform_time = models.BigIntegerField(null=True, default=0)
-    cancel_time = models.BigIntegerField(null=True, default=0)
-    state = models.IntegerField(null=True, default=1)
-    reason = models.CharField(max_length=255, null=True, blank=True)
-    created_at_ms = models.CharField(max_length=255, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    transaction_id = models.CharField(max_length=255, null=True, blank=False, verbose_name=_("Transaction ID"))
+    order_id = models.BigIntegerField(null=True, blank=True, verbose_name=_("Order ID"))
+    amount = models.FloatField(null=True, blank=True, verbose_name=_("Amount"))
+    time = models.BigIntegerField(null=True, blank=True, verbose_name=_("Time"))
+    perform_time = models.BigIntegerField(null=True, default=0, verbose_name=_("Perform Time"))
+    cancel_time = models.BigIntegerField(null=True, default=0, verbose_name=_("Cancel Time"))
+    state = models.IntegerField(null=True, default=1, verbose_name=_("State"))
+    reason = models.CharField(max_length=255, null=True, blank=True, verbose_name=_("Reason"))
+    created_at_ms = models.CharField(max_length=255, null=True, blank=True, verbose_name=_("Created At MS"))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
 
     def __str__(self):
         return str(self._id)
+
+    class Meta:
+        verbose_name = _("Merchant Transaction")
+        verbose_name_plural = _("Merchant Transactions")
 
 
 try:
@@ -49,9 +54,9 @@ except (ImportError, AttributeError):
         Order class \
             That's used for managing order process
         """
-        amount = models.IntegerField(null=True, blank=True)
-        created_at = models.DateTimeField(auto_now_add=True)
-        updated_at = models.DateTimeField(auto_now=True)
+        amount = models.IntegerField(null=True, blank=True, verbose_name=_("Amount"))
+        created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Created At"))
+        updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Updated At"))
 
         def __str__(self):
             return f"ORDER ID: {self.pk} - AMOUNT: {self.amount}"
@@ -59,3 +64,5 @@ except (ImportError, AttributeError):
         class Meta:
             # pylint: disable=missing-class-docstring
             managed = False
+            verbose_name = _("Order")
+            verbose_name_plural = _("Orders")
