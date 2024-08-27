@@ -14,7 +14,7 @@ PAYME_URL = settings.PAYME.get("PAYME_URL")
 class GeneratePayLink:
     """
     GeneratePayLink dataclass
-    That's used to generate pay lint for each order.
+    That's used to generate pay link for each order.
 
     Parameters
     ----------
