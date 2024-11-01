@@ -39,7 +39,7 @@ def handle_exceptions(func):
             logger.error(f"Transaction does not exist: {exc} {args} {kwargs}")
             raise exceptions.TransactionNotFound(str(exc)) from exc
 
-        except exceptions.exception_whiltelist as exc:
+        except exceptions.exception_whitelist as exc:
             # No need to raise exception for exception whitelist
             raise exc
         except Exception as exc:
@@ -161,17 +161,18 @@ class PaymeWebHookAPIView(views.APIView):
             "account": account,
         }
 
-        transaction, created = PaymeTransactions.objects.get_or_create(
-            transaction_id=transaction_id,
-            defaults=defaults
-        )
-
         # Handle already existing transaction with the same ID for one-time payments
-        if not created and settings.PAYME_ONE_TIME_PAYMENT:
-            if transaction.transaction_id != transaction_id:
+        if settings.PAYME_ONE_TIME_PAYMENT:
+            # Check for an existing transaction with a different transaction_id for the given account
+            if PaymeTransactions.objects.filter(account=account).exclude(transaction_id=transaction_id).exists():
                 message = f"Transaction {transaction_id} already exists (Payme)."
                 logger.warning(message)
                 raise exceptions.TransactionAlreadyExists(message)
+
+        transaction, _ = PaymeTransactions.objects.get_or_create(
+            transaction_id=transaction_id,
+            defaults=defaults
+        )
 
         result = response.CreateTransaction(
             transaction=transaction.transaction_id,
