@@ -16,21 +16,17 @@ class PaymeTransactions(models.Model):
     """
     Model to store payment transactions.
     """
-    CREATED = 0                       # Awaiting confirmation
-    INITIATING = 1                    # Initiating transaction
-    PROCESSING = 2                    # Deducting funds
-    SUCCEEDED = 4                     # Payment successful
-    CANCELED = 50                     # Canceled
-    CANCELED_DURING_PROCESS = -2      # Canceled mid-process
-    CANCELED_DURING_INIT = -1         # Canceled during setup
+    CREATED = 0
+    INITIATING = 1
+    SUCCESSFULLY = 2
+    CANCELED = -2
+    CANCELED_DURING_INIT = -1
 
     STATE = [
         (CREATED, "Created"),
         (INITIATING, "Initiating"),
-        (PROCESSING, "Processing"),
-        (SUCCEEDED, "Succeeded"),
-        (CANCELED, "Canceled"),
-        (CANCELED_DURING_PROCESS, "Canceled during process"),
+        (SUCCESSFULLY, "Successfully"),
+        (CANCELED, "Canceled after successful performed"),
         (CANCELED_DURING_INIT, "Canceled during initiation"),
     ]
 
@@ -79,7 +75,7 @@ class PaymeTransactions(models.Model):
 
         :return: True if the transaction is completed, False otherwise.
         """
-        return self.state == self.PROCESSING
+        return self.state == self.SUCCESSFULLY
 
     def is_cancelled(self) -> bool:
         """
@@ -89,7 +85,7 @@ class PaymeTransactions(models.Model):
         """
         return self.state in [
             self.CANCELED,
-            self.CANCELED_DURING_PROCESS,
+            self.CANCELED,
             self.CANCELED_DURING_INIT
         ]
 
@@ -134,7 +130,7 @@ class PaymeTransactions(models.Model):
         if self.state != self.INITIATING:
             return False
 
-        self.state = self.PROCESSING
+        self.state = self.SUCCESSFULLY
         self.performed_at = timezone.now()
         self.save()
         return True

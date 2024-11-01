@@ -245,7 +245,7 @@ class PaymeWebHookAPIView(views.APIView):
         if transaction.is_performed():
             transaction.mark_as_cancelled(
                 cancel_reason=params["reason"],
-                state=PaymeTransactions.CANCELED_DURING_PROCESS
+                state=PaymeTransactions.CANCELED
             )
         elif transaction.is_created_in_payme():
             transaction.mark_as_cancelled(
