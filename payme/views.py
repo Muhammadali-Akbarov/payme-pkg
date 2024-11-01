@@ -12,7 +12,6 @@ from rest_framework.response import Response
 from payme import exceptions
 from payme.types import response
 from payme.models import PaymeTransactions
-from payme.const import PaymeTransactionStateEnum
 from payme.util import time_to_payme, time_to_service
 
 logger = logging.getLogger(__name__)
@@ -37,7 +36,7 @@ def handle_exceptions(func):
 
         except PaymeTransactions.DoesNotExist as exc:
             logger.error(f"Transaction does not exist: {exc} {args} {kwargs}")
-            raise exceptions.TransactionNotFound(str(exc)) from exc
+            raise exceptions.AccountDoesNotExist(str(exc)) from exc
 
         except exceptions.exception_whitelist as exc:
             # No need to raise exception for exception whitelist
@@ -157,7 +156,7 @@ class PaymeWebHookAPIView(views.APIView):
 
         defaults = {
             "amount": amount,
-            "state": PaymeTransactionStateEnum.WITHDRAWAL_IN_PROGRESS_1.value,
+            "state": PaymeTransactions.INITIATING,
             "account": account,
         }
 
@@ -246,12 +245,12 @@ class PaymeWebHookAPIView(views.APIView):
         if transaction.is_performed():
             transaction.mark_as_cancelled(
                 cancel_reason=params["reason"],
-                state=PaymeTransactionStateEnum.CANCELLED_WITHDRAWAL_IN_PROGRESS_2.value
+                state=PaymeTransactions.CANCELED_DURING_PROCESS
             )
         elif transaction.is_created_in_payme():
             transaction.mark_as_cancelled(
                 cancel_reason=params["reason"],
-                state=PaymeTransactionStateEnum.CANCELLED_AFTER_WITHDRAWAL_IN_PROGRESS_1.value
+                state=PaymeTransactions.CANCELED_DURING_INIT
             )
 
         result = self._cancel_response(transaction)

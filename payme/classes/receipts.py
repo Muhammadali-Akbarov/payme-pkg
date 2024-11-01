@@ -4,7 +4,6 @@ from payme.classes.cards import Cards
 from payme.util import input_type_checker
 from payme.classes.http import HttpClient
 from payme.types.response import receipts as response
-from payme.const import PaymeTransactionStateEnum as Status
 
 
 ALLOWED_METHODS = {
@@ -246,7 +245,7 @@ class Receipts:
         receipt_id = create_response.result.receipt._id
         pay_response = self.pay(receipts_id=receipt_id, token=token)
         assert_condition(
-            pay_response.result.receipt.state == Status.SUCCESS,
+            pay_response.result.receipt.state == 4,
             "Paid the receipt successfully.",
             test_case="Payment Test"
         )
@@ -266,7 +265,7 @@ class Receipts:
         receipt_id = create_response.result.receipt._id
         cancel_response = self.cancel(receipts_id=receipt_id)
         assert_condition(
-            cancel_response.result.receipt.state == Status.CANCELED,
+            cancel_response.result.receipt.state == 50,
             "Cancelled the receipt successfully.",
             test_case="Cancel Test"
         )
@@ -274,7 +273,7 @@ class Receipts:
         # Test 5: Check Receipt Status
         check_response = self.check(receipts_id=receipt_id)
         assert_condition(
-            check_response.result.state == Status.CANCELED,
+            check_response.result.state == 50,
             "Checked the receipt status successfully.",
             test_case="Check Test"
         )
