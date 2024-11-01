@@ -41,8 +41,8 @@ Add `'payme'` credentials inside to settings.py
 
 One time payment configuration settings.py
 ```python
-PAYME_ID = "670cb597e51de1c6a3a5934b"
-PAYME_KEY = "KCR4W1kzqPxxUeW&BHNM0AOtR3?&0@E%R?P@"
+PAYME_ID = "your-payme-id"
+PAYME_KEY = "your-payme-key"
 PAYME_ACCOUNT_FIELD = "id"
 PAYME_AMOUNT_FIELD = "total_amount"
 PAYME_ACCOUNT_MODEL = "orders.models.Orders"
@@ -51,8 +51,8 @@ PAYME_ONE_TIME_PAYMENT = True
 
 Multi payment configuration settings.py
 ```python
-PAYME_ID = "670cb597e51de1c6a3a5934b"
-PAYME_KEY = "KCR4W1kzqPxxUeW&BHNM0AOtR3?&0@E%R?P@"
+PAYME_ID = "your-payme-id"
+PAYME_KEY = "your-payme-key"
 PAYME_ACCOUNT_FIELD = "id"
 PAYME_ACCOUNT_MODEL = "clients.models.Client"
 PAYME_ONE_TIME_PAYMENT = False
