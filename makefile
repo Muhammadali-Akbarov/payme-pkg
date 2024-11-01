@@ -1,6 +1,3 @@
-lint:
-	pylint ./lib/*
-
 upload:
 	rm -rf ./dist/*
 	python setup.py sdist

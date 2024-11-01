@@ -1,0 +1,28 @@
+name: Telegram Gate
+
+on:
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened, edited, pinned, closed, reopened, assigned, labeled]
+  pull_request:
+    types:
+      [opened, closed, edited, ready_for_review, review_requested, reopened]
+  pull_request_review_comment:
+    types: [created]
+  push:
+
+jobs:
+  build:
+    name: Telegram Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notifier
+        uses: ethyaan/tgate-action@v1.0.0
+        if: always()
+        with:
+          token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          thread_id: ${{ secrets.TELEGRAM_CHAT_TOPIC }}
+          disable_web_page_preview: true
+          disable_notification: false

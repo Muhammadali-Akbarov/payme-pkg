@@ -1,0 +1,36 @@
+name: Testing project
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    name: Testing project
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    env:
+      PAYME_ID: ${{ secrets.PAYME_ID }}
+      PAYME_KEY: ${{ secrets.PAYME_KEY }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements/dev-requirements.txt
+          pip install -r requirements/requirements.txt
+
+      - name: Run unit tests
+        run: |
+          python tests.py
