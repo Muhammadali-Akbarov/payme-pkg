@@ -13,7 +13,7 @@
 <p align="center">You can use for test and production mode. Join our community and ask everything you need.
 </p>
 <a href="https://docs.pay-tech.uz">
-<p align="center">Visit full documentation for Merchant and Subcribe Api</p>
+<p align="center">Visit to full documentation for Merchant and Subcribe Api</p>
 </a>
 <p align="center">
  <img style="width: 60%;" src="https://i.postimg.cc/WbD32bHC/payme-pkg-demo-m4a.gif">
