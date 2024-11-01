@@ -12,7 +12,6 @@ from rest_framework.response import Response
 from payme import exceptions
 from payme.types import response
 from payme.models import PaymeTransactions
-from payme.const import PaymeTransactionStateEnum
 from payme.util import time_to_payme, time_to_service
 
 logger = logging.getLogger(__name__)
@@ -37,9 +36,9 @@ def handle_exceptions(func):
 
         except PaymeTransactions.DoesNotExist as exc:
             logger.error(f"Transaction does not exist: {exc} {args} {kwargs}")
-            raise exceptions.TransactionNotFound(str(exc)) from exc
+            raise exceptions.AccountDoesNotExist(str(exc)) from exc
 
-        except exceptions.exception_whiltelist as exc:
+        except exceptions.exception_whitelist as exc:
             # No need to raise exception for exception whitelist
             raise exc
         except Exception as exc:
@@ -157,21 +156,22 @@ class PaymeWebHookAPIView(views.APIView):
 
         defaults = {
             "amount": amount,
-            "state": PaymeTransactionStateEnum.WITHDRAWAL_IN_PROGRESS_1.value,
+            "state": PaymeTransactions.INITIATING,
             "account": account,
         }
 
-        transaction, created = PaymeTransactions.objects.get_or_create(
-            transaction_id=transaction_id,
-            defaults=defaults
-        )
-
         # Handle already existing transaction with the same ID for one-time payments
-        if not created and settings.PAYME_ONE_TIME_PAYMENT:
-            if transaction.transaction_id != transaction_id:
+        if settings.PAYME_ONE_TIME_PAYMENT:
+            # Check for an existing transaction with a different transaction_id for the given account
+            if PaymeTransactions.objects.filter(account=account).exclude(transaction_id=transaction_id).exists():
                 message = f"Transaction {transaction_id} already exists (Payme)."
                 logger.warning(message)
                 raise exceptions.TransactionAlreadyExists(message)
+
+        transaction, _ = PaymeTransactions.objects.get_or_create(
+            transaction_id=transaction_id,
+            defaults=defaults
+        )
 
         result = response.CreateTransaction(
             transaction=transaction.transaction_id,
@@ -245,12 +245,12 @@ class PaymeWebHookAPIView(views.APIView):
         if transaction.is_performed():
             transaction.mark_as_cancelled(
                 cancel_reason=params["reason"],
-                state=PaymeTransactionStateEnum.CANCELLED_WITHDRAWAL_IN_PROGRESS_2.value
+                state=PaymeTransactions.CANCELED
             )
         elif transaction.is_created_in_payme():
             transaction.mark_as_cancelled(
                 cancel_reason=params["reason"],
-                state=PaymeTransactionStateEnum.CANCELLED_AFTER_WITHDRAWAL_IN_PROGRESS_1.value
+                state=PaymeTransactions.CANCELED_DURING_INIT
             )
 
         result = self._cancel_response(transaction)

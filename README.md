@@ -93,7 +93,7 @@ from your_app.views import PaymeCallBackAPIView
 
 urlpatterns = [
     ...
-    path("payments/updates/", PaymeCallBackAPIView.as_view()),
+    path("payment/update/", PaymeCallBackAPIView.as_view()),
     ...
 ]
 ```
