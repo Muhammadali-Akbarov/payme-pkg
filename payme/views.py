@@ -126,11 +126,18 @@ class PaymeWebHookAPIView(views.APIView):
         """
         Validates if the amount matches for one-time payment accounts.
         """
-        if settings.PAYME_ONE_TIME_PAYMENT:
-            account_amount = getattr(account, settings.PAYME_AMOUNT_FIELD)
-            if Decimal(account_amount) != Decimal(amount):
-                message = f"Invalid amount. Expected: {account_amount}, received: {amount}"
-                raise exceptions.IncorrectAmount(message)
+        if not settings.PAYME_ONE_TIME_PAYMENT:
+            return True
+
+        expected_amount = Decimal(getattr(account, settings.PAYME_AMOUNT_FIELD)) * 100
+        received_amount = Decimal(amount)
+
+        if expected_amount != received_amount:
+            raise exceptions.IncorrectAmount(
+                f"Invalid amount. Expected: {expected_amount}, received: {received_amount}"
+            )
+
+        return True
 
     @handle_exceptions
     def check_perform_transaction(self, params) -> response.CheckPerformTransaction:
