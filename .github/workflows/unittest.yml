@@ -16,9 +16,8 @@ jobs:
         python-version: ["3.11"]
 
     env:
-      PAYCOM_BASE_URL: ${{ secrets.PAYCOM_BASE_URL }}
-      PAYCOM_ID: ${{ secrets.PAYCOM_ID }}
-      PAYCOM_KEY: ${{ secrets.PAYCOM_KEY }}
+      PAYME_ID: ${{ secrets.PAYME_ID }}
+      PAYME_KEY: ${{ secrets.PAYME_KEY }}
 
     steps:
       - uses: actions/checkout@v2
@@ -34,4 +33,4 @@ jobs:
 
       - name: Run unit tests
         run: |
-          python payme_test.py
+          python tests.py
