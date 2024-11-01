@@ -21,8 +21,6 @@ class Receipts:
     """
     The Receipts class provides methods to interact with the Payme Receipts.
     """
-
-    @input_type_checker
     def __init__(self, payme_id: str, payme_key: str, url: str) -> "Receipts":
         """
         Initialize the Receipts client.
