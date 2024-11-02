@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='payme-pkg',
-    version='3.0.1',
+    version='3.0.2',
     license='MIT',
     author="Muhammadali Akbarov",
     author_email='muhammadali17abc@gmail.com',
