@@ -6,7 +6,7 @@ from payme import Payme
 
 class TestPaymeAPI(unittest.TestCase):
     """
-    Test Payme API methods.
+    Test Payme API methods
     """
     @classmethod
     def setUpClass(cls):
