@@ -1,10 +1,10 @@
 """
 Payme enumerations
 """
-from enum import StrEnum
+from enum import Enum
 
 
-class Methods(StrEnum):
+class Methods(str, Enum):
     """
     The enumeration of create transaction methods.
 
@@ -27,7 +27,7 @@ class Methods(StrEnum):
         return str(self.value)
 
 
-class Networks(StrEnum):
+class Networks(str, Enum):
     """
     Payme networks
     """
