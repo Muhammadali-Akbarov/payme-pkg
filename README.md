@@ -39,17 +39,21 @@ INSTALLED_APPS = [
 
 Add `'payme'` credentials inside to settings.py
 
-One time payment configuration settings.py
+One time payment (Однаразовый платеж) configuration settings.py
+
+Example project: https://github.com/PayTechUz/shop-backend
 ```python
 PAYME_ID = "your-payme-id"
 PAYME_KEY = "your-payme-key"
-PAYME_ACCOUNT_FIELD = "id"
+PAYME_ACCOUNT_FIELD = "order_id"
 PAYME_AMOUNT_FIELD = "total_amount"
 PAYME_ACCOUNT_MODEL = "orders.models.Orders"
 PAYME_ONE_TIME_PAYMENT = True
 ```
 
-Multi payment configuration settings.py
+Multi payment (Накопительный) configuration settings.py
+
+Example project: Coming soon
 ```python
 PAYME_ID = "your-payme-id"
 PAYME_KEY = "your-payme-key"
