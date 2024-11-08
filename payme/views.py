@@ -113,9 +113,14 @@ class PaymeWebHookAPIView(views.APIView):
         Fetch account based on settings and params.
         """
         account_field = settings.PAYME_ACCOUNT_FIELD
+
         account_value = params['account'].get(account_field)
         if not account_value:
             raise exceptions.InvalidAccount("Missing account field in parameters.")
+
+        # hard change
+        if account_field == "order_id":
+            account_field = "id"
 
         account = AccountModel.objects.get(**{account_field: account_value})
 
