@@ -1,5 +1,7 @@
 import base64
 
+from django.conf import settings
+
 from payme.util import input_type_checker
 
 
@@ -17,8 +19,6 @@ class Initializer:
     def __init__(self, payme_id: str = None):
         self.payme_id = payme_id
 
-    # pylint: disable=W0622
-    @input_type_checker
     def generate_pay_link(
         self,
         id: int,
@@ -54,7 +54,7 @@ class Initializer:
         """
         amount = amount * 100  # Convert amount to the smallest currency unit
         params = (
-            f'm={self.payme_id};ac.id={id};a={amount};c={return_url}'
+            f'm={self.payme_id};ac.{settings.PAYME_ACCOUNT_FIELD}={id};a={amount};c={return_url}'
         )
         params = base64.b64encode(params.encode("utf-8")).decode("utf-8")
         return f"https://checkout.paycom.uz/{params}"
