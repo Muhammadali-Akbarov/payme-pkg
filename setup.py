@@ -1,9 +1,13 @@
+import pathlib
 from setuptools import setup, find_packages
 
+here = pathlib.Path(__file__).parent.resolve()
+
+long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name='payme-pkg',
-    version='3.0.6',
+    version='3.0.8',
     license='MIT',
     author="Muhammadali Akbarov",
     author_email='muhammadali17abc@gmail.com',
@@ -15,4 +19,6 @@ setup(
         "dataclasses==0.*;python_version<'3.7'",  # will only install on py3.6
         'djangorestframework==3.*'
       ],
+    long_description=long_description,
+    long_description_content_type="text/markdown",
 )

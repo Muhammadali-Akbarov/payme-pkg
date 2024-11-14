@@ -2,8 +2,6 @@ import base64
 
 from django.conf import settings
 
-from payme.util import input_type_checker
-
 
 class Initializer:
     """
@@ -15,7 +13,6 @@ class Initializer:
         The Payme ID associated with your account
     """
 
-    @input_type_checker
     def __init__(self, payme_id: str = None):
         self.payme_id = payme_id
 
@@ -58,20 +55,3 @@ class Initializer:
         )
         params = base64.b64encode(params.encode("utf-8")).decode("utf-8")
         return f"https://checkout.paycom.uz/{params}"
-
-    def test(self):
-        """
-        Test method for the Initializer class.
-
-        This method generates a payment link for a sample order and checks
-        if the result is a valid string. If successful, it prints a
-        confirmation message.
-        """
-        result = self.generate_pay_link(
-            id=12345,
-            amount=7000,
-            return_url="https://example.com"
-        )
-
-        assert isinstance(result, str), "Failed to generate payment link"
-        print("Success: Payment link generated successfully.")

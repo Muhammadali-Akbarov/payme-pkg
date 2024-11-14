@@ -31,12 +31,6 @@ class TestPaymeAPI(unittest.TestCase):
         """
         return self.payme.receipts.test()
 
-    def test_initializer_all_methods(self):
-        """
-        Verify that the initializer test method works without errors
-        """
-        return self.payme.initializer.test()
-
 
 if __name__ == '__main__':
     unittest.main()

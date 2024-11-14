@@ -1,6 +1,5 @@
 from typing import Optional
 
-from payme.util import input_type_checker
 from payme.classes.http import HttpClient
 from payme.types.response import cards as response
 
@@ -20,8 +19,6 @@ class Cards:
     services. It allows you to create new cards and retrieve verification
     codes for existing cards.
     """
-
-    @input_type_checker
     def __init__(self, url: str, payme_id: str) -> "Cards":
         """
         Initialize the Cards client.
@@ -35,7 +32,6 @@ class Cards:
         }
         self.http = HttpClient(url, headers)
 
-    @input_type_checker
     def create(self, number: str, expire: str, save: bool = False,
                timeout: int = 10) -> response.CardsCreateResponse:
         """
@@ -53,7 +49,6 @@ class Cards:
         params = {"card": {"number": number, "expire": expire}, "save": save}
         return self._post_request(method, params, timeout)
 
-    @input_type_checker
     def get_verify_code(self, token: str, timeout: int = 10) -> \
             response.GetVerifyResponse:
         """
@@ -68,7 +63,6 @@ class Cards:
         params = {"token": token}
         return self._post_request(method, params, timeout)
 
-    @input_type_checker
     def verify(self, token: str, code: str, timeout: int = 10) -> \
             response.VerifyResponse:
         """
@@ -84,7 +78,6 @@ class Cards:
         params = {"token": token, "code": code}
         return self._post_request(method, params, timeout)
 
-    @input_type_checker
     def remove(self, token: str, timeout: int = 10) -> response.RemoveResponse:
         """
         Remove a card from the Paycom system.
@@ -98,7 +91,6 @@ class Cards:
         params = {"token": token}
         return self._post_request(method, params, timeout)
 
-    @input_type_checker
     def check(self, token: str, timeout: int = 10) -> response.CheckResponse:
         """
         Check the status of a card.
@@ -112,7 +104,6 @@ class Cards:
         params = {"token": token}
         return self._post_request(method, params, timeout)
 
-    @input_type_checker
     def _post_request(self, method: str, params: dict,
                       timeout: int = 10) -> response.Common:
         """
