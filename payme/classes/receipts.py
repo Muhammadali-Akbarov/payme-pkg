@@ -1,7 +1,6 @@
 from typing import Union, Optional
 
 from payme.classes.cards import Cards
-from payme.util import input_type_checker
 from payme.classes.http import HttpClient
 from payme.types.response import receipts as response
 
@@ -37,7 +36,6 @@ class Receipts:
         }
         self.http = HttpClient(url, headers)
 
-    @input_type_checker
     def create(
         self,
         account: dict,
@@ -64,7 +62,6 @@ class Receipts:
         }
         return self._post_request(method, params, timeout)
 
-    @input_type_checker
     def pay(
         self, receipts_id: str, token: str, timeout: int = 10
     ) -> response.PayResponse:
@@ -83,7 +80,6 @@ class Receipts:
         }
         return self._post_request(method, params, timeout)
 
-    @input_type_checker
     def send(
         self, receipts_id: str, phone: str, timeout: int = 10
     ) -> response.SendResponse:
@@ -101,7 +97,6 @@ class Receipts:
         }
         return self._post_request(method, params, timeout)
 
-    @input_type_checker
     def cancel(
         self, receipts_id: str, timeout: int = 10
     ) -> response.CancelResponse:
@@ -117,7 +112,6 @@ class Receipts:
         }
         return self._post_request(method, params, timeout)
 
-    @input_type_checker
     def check(
         self, receipts_id: str, timeout: int = 10
     ) -> response.CheckResponse:
@@ -133,7 +127,6 @@ class Receipts:
         }
         return self._post_request(method, params, timeout)
 
-    @input_type_checker
     def get(
         self, receipts_id: str, timeout: int = 10
     ) -> response.GetResponse:
@@ -149,7 +142,6 @@ class Receipts:
         }
         return self._post_request(method, params, timeout)
 
-    @input_type_checker
     def get_all(
         self, count: int, from_: int, to: int, offset: int, timeout: int = 10
     ) -> response.GetAllResponse:
@@ -171,7 +163,6 @@ class Receipts:
         }
         return self._post_request(method, params, timeout)
 
-    @input_type_checker
     def _post_request(
         self, method: str, params: dict, timeout: int = 10
     ) -> response.Common:
