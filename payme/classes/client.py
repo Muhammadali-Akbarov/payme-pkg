@@ -19,7 +19,7 @@ class Payme:
     ):
 
         # initialize payme network
-        url = Networks.PROD_NET
+        url = Networks.PROD_NET.value
 
         if is_test_mode is True:
             url = Networks.TEST_NET.value
