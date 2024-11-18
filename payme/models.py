@@ -85,7 +85,6 @@ class PaymeTransactions(models.Model):
         """
         return self.state in [
             self.CANCELED,
-            self.CANCELED,
             self.CANCELED_DURING_INIT
         ]
 
