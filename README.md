@@ -15,10 +15,12 @@
 <a href="https://docs.pay-tech.uz">
 <p align="center">Visit to full documentation for Merchant and Subcribe Api</p>
 </a>
+
+<a href="https://youtu.be/xxiIggu_RNk?si=Idpg8omFvFDCYtcm" target="_blank">
 <p align="center">
  <img style="width: 60%;" src="https://i.postimg.cc/WbD32bHC/payme-pkg-demo-m4a.gif">
 </p>
-
+</a>
 ## Installation
 
 ```shell
