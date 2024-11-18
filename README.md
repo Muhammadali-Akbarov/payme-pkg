@@ -1,6 +1,5 @@
 <h1 align="center">Payme PKG</h1>
 
-
 <p align="center">
   <a href="https://docs.pay-tech.uz"><img src="https://img.shields.io/static/v1?message=Documented%20on%20GitBook&logo=gitbook&logoColor=ffffff&label=%20&labelColor=5c5c5c&color=3F89A1"></a>
   <a href="https://github.com/PayTechUz/payme-pkg"><img src="https://img.shields.io/badge/Open_Source-❤️-FDA599?"/></a>
@@ -8,19 +7,24 @@
   <a href="https://github.com/PayTechUz/payme-pkg/issues"><img src="https://img.shields.io/github/issues/gitbookIO/gitbook"/></a>
 </p>
 
-<p align="center">Welcome to payme-pkg, the open source payme sdk for python.</p>
+<p align="center">Welcome to payme-pkg, the open source payme SDK for Python.</p>
 
-<p align="center">You can use for test and production mode. Join our community and ask everything you need.
-</p>
+<p align="center">You can use it for test and production mode. Join our community and ask everything you need.</p>
+
 <a href="https://docs.pay-tech.uz">
-<p align="center">Visit to full documentation for Merchant and Subcribe Api</p>
+  <p align="center">Visit the full documentation for Merchant and Subscribe API</p>
 </a>
 
 <a href="https://youtu.be/xxiIggu_RNk?si=Idpg8omFvFDCYtcm" target="_blank">
-<p align="center">
- <img style="width: 60%;" src="https://i.postimg.cc/WbD32bHC/payme-pkg-demo-m4a.gif">
-</p>
+  <p align="center">
+    <img style="width: 60%;" src="https://i.postimg.cc/WbD32bHC/payme-pkg-demo-m4a.gif" alt="Payme PKG Demo">
+  </p>
 </a>
+
+<p align="center">
+  <a href="https://youtu.be/xxiIggu_RNk?si=Idpg8omFvFDCYtcm" target="_blank">Watch the YouTube Demo</a>
+</p>
+
 ## Installation
 
 ```shell
