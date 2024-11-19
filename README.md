@@ -22,7 +22,7 @@
 </a>
 
 <p align="center">
-  <a href="https://youtu.be/xxiIggu_RNk?si=Idpg8omFvFDCYtcm" target="_blank">Watch the YouTube Demo</a>
+  <a href="https://youtu.be/7q7-c72tHpc?si=Sr0EAmEawWAFRk1m" target="_blank">Watch the YouTube Demo</a>
 </p>
 
 ## Installation
