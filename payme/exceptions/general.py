@@ -74,6 +74,14 @@ class InvalidParamsError(CardError):
         super().__init__(-32602, self.message, data)
 
 
+class InvalidTokenFormat(CardError):
+    """Invalid token format during card operation."""
+    message = "Invalid token format."
+
+    def __init__(self, data=None):
+        super().__init__(-32500, self.message, data)
+
+
 class AccessDeniedError(CardError):
     """Access denied for the card operation."""
     message = "Access denied."
@@ -246,5 +254,6 @@ errors_map = {
     -31101: OtpExpiredError,
     -31102: OtpAttemptsExceededError,
     -31103: OtpInvalidCodeError,
-    -31602: ReceiptsNotFoundError
+    -31602: ReceiptsNotFoundError,
+    -32500: InvalidTokenFormat
 }
