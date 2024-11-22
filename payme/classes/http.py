@@ -103,4 +103,5 @@ class HttpClient:
         error_data = error.get("data", "")
 
         exception_class = exc.errors_map.get(error_code, exc.BaseError)
-        raise exception_class(message=error_message, data=error_data)
+        exception_class.message = error_message
+        raise exception_class(data=error_data)
