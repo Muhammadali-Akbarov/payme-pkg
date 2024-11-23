@@ -237,6 +237,12 @@ class ReceiptsNotFoundError(BaseException):
         super().__init__(message, data)
 
 
+class UnknownPartnerError(BaseException):
+    """The given partner ID is unknown."""
+    def __init__(self, message="Unknown partner or ID and Key not active", data=None):
+        super().__init__(message, data)
+
+
 errors_map = {
     -32300: TransportError,
     -32700: ParseError,
@@ -255,5 +261,6 @@ errors_map = {
     -31102: OtpAttemptsExceededError,
     -31103: OtpInvalidCodeError,
     -31602: ReceiptsNotFoundError,
-    -32500: InvalidTokenFormat
+    -32500: InvalidTokenFormat,
+    -31601: UnknownPartnerError,
 }
