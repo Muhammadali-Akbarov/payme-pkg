@@ -123,7 +123,6 @@ class Receipt(Common):
     type: int
     external: bool
     operation: int
-    category: any = None
     error: any = None
     description: str = None
     detail: Detail = None
