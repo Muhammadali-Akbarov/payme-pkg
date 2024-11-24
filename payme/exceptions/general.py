@@ -146,6 +146,14 @@ class InsufficientFundsError(CardError):
         super().__init__(-31303, self.message, data)
 
 
+class InsufficientFundsErrorV2(CardError):
+    """Insufficient funds on the card."""
+    message = "Insufficient funds on the card."
+
+    def __init__(self, data=None):
+        super().__init__(-31630, self.message, data)
+
+
 class InvalidCardNumberError(CardError):
     """Invalid card number provided."""
     message = "Invalid card number."
@@ -254,6 +262,7 @@ errors_map = {
     -31301: SmsNotConnectedError,
     -31302: BalanceError,
     -31303: InsufficientFundsError,
+    -31630: InsufficientFundsErrorV2,
     -31300: InvalidCardNumberError,
     -31002: ProcessingServerError,
     -31110: OtpSendError,
