@@ -1,6 +1,5 @@
 <h1 align="center">Payme PKG</h1>
 
-
 <p align="center">
   <a href="https://docs.pay-tech.uz"><img src="https://img.shields.io/static/v1?message=Documented%20on%20GitBook&logo=gitbook&logoColor=ffffff&label=%20&labelColor=5c5c5c&color=3F89A1"></a>
   <a href="https://github.com/PayTechUz/payme-pkg"><img src="https://img.shields.io/badge/Open_Source-❤️-FDA599?"/></a>
@@ -8,15 +7,22 @@
   <a href="https://github.com/PayTechUz/payme-pkg/issues"><img src="https://img.shields.io/github/issues/gitbookIO/gitbook"/></a>
 </p>
 
-<p align="center">Welcome to payme-pkg, the open source payme sdk for python.</p>
+<p align="center">Welcome to payme-pkg, the open source payme SDK for Python.</p>
 
-<p align="center">You can use for test and production mode. Join our community and ask everything you need.
-</p>
+<p align="center">You can use it for test and production mode. Join our community and ask everything you need.</p>
+
 <a href="https://docs.pay-tech.uz">
-<p align="center">Visit to full documentation for Merchant and Subcribe Api</p>
+  <p align="center">Visit the full documentation for Merchant and Subscribe API</p>
 </a>
+
+<a href="https://youtu.be/xxiIggu_RNk?si=Idpg8omFvFDCYtcm" target="_blank">
+  <p align="center">
+    <img style="width: 60%;" src="https://i.postimg.cc/WbD32bHC/payme-pkg-demo-m4a.gif" alt="Payme PKG Demo">
+  </p>
+</a>
+
 <p align="center">
- <img style="width: 60%;" src="https://i.postimg.cc/WbD32bHC/payme-pkg-demo-m4a.gif">
+  <a href="https://youtu.be/7q7-c72tHpc?si=Sr0EAmEawWAFRk1m" target="_blank">Watch the YouTube Demo</a>
 </p>
 
 ## Installation
@@ -126,4 +132,32 @@ print(pay_link)
 
 ```
 https://checkout.paycom.uz/bT15b3VyLXBheW1lLWlkO2FjLmlkPTEyMzQ1NjthPTUwMDAwMDtjPWh0dHBzOi8vZXhhbXBsZS5jb20=
+```
+
+
+## Generate Fallback Link
+
+
+Example to generate fallback link:
+
+- Input
+
+```python
+from payme import Payme
+
+payme = Payme(payme_id="your-payme-id")
+
+form_fields = {
+    "driver_id": 12345,
+    "amount": 1000
+}
+
+fallback_link = payme.initializer.generate_fallback_link(form_fields) # form field is optional
+print(fallback_link)
+```
+
+- Output
+
+```
+https://payme.uz/fallback/merchant/?id=examplelinkgenerated&driver_id=12345&amount=1000
 ```

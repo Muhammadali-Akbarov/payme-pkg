@@ -2,8 +2,6 @@ import base64
 
 from django.conf import settings
 
-from payme.util import input_type_checker
-
 
 class Initializer:
     """
@@ -15,7 +13,6 @@ class Initializer:
         The Payme ID associated with your account
     """
 
-    @input_type_checker
     def __init__(self, payme_id: str = None):
         self.payme_id = payme_id
 
@@ -59,19 +56,25 @@ class Initializer:
         params = base64.b64encode(params.encode("utf-8")).decode("utf-8")
         return f"https://checkout.paycom.uz/{params}"
 
-    def test(self):
+    def generate_fallback_link(self, form_fields: dict = None):
         """
-        Test method for the Initializer class.
+        Generate a fallback URL for the Payme checkout.
 
-        This method generates a payment link for a sample order and checks
-        if the result is a valid string. If successful, it prints a
-        confirmation message.
+        Parameters
+        ----------
+        fields : dict, optional
+            Additional query parameters to be appended to the fallback URL.
+
+        Returns
+        -------
+        str
+            A fallback URL formatted as a URL, ready to be used in the payment
+            process.
         """
-        result = self.generate_pay_link(
-            id=12345,
-            amount=7000,
-            return_url="https://example.com"
-        )
+        result = f"https://payme.uz/fallback/merchant/?id={self.payme_id}"
 
-        assert isinstance(result, str), "Failed to generate payment link"
-        print("Success: Payment link generated successfully.")
+        if form_fields is not None:
+            for key, value in form_fields.items():
+                result += f"&{key}={value}"
+
+        return result

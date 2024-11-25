@@ -74,6 +74,14 @@ class InvalidParamsError(CardError):
         super().__init__(-32602, self.message, data)
 
 
+class InvalidTokenFormat(CardError):
+    """Invalid token format during card operation."""
+    message = "Invalid token format."
+
+    def __init__(self, data=None):
+        super().__init__(-32500, self.message, data)
+
+
 class AccessDeniedError(CardError):
     """Access denied for the card operation."""
     message = "Access denied."
@@ -136,6 +144,14 @@ class InsufficientFundsError(CardError):
 
     def __init__(self, data=None):
         super().__init__(-31303, self.message, data)
+
+
+class InsufficientFundsErrorV2(CardError):
+    """Insufficient funds on the card."""
+    message = "Insufficient funds on the card."
+
+    def __init__(self, data=None):
+        super().__init__(-31630, self.message, data)
 
 
 class InvalidCardNumberError(CardError):
@@ -229,6 +245,12 @@ class ReceiptsNotFoundError(BaseException):
         super().__init__(message, data)
 
 
+class UnknownPartnerError(BaseException):
+    """The given partner ID is unknown."""
+    def __init__(self, message="Unknown partner or ID and Key not active", data=None):
+        super().__init__(message, data)
+
+
 errors_map = {
     -32300: TransportError,
     -32700: ParseError,
@@ -240,11 +262,14 @@ errors_map = {
     -31301: SmsNotConnectedError,
     -31302: BalanceError,
     -31303: InsufficientFundsError,
+    -31630: InsufficientFundsErrorV2,
     -31300: InvalidCardNumberError,
     -31002: ProcessingServerError,
     -31110: OtpSendError,
     -31101: OtpExpiredError,
     -31102: OtpAttemptsExceededError,
     -31103: OtpInvalidCodeError,
-    -31602: ReceiptsNotFoundError
+    -31602: ReceiptsNotFoundError,
+    -32500: InvalidTokenFormat,
+    -31601: UnknownPartnerError,
 }
