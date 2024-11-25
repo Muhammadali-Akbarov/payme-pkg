@@ -32,8 +32,13 @@
 </a>
 
 <p align="center">
-  <a href="https://youtu.be/7q7-c72tHpc?si=Sr0EAmEawWAFRk1m" target="_blank">Watch the YouTube Demo</a>
+  <a href="https://youtu.be/7q7-c72tHpc?si=Sr0EAmEawWAFRk1m" target="_blank">
+    <img src="https://img.shields.io/badge/Watch%20Demo-red?logo=youtube&logoColor=white&style=for-the-badge" 
+         alt="Watch the YouTube Demo" 
+         style="width: 150px; height: 30px; border-radius: 7px;" />
+  </a>
 </p>
+
 
 ## Installation
 
