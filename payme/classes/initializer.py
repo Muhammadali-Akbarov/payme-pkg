@@ -55,3 +55,15 @@ class Initializer:
         )
         params = base64.b64encode(params.encode("utf-8")).decode("utf-8")
         return f"https://checkout.paycom.uz/{params}"
+
+    def generate_fallback_link(self):
+        """
+        Generate a fallback URL for the Payme checkout.
+
+        Returns
+        -------
+        str
+            A fallback URL formatted as a URL, ready to be used in the payment
+            process.
+        """
+        return f"https://payme.uz/fallback/merchant/?id={self.payme_id}"

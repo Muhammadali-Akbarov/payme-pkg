@@ -133,3 +133,25 @@ print(pay_link)
 ```
 https://checkout.paycom.uz/bT15b3VyLXBheW1lLWlkO2FjLmlkPTEyMzQ1NjthPTUwMDAwMDtjPWh0dHBzOi8vZXhhbXBsZS5jb20=
 ```
+
+
+## Generate Fallback Link
+
+
+Example to generate fallback link:
+
+- Input
+
+```python
+from payme import Payme
+
+payme = Payme(payme_id="your-payme-id")
+fallback_link = payme.initializer.generate_fallback_link()
+print(fallback_link)
+```
+
+- Output
+
+```
+https://payme.uz/fallback/merchant/?id=59f9ca12dsadaa1717
+```
