@@ -146,12 +146,18 @@ Example to generate fallback link:
 from payme import Payme
 
 payme = Payme(payme_id="your-payme-id")
-fallback_link = payme.initializer.generate_fallback_link()
+
+form_fields = {
+    "driver_id": 12345,
+    "amount": 1000
+}
+
+fallback_link = payme.initializer.generate_fallback_link(form_fields) # form field is optional
 print(fallback_link)
 ```
 
 - Output
 
 ```
-https://payme.uz/fallback/merchant/?id=59f9ca12dsadaa1717
+https://payme.uz/fallback/merchant/?id=5feb5dd783c40aed047fe655&driver_id=12345&amount=1000
 ```
