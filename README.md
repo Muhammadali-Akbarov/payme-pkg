@@ -7,9 +7,14 @@
 </p>
 
 <p align="center">
-  <a href="https://docs.pay-tech.uz"><img src="https://img.shields.io/static/v1?message=Documented%20on%20GitBook&logo=gitbook&logoColor=ffffff&label=%20&labelColor=5c5c5c&color=3F89A1"></a>
+  <a href="https://docs.pay-tech.uz"><img src="https://img.shields.io/static/v1?message=Documentation&logo=gitbook&logoColor=ffffff&label=%20&labelColor=5c5c5c&color=3F89A1"></a>
   <a href="https://github.com/PayTechUz/payme-pkg"><img src="https://img.shields.io/badge/Open_Source-❤️-FDA599?"/></a>
-  <a href="https://github.com/PayTechUz/payme-pkg/issues"><img src="https://img.shields.io/github/issues/gitbookIO/gitbook"/></a>
+  <a href="https://github.com/PayTechUz/payme-pkg/issues">
+    <img src="https://img.shields.io/github/issues/PayTechUz/payme-pkg" />
+  </a>
+  <a href="https://pepy.tech/project/payme-pkg">
+    <img src="https://static.pepy.tech/badge/payme-pkg" alt="PyPI - Downloads" />
+  </a>
 </p>
 
 <p align="center">Welcome to payme-pkg, the open source payme SDK for Python.</p>
