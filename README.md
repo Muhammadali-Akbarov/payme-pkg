@@ -159,5 +159,5 @@ print(fallback_link)
 - Output
 
 ```
-https://payme.uz/fallback/merchant/?id=5feb5dd783c40aed047fe655&driver_id=12345&amount=1000
+https://payme.uz/fallback/merchant/?id=examplelinkgenerated&driver_id=12345&amount=1000
 ```
