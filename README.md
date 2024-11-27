@@ -141,11 +141,11 @@ https://checkout.paycom.uz/bT15b3VyLXBheW1lLWlkO2FjLmlkPTEyMzQ1NjthPTUwMDAwMDtjP
 Example to generate fallback link:
 
 - Input
-
+The ID in the fallback is different from the merchant ID. You can get the ID from the Payme team.
 ```python
 from payme import Payme
 
-payme = Payme(payme_id="your-payme-id")
+payme = Payme(payme_id="your-payme-id", fallback_id="your-fallback-id")
 
 form_fields = {
     "driver_id": 12345,
