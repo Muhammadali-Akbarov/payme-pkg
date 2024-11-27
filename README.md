@@ -1,10 +1,20 @@
 <h1 align="center">Payme PKG</h1>
 
 <p align="center">
-  <a href="https://docs.pay-tech.uz"><img src="https://img.shields.io/static/v1?message=Documented%20on%20GitBook&logo=gitbook&logoColor=ffffff&label=%20&labelColor=5c5c5c&color=3F89A1"></a>
+  <a href="https://t.me/+lO97J78xBj45MzBi">
+    <img src="https://img.shields.io/badge/Support%20Group-blue?logo=telegram&logoColor=white" alt="Support Group on Telegram"/>
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://docs.pay-tech.uz"><img src="https://img.shields.io/static/v1?message=Documentation&logo=gitbook&logoColor=ffffff&label=%20&labelColor=5c5c5c&color=3F89A1"></a>
   <a href="https://github.com/PayTechUz/payme-pkg"><img src="https://img.shields.io/badge/Open_Source-❤️-FDA599?"/></a>
-  <a href="t.me/+DK7n7lKx8GY5ZDZi"><img src="https://img.shields.io/badge/Community-Join%20Us-blueviolet"/></a>
-  <a href="https://github.com/PayTechUz/payme-pkg/issues"><img src="https://img.shields.io/github/issues/gitbookIO/gitbook"/></a>
+  <a href="https://github.com/PayTechUz/payme-pkg/issues">
+    <img src="https://img.shields.io/github/issues/PayTechUz/payme-pkg" />
+  </a>
+  <a href="https://pepy.tech/project/payme-pkg">
+    <img src="https://static.pepy.tech/badge/payme-pkg" alt="PyPI - Downloads" />
+  </a>
 </p>
 
 <p align="center">Welcome to payme-pkg, the open source payme SDK for Python.</p>
@@ -22,8 +32,13 @@
 </a>
 
 <p align="center">
-  <a href="https://youtu.be/7q7-c72tHpc?si=Sr0EAmEawWAFRk1m" target="_blank">Watch the YouTube Demo</a>
+  <a href="https://youtu.be/7q7-c72tHpc?si=Sr0EAmEawWAFRk1m" target="_blank">
+    <img src="https://img.shields.io/badge/Watch%20Demo-red?logo=youtube&logoColor=white&style=for-the-badge" 
+         alt="Watch the YouTube Demo" 
+         style="width: 150px; height: 30px; border-radius: 7px;" />
+  </a>
 </p>
+
 
 ## Installation
 
