@@ -13,8 +13,10 @@ class Initializer:
         The Payme ID associated with your account
     """
 
-    def __init__(self, payme_id: str = None):
+    def __init__(self, payme_id: str = None, fallback_id: str = None):
         self.payme_id = payme_id
+        self.fallback_id = fallback_id
+
 
     def generate_pay_link(
         self,
@@ -71,7 +73,7 @@ class Initializer:
             A fallback URL formatted as a URL, ready to be used in the payment
             process.
         """
-        result = f"https://payme.uz/fallback/merchant/?id={self.payme_id}"
+        result = f"https://payme.uz/fallback/merchant/?id={self.fallback_id}"
 
         if form_fields is not None:
             for key, value in form_fields.items():

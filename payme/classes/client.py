@@ -14,6 +14,7 @@ class Payme:
     def __init__(
         self,
         payme_id: str,
+        fallback_id: Union[str, None] = None,
         payme_key: Union[str, None] = None,
         is_test_mode: bool = False
     ):
@@ -25,5 +26,5 @@ class Payme:
             url = Networks.TEST_NET.value
 
         self.cards = Cards(url=url, payme_id=payme_id)
-        self.initializer = Initializer(payme_id=payme_id)
+        self.initializer = Initializer(payme_id=payme_id, fallback_id=fallback_id)
         self.receipts = Receipts(url=url, payme_id=payme_id, payme_key=payme_key)  # noqa
