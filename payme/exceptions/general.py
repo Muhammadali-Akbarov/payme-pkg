@@ -272,4 +272,5 @@ errors_map = {
     -31602: ReceiptsNotFoundError,
     -32500: InvalidTokenFormat,
     -31601: UnknownPartnerError,
+    -32400: SystemError
 }
