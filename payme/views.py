@@ -58,7 +58,7 @@ class PaymeWebHookAPIView(views.APIView):
         """
         Handle the incoming webhook request.
         """
-        self.__check_authorize(request)
+        self.check_authorize(request)
 
         payme_methods = {
             "GetStatement": self.get_statement,
@@ -83,7 +83,7 @@ class PaymeWebHookAPIView(views.APIView):
         raise exceptions.MethodNotFound("Method not supported yet!")
 
     @staticmethod
-    def __check_authorize(request):
+    def check_authorize(request):
         """
         Verify the integrity of the request using the merchant key.
         """
