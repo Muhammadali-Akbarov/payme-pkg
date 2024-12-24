@@ -1,5 +1,6 @@
 import pathlib
-from setuptools import setup, find_packages
+
+from setuptools import find_packages, setup
 
 here = pathlib.Path(__file__).parent.resolve()
 
@@ -7,7 +8,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name='payme-pkg',
-    version='3.0.19',
+    version='3.0.20',
     license='MIT',
     author="Muhammadali Akbarov",
     author_email='muhammadali17abc@gmail.com',

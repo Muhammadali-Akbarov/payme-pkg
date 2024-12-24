@@ -1,17 +1,16 @@
 import base64
-import logging
 import binascii
+import logging
 from decimal import Decimal
 
 from django.conf import settings
 from django.utils.module_loading import import_string
-
 from rest_framework import views
 from rest_framework.response import Response
 
 from payme import exceptions
-from payme.types import response
 from payme.models import PaymeTransactions
+from payme.types import response
 from payme.util import time_to_payme, time_to_service
 
 logger = logging.getLogger(__name__)
@@ -169,13 +168,13 @@ class PaymeWebHookAPIView(views.APIView):
         defaults = {
             "amount": amount,
             "state": PaymeTransactions.INITIATING,
-            "account": account,
+            "account_id": account.id,
         }
 
         # Handle already existing transaction with the same ID for one-time payments
         if settings.PAYME_ONE_TIME_PAYMENT:
             # Check for an existing transaction with a different transaction_id for the given account
-            if PaymeTransactions.objects.filter(account=account).exclude(transaction_id=transaction_id).exists():
+            if PaymeTransactions.objects.filter(account_id=account.id).exclude(transaction_id=transaction_id).exists():
                 message = f"Transaction {transaction_id} already exists (Payme)."
                 logger.warning(message)
                 raise exceptions.TransactionAlreadyExists(message)
@@ -290,7 +289,7 @@ class PaymeWebHookAPIView(views.APIView):
                 "transaction": transaction.transaction_id,
                 "amount": transaction.amount,
                 "account": {
-                    settings.PAYME_ACCOUNT_FIELD: transaction.account.id
+                    settings.PAYME_ACCOUNT_FIELD: transaction.account_id
                 },
                 "reason": transaction.cancel_reason,
                 "state": transaction.state,

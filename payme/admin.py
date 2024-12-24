@@ -1,6 +1,5 @@
 from django.contrib import admin
 
-
 from payme.models import PaymeTransactions
 
 
@@ -10,7 +9,7 @@ class PaymeTransactionsUI(admin.ModelAdmin):
     """
     list_display = ('id', 'state', 'cancel_reason', 'created_at')
     list_filter = ('state', 'cancel_reason', 'created_at')
-    search_fields = ('transaction_id', 'account__id')
+    search_fields = ('transaction_id', 'account_id')
     ordering = ('-created_at',)
 
 

@@ -4,12 +4,7 @@ It logs any significant modifications to payment transactions such as amount, st
 allowing for a detailed historical record of each transaction's state over time.
 """
 from django.db import models
-from django.conf import settings
 from django.utils import timezone
-
-from django.utils.module_loading import import_string
-
-AccountModel = import_string(settings.PAYME_ACCOUNT_MODEL)
 
 
 class PaymeTransactions(models.Model):
@@ -31,11 +26,7 @@ class PaymeTransactions(models.Model):
     ]
 
     transaction_id = models.CharField(max_length=50)
-    account = models.ForeignKey(
-        AccountModel,
-        related_name="payme_transactions",
-        on_delete=models.CASCADE
-    )
+    account_id = models.BigIntegerField(null=False)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     state = models.IntegerField(choices=STATE, default=CREATED)
     cancel_reason = models.IntegerField(null=True, blank=True)
@@ -57,7 +48,7 @@ class PaymeTransactions(models.Model):
         """
         String representation of the PaymentTransaction model.
         """
-        return f"Payme Transaction #{self.transaction_id} Account: {self.account} - {self.state}"
+        return f"Payme Transaction #{self.transaction_id} Account: {self.account_id} - {self.state}"
 
     @classmethod
     def get_by_transaction_id(cls, transaction_id):
