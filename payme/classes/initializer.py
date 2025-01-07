@@ -13,9 +13,10 @@ class Initializer:
         The Payme ID associated with your account
     """
 
-    def __init__(self, payme_id: str = None, fallback_id: str = None):
+    def __init__(self, payme_id: str = None, fallback_id: str = None, is_test_mode: bool = False):
         self.payme_id = payme_id
         self.fallback_id = fallback_id
+        self.is_test_mode = is_test_mode
 
 
     def generate_pay_link(
@@ -56,6 +57,10 @@ class Initializer:
             f'm={self.payme_id};ac.{settings.PAYME_ACCOUNT_FIELD}={id};a={amount};c={return_url}'
         )
         params = base64.b64encode(params.encode("utf-8")).decode("utf-8")
+
+        if self.is_test_mode is True:
+            return f"https://test.paycom.uz/{params}"
+
         return f"https://checkout.paycom.uz/{params}"
 
     def generate_fallback_link(self, form_fields: dict = None):
