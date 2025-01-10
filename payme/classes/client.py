@@ -26,5 +26,5 @@ class Payme:
             url = Networks.TEST_NET.value
 
         self.cards = Cards(url=url, payme_id=payme_id)
-        self.initializer = Initializer(payme_id=payme_id, fallback_id=fallback_id)
+        self.initializer = Initializer(payme_id=payme_id, fallback_id=fallback_id, is_test_mode=is_test_mode)
         self.receipts = Receipts(url=url, payme_id=payme_id, payme_key=payme_key)  # noqa
