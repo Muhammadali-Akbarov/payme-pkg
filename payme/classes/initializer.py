@@ -18,7 +18,6 @@ class Initializer:
         self.fallback_id = fallback_id
         self.is_test_mode = is_test_mode
 
-
     def generate_pay_link(
         self,
         id: int,
