@@ -25,12 +25,6 @@
   <p align="center">Visit the full documentation for Merchant and Subscribe API</p>
 </a>
 
-<a href="https://youtu.be/xxiIggu_RNk?si=Idpg8omFvFDCYtcm" target="_blank">
-  <p align="center">
-    <img style="width: 60%;" src="https://i.postimg.cc/WbD32bHC/payme-pkg-demo-m4a.gif" alt="Payme PKG Demo">
-  </p>
-</a>
-
 <p align="center">
   <a href="https://youtu.be/7q7-c72tHpc?si=Sr0EAmEawWAFRk1m" target="_blank">
     <img src="https://img.shields.io/badge/Watch%20Demo-red?logo=youtube&logoColor=white&style=for-the-badge" 
