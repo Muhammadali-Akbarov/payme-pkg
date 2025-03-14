@@ -134,3 +134,11 @@ class GetStatement(CommonResponse):
     The check perform transactions response
     """
     transactions: List[str]
+
+
+@dataclass
+class SetFiscalData(CommonResponse):
+    """
+    The set fiscal data request
+    """
+    success: bool

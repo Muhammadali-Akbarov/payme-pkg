@@ -116,10 +116,42 @@ class TransactionAlreadyExists(BasePaymeException):
     }
 
 
+class InvalidFiscalParams(BasePaymeException):
+    """
+    InvalidFiscalParams APIException.
+
+    Raised when the provided fiscal parameters are invalid.
+    """
+    status_code = 200
+    error_code = -32602
+    message = {
+        "uz": "Fiskal parameterlarida kamchiliklar bor",
+        "ru": "Неверные фискальные параметры.",
+        "en": "Invalid fiscal parameters."
+    }
+
+
+class InvalidAccount(BasePaymeException):
+    """
+    InvalidAccount APIException.
+
+    Raised when the provided account is invalid.
+    """
+    status_code = 200
+    error_code = -32400
+    message = {
+        "uz": "Hisob nomida kamchilik bor",
+        "ru": "Неверный номер счета.",
+        "en": "Invalid account."
+    }
+
+
 exception_whitelist = (
     IncorrectAmount,
     MethodNotFound,
     PermissionDenied,
     AccountDoesNotExist,
-    TransactionAlreadyExists
+    TransactionAlreadyExists,
+    InvalidFiscalParams,
+    InvalidAccount
 )

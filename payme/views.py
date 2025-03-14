@@ -66,6 +66,7 @@ class PaymeWebHookAPIView(views.APIView):
             "CreateTransaction": self.create_transaction,
             "CheckTransaction": self.check_transaction,
             "CheckPerformTransaction": self.check_perform_transaction,
+            "SetFiscalData": self.set_fiscal_data,
         }
 
         try:
@@ -298,6 +299,33 @@ class PaymeWebHookAPIView(views.APIView):
                 "cancel_time": time_to_payme(transaction.cancelled_at),
             })
 
+        return result.as_resp()
+
+    @handle_exceptions
+    def set_fiscal_data(self, params):
+        """
+        Set fiscal data for the given transaction.
+        """
+        transaction = PaymeTransactions.get_by_transaction_id(transaction_id=params["id"])
+
+        fiscal_data = params.get("fiscal_data")
+        if not fiscal_data:
+            raise exceptions.InvalidFiscalParams(
+                "Missing fiscal_data field in parameters."
+            )
+
+        fiscal_type = params.get("type")
+
+        if fiscal_type not in ("PERFORM", "CANCEL"):
+            raise exceptions.InvalidFiscalParams(
+                f"Invalid fiscal type. Expected 'PERFORM' or 'CANCEL', got: {fiscal_type}"
+            )
+
+        fiscal_data["type"] = fiscal_type
+        transaction.fiscal_data = fiscal_data
+        transaction.save()
+
+        result = response.SetFiscalData(success=True)
         return result.as_resp()
 
     def _cancel_response(self, transaction):
