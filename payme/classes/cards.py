@@ -19,7 +19,7 @@ class Cards:
     services. It allows you to create new cards and retrieve verification
     codes for existing cards.
     """
-    def __init__(self, url: str, payme_id: str) -> "Cards":
+    def __init__(self, url: str, payme_id: str) -> None:
         """
         Initialize the Cards client.
 
