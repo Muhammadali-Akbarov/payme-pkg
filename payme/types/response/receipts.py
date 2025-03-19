@@ -142,7 +142,7 @@ class Receipt(Common):
     creator: t.Optional[str] = None
     payer: t.Optional[Payer] = None
     amount: t.Optional[t.Union[float, int]] = None
-    account: t.Optional[list[Account]] = None
+    account: t.Optional[t.List[Account]] = None
     merchant: t.Optional[Merchant] = None
     processing_id: t.Optional[str] = None
     meta: t.Optional[Meta] = None
@@ -229,4 +229,4 @@ class GetAllResponse(Common):
     The result object for the get all response.
     """
 
-    result: t.Optional[list[Receipt]] = None
+    result: t.Optional[t.List[Receipt]] = None

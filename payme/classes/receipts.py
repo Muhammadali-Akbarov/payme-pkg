@@ -42,7 +42,7 @@ class Receipts:
         account: dict,
         amount: t.Union[float, int],
         description: t.Optional[str] = None,
-        detail: t.Optional[dict] = None,
+        detail: t.Optional[t.Dict] = None,
         timeout: int = 10,
     ) -> response.CreateResponse:
         """
