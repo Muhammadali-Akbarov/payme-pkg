@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import admin
 
 from payme.models import PaymeTransactions
@@ -13,4 +14,5 @@ class PaymeTransactionsUI(admin.ModelAdmin):
     ordering = ('-created_at',)
 
 
-admin.site.register(PaymeTransactions, PaymeTransactionsUI)
+if not getattr(settings, 'PAYME_DISABLE_ADMIN', False):
+    admin.site.register(PaymeTransactions, PaymeTransactionsUI)

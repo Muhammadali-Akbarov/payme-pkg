@@ -75,6 +75,8 @@ PAYME_KEY = "your-payme-key"
 PAYME_ACCOUNT_FIELD = "id"
 PAYME_ACCOUNT_MODEL = "clients.models.Client"
 PAYME_ONE_TIME_PAYMENT = False
+
+PAYME_DISABLE_ADMIN = False (optionally configuration if you want to disable change to True)
 ```
 
 Create a new View that about handling call backs
