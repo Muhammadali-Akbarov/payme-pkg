@@ -13,17 +13,14 @@ class Initializer:
         The Payme ID associated with your account
     """
 
-    def __init__(self, payme_id: str = None, fallback_id: str = None, is_test_mode: bool = False):
+    def __init__(
+        self, payme_id: str = None, fallback_id: str = None, is_test_mode: bool = False
+    ) -> None:
         self.payme_id = payme_id
         self.fallback_id = fallback_id
         self.is_test_mode = is_test_mode
 
-    def generate_pay_link(
-        self,
-        id: int,
-        amount: int,
-        return_url: str
-    ) -> str:
+    def generate_pay_link(self, id: int, amount: int, return_url: str) -> str:
         """
         Generate a payment link for a specific order.
 
@@ -52,9 +49,7 @@ class Initializer:
         https://developer.help.paycom.uz/initsializatsiya-platezhey/
         """
         amount = amount * 100  # Convert amount to the smallest currency unit
-        params = (
-            f'm={self.payme_id};ac.{settings.PAYME_ACCOUNT_FIELD}={id};a={amount};c={return_url}'
-        )
+        params = f"m={self.payme_id};ac.{settings.PAYME_ACCOUNT_FIELD}={id};a={amount};c={return_url}"
         params = base64.b64encode(params.encode("utf-8")).decode("utf-8")
 
         if self.is_test_mode is True:

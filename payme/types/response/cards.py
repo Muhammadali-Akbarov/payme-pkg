@@ -1,14 +1,15 @@
-from typing import Dict, Optional
+import typing as t
 from dataclasses import dataclass
 
 
+@dataclass
 class Common:
     """
     The common response structure.
     """
 
     @classmethod
-    def from_dict(cls, data: Dict):
+    def from_dict(cls, data: t.Dict):
         """
         Prepare fields for nested dataclasses
         """
@@ -30,13 +31,14 @@ class Card(Common):
     """
     The card object represents a credit card.
     """
+
     number: str
     expire: str
     token: str
     recurrent: bool
     verify: bool
     type: str
-    number_hash: Optional[str] = None
+    number_hash: t.Optional[str] = None
 
 
 @dataclass
@@ -44,6 +46,7 @@ class Result(Common):
     """
     The result object contains the created card.
     """
+
     card: Card
 
 
@@ -52,6 +55,7 @@ class CardsCreateResponse(Common):
     """
     The cards.create response.
     """
+
     jsonrpc: str
     result: Result
 
@@ -61,6 +65,7 @@ class VerifyResult(Common):
     """
     The result object for the verification response.
     """
+
     sent: bool
     phone: str
     wait: int
@@ -71,6 +76,7 @@ class GetVerifyResponse(Common):
     """
     The verification response structure.
     """
+
     jsonrpc: str
     result: VerifyResult
 
@@ -80,6 +86,7 @@ class VerifyResponse(Common):
     """
     The verification response structure.
     """
+
     jsonrpc: str
     result: Result
 
@@ -89,6 +96,7 @@ class RemoveCardResult(Common):
     """
     The result object for the removal response.
     """
+
     success: bool
 
 
@@ -97,6 +105,7 @@ class RemoveResponse(Common):
     """
     The remove response structure.
     """
+
     jsonrpc: str
     result: RemoveCardResult
 
@@ -106,5 +115,6 @@ class CheckResponse(Common):
     """
     The check response structure.
     """
+
     jsonrpc: str
     result: Result
