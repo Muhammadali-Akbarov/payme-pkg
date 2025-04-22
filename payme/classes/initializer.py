@@ -2,6 +2,8 @@ import base64
 
 from django.conf import settings
 
+from payme.exceptions import TransactionAmountLimitExceeded
+
 
 class Initializer:
     """
@@ -17,12 +19,13 @@ class Initializer:
         self.payme_id = payme_id
         self.fallback_id = fallback_id
         self.is_test_mode = is_test_mode
+        self.max_digits = getattr(settings, "PAYME_TRANSACTION_AMOUNT_MAX_DIGITS", 10)
 
     def generate_pay_link(
-        self,
-        id: int,
-        amount: int,
-        return_url: str
+            self,
+            id: int,
+            amount: int,
+            return_url: str
     ) -> str:
         """
         Generate a payment link for a specific order.
@@ -52,6 +55,8 @@ class Initializer:
         https://developer.help.paycom.uz/initsializatsiya-platezhey/
         """
         amount = amount * 100  # Convert amount to the smallest currency unit
+        if len(str(amount)) > self.max_digits:
+            raise TransactionAmountLimitExceeded()
         params = (
             f'm={self.payme_id};ac.{settings.PAYME_ACCOUNT_FIELD}={id};a={amount};c={return_url}'
         )

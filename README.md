@@ -173,3 +173,26 @@ print(fallback_link)
 ```
 https://payme.uz/fallback/merchant/?id=examplelinkgenerated&driver_id=12345&amount=1000
 ```
+
+
+## Change allowed transaction amount for higher/lower payment amounts
+
+```python
+PAYME_TRANSACTION_AMOUNT_MAX_DIGITS = 10
+```
+then apply changes to your database
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
+this means you can create transaction up to `99 999 999.99 UZS (99 million 999 thousand 999 soum 99 tiyyin)` 
+tiyyins are always 2 digits after the decimal point, so when you change this value, you need to make sure that the amount is always should be +2 to the digits that you want to set.
+
+### example
+```python
+PAYME_TRANSACTION_AMOUNT_MAX_DIGITS = 8 # up to 999 999.99 UZS (999 thousand 999 soum 99 tiyyin)
+
+PAYME_TRANSACTION_AMOUNT_MAX_DIGITS = 9 # up to 9 999 999.99 UZS (9 million 999 thousand 999 soum 99 tiyyin)
+```
+once you set this value u cannot create transaction with higher amount than this value, so be careful when you set this value.
