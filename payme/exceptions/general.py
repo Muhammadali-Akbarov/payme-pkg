@@ -241,15 +241,53 @@ class PaymeNetworkError(BaseError):
 
 class ReceiptsNotFoundError(BaseException):
     """No receipts found for the given transaction ID."""
+
     def __init__(self, message="No receipts found for the given transaction ID.", data=None):
         super().__init__(message, data)
 
 
 class UnknownPartnerError(BaseException):
     """The given partner ID is unknown."""
+
     def __init__(self, message="Unknown partner or ID and Key not active", data=None):
         super().__init__(message, data)
 
+class TransactionAmountLimitExceeded(BaseException):
+    """
+    Raised when the transaction amount exceeds the allowed max digits
+    configured via PAYME_TRANSACTION_AMOUNT_MAX_DIGITS.
+    """
+
+    def __init__(self):
+        from django.conf import settings
+        max_digits = getattr(settings, "PAYME_TRANSACTION_AMOUNT_MAX_DIGITS", 10)
+        limit_value = float("9" * max_digits)
+        human_limit = self._human_readable_uzs(limit_value)
+        self.message = (
+            f"You cannot create a transaction more than {limit_value:,.2f} SUM "
+            f"({human_limit}). "
+            f"This limit is controlled by PAYME_TRANSACTION_AMOUNT_MAX_DIGITS={max_digits} in your settings. "
+            f"Increase this value if you need to accept higher payments."
+        )
+        super().__init__(self.message)
+
+    @staticmethod
+    def _human_readable_uzs(amount):
+        soum = int(amount)
+        parts = []
+
+        if soum >= 1_000_000:
+            parts.append(f"{soum // 1_000_000} million")
+            soum %= 1_000_000
+        if soum >= 1_000:
+            parts.append(f"{soum // 1_000} ming")
+            soum %= 1_000
+        if soum > 0:
+            parts.append(f"{soum}")
+        if not parts:
+            parts.append("0")
+
+        return " ".join(parts) + " soʻm"
 
 errors_map = {
     -32300: TransportError,

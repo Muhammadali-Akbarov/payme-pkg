@@ -3,14 +3,19 @@ This module contains models and functionality for tracking changes in payment tr
 It logs any significant modifications to payment transactions such as amount, state, or payment method,
 allowing for a detailed historical record of each transaction's state over time.
 """
-from django.db import models
-from django.utils import timezone
+
+from django.db.models import Model, CharField, BigIntegerField, DecimalField, IntegerField, JSONField, DateTimeField
+from django.utils.timezone import now as current_timestamp
+from django.conf import settings
+
+MAX_DIGITS = getattr(settings, "PAYME_TRANSACTION_AMOUNT_MAX_DIGITS", 10) + 2
 
 
-class PaymeTransactions(models.Model):
+class PaymeTransactions(Model):
     """
     Model to store payment transactions.
     """
+
     CREATED = 0
     INITIATING = 1
     SUCCESSFULLY = 2
@@ -25,21 +30,25 @@ class PaymeTransactions(models.Model):
         (CANCELED_DURING_INIT, "Canceled during initiation"),
     ]
 
-    transaction_id = models.CharField(max_length=50)
-    account_id = models.BigIntegerField(null=False)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    state = models.IntegerField(choices=STATE, default=CREATED)
-    fiscal_data = models.JSONField(default=dict)
-    cancel_reason = models.IntegerField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
-    updated_at = models.DateTimeField(auto_now=True, db_index=True)
-    performed_at = models.DateTimeField(null=True, blank=True, db_index=True)
-    cancelled_at = models.DateTimeField(null=True, blank=True, db_index=True)
+    transaction_id = CharField(max_length=50)
+    account_id = BigIntegerField(null=False)
+    amount = DecimalField(
+        max_digits=MAX_DIGITS,
+        decimal_places=2
+    )
+    state = IntegerField(choices=STATE, default=CREATED)
+    fiscal_data = JSONField(default=dict)
+    cancel_reason = IntegerField(null=True, blank=True)
+    created_at = DateTimeField(auto_now_add=True, db_index=True)
+    updated_at = DateTimeField(auto_now=True, db_index=True)
+    performed_at = DateTimeField(null=True, blank=True, db_index=True)
+    cancelled_at = DateTimeField(null=True, blank=True, db_index=True)
 
     class Meta:
         """
         Model Meta options.
         """
+
         verbose_name = "Payme Transaction"
         verbose_name_plural = "Payme Transactions"
         ordering = ["-created_at"]
@@ -75,10 +84,7 @@ class PaymeTransactions(models.Model):
 
         :return: True if the transaction is cancelled, False otherwise.
         """
-        return self.state in [
-            self.CANCELED,
-            self.CANCELED_DURING_INIT
-        ]
+        return self.state in [self.CANCELED, self.CANCELED_DURING_INIT]
 
     def is_created(self) -> bool:
         """
@@ -108,7 +114,7 @@ class PaymeTransactions(models.Model):
 
         self.state = state
         self.cancel_reason = cancel_reason
-        self.cancelled_at = timezone.now()
+        self.cancelled_at = current_timestamp()
         self.save()
         return self
 
@@ -122,6 +128,6 @@ class PaymeTransactions(models.Model):
             return False
 
         self.state = self.SUCCESSFULLY
-        self.performed_at = timezone.now()
+        self.performed_at = current_timestamp()
         self.save()
         return True
