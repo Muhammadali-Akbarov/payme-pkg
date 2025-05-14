@@ -213,3 +213,11 @@ class GetAllResponse(Common):
     The result object for the get all response.
     """
     result: list[Receipt] = None
+
+
+@dataclass
+class SetFiscalDataResponse(Common):
+    """
+    The result object for the set_fiscal_data response.
+    """
+    result: SendResult
