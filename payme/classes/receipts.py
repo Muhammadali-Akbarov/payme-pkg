@@ -1,4 +1,5 @@
 from typing import Union, Optional
+from urllib.parse import parse_qs
 
 from payme.classes.cards import Cards
 from payme.classes.http import HttpClient
@@ -13,6 +14,7 @@ ALLOWED_METHODS = {
     "receipts.check": response.CheckResponse,
     "receipts.get": response.GetResponse,
     "receipts.get_all": response.GetAllResponse,
+    "receipts.set_fiscal_data": response.SetFiscalDataResponse,
 }
 
 
@@ -160,6 +162,36 @@ class Receipts:
             "from": from_,
             "to": to,
             "offset": offset
+        }
+        return self._post_request(method, params, timeout)
+
+    def set_fiscal_data(
+        self, receipt_id: str, qr_code_url: str, timeout: int = 10
+    ) -> response.SetFiscalDataResponse:
+        """
+        Get all cheques for a specific account.
+
+        :param receipt_id: The ID of the check used for payment.
+        :param qr_code_url: URL of the fiscal check from the ofd.uz.
+        :param timeout: The request timeout duration in seconds (default 10).
+        """
+        method = "receipts.set_fiscal_data"
+
+        check_params = parse_qs(qr_code_url.split("?")[1])
+        terminal_id = check_params["t"][0]
+        fiscal_sign = check_params["s"][0]
+        fiscal_receipt_id = check_params["r"][0]
+        fiscal_date = check_params["c"][0]
+
+        params = {
+            "id": receipt_id, # required
+            "fiscal_data": {
+                "terminal_id": terminal_id,
+                "receipt_id": fiscal_receipt_id, # required
+                "date": fiscal_date,
+                "fiscal_sign": fiscal_sign,
+                "qr_code_url": qr_code_url, # required
+            }
         }
         return self._post_request(method, params, timeout)
 
