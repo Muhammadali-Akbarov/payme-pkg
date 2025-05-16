@@ -187,7 +187,7 @@ class Receipts:
             "id": receipt_id, # required
             "fiscal_data": {
                 "terminal_id": terminal_id,
-                "receipt_id": fiscal_receipt_id, # required
+                "receipt_id": int(fiscal_receipt_id), # required
                 "date": fiscal_date,
                 "fiscal_sign": fiscal_sign,
                 "qr_code_url": qr_code_url, # required
