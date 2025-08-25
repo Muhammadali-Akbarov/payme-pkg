@@ -4,6 +4,7 @@ import logging
 from decimal import Decimal
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.utils.module_loading import import_string
 from rest_framework import views
 from rest_framework.response import Response
@@ -32,6 +33,9 @@ def handle_exceptions(func):
         except AccountModel.DoesNotExist as exc:
             logger.error(f"Account does not exist: {exc} {args} {kwargs}")
             raise exceptions.AccountDoesNotExist(str(exc)) from exc
+
+        except ValidationError:
+            raise exceptions.AccountDoesNotExist("Invalid account identifier.")
 
         except PaymeTransactions.DoesNotExist as exc:
             logger.error(f"Transaction does not exist: {exc} {args} {kwargs}")
@@ -112,17 +116,11 @@ class PaymeWebHookAPIView(views.APIView):
         """
         Fetch account based on settings and params.
         """
-        account_field = settings.PAYME_ACCOUNT_FIELD
-
-        account_value = params['account'].get(account_field)
+        account_value = params["account"].get(settings.PAYME_ACCOUNT_FIELD)
         if not account_value:
             raise exceptions.InvalidAccount("Missing account field in parameters.")
 
-        # hard change
-        if account_field == "order_id":
-            account_field = "id"
-
-        account = AccountModel.objects.get(**{account_field: account_value})
+        account = AccountModel.objects.get(pk=account_value)
 
         return account
 
@@ -169,13 +167,13 @@ class PaymeWebHookAPIView(views.APIView):
         defaults = {
             "amount": amount,
             "state": PaymeTransactions.INITIATING,
-            "account_id": account.id,
+            "account_id": account.pk,
         }
 
         # Handle already existing transaction with the same ID for one-time payments
         if settings.PAYME_ONE_TIME_PAYMENT:
             # Check for an existing transaction with a different transaction_id for the given account
-            if PaymeTransactions.objects.filter(account_id=account.id).exclude(transaction_id=transaction_id).exists():
+            if PaymeTransactions.objects.filter(account_id=account.pk).exclude(transaction_id=transaction_id).exists():
                 message = f"Transaction {transaction_id} already exists (Payme)."
                 logger.warning(message)
                 raise exceptions.TransactionAlreadyExists(message)
