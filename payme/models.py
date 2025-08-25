@@ -26,7 +26,7 @@ class PaymeTransactions(models.Model):
     ]
 
     transaction_id = models.CharField(max_length=50)
-    account_id = models.BigIntegerField(null=False)
+    account_id = models.CharField(max_length=256, null=False)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     state = models.IntegerField(choices=STATE, default=CREATED)
     fiscal_data = models.JSONField(default=dict)
