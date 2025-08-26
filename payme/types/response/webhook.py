@@ -1,15 +1,16 @@
+import typing as t
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict
 
 
 class CommonResponse:
     """
     The common response structure
     """
+
     def as_resp(self):
-        response = {'result': {}}
+        response = {"result": {}}
         for key, value in self.__dict__.items():
-            response['result'][key] = value
+            response["result"][key] = value
         return response
 
 
@@ -18,6 +19,7 @@ class Shipping(CommonResponse):
     """
     Shipping information response structure
     """
+
     title: str
     price: int
 
@@ -27,6 +29,7 @@ class Item(CommonResponse):
     """
     Item information response structure
     """
+
     discount: int
     title: str
     price: int
@@ -45,7 +48,7 @@ class Item(CommonResponse):
             "code": self.code,
             "units": self.units,
             "vat_percent": self.vat_percent,
-            "package_code": self.package_code
+            "package_code": self.package_code,
         }
 
 
@@ -54,11 +57,12 @@ class CheckPerformTransaction(CommonResponse):
     """
     Receipt information response structure for transaction checks.
     """
+
     allow: bool
-    additional: Optional[Dict[str, str]] = None
-    receipt_type: Optional[int] = None
-    shipping: Optional[Shipping] = None
-    items: List[Item] = field(default_factory=list)
+    additional: t.Optional[t.Dict[str, str]] = None
+    receipt_type: t.Optional[int] = None
+    shipping: t.Optional[Shipping] = None
+    items: t.List[Item] = field(default_factory=list)
 
     def add_item(self, item: Item):
         self.items.append(item)
@@ -90,9 +94,10 @@ class CreateTransaction(CommonResponse):
     """
     The create transaction request
     """
+
     transaction: str
     state: str
-    create_time: str
+    create_time: int
 
 
 @dataclass
@@ -100,9 +105,10 @@ class PerformTransaction(CommonResponse):
     """
     The perform transaction response
     """
+
     transaction: str
     state: str
-    perform_time: str
+    perform_time: int
 
 
 @dataclass
@@ -110,6 +116,7 @@ class CancelTransaction(CommonResponse):
     """
     The cancel transaction request
     """
+
     transaction: str
     state: str
     cancel_time: str
@@ -120,12 +127,13 @@ class CheckTransaction(CommonResponse):
     """
     The check transaction request
     """
+
     transaction: str
     state: str
     reason: str
-    create_time: str
-    perform_time: Optional[str] = None
-    cancel_time: Optional[str] = None
+    create_time: int
+    perform_time: t.Optional[int] = None
+    cancel_time: t.Optional[int] = None
 
 
 @dataclass
@@ -133,7 +141,8 @@ class GetStatement(CommonResponse):
     """
     The check perform transactions response
     """
-    transactions: List[str]
+
+    transactions: t.List[t.Dict[str, str | int | t.Dict[str, str | int]]]
 
 
 @dataclass
@@ -141,4 +150,5 @@ class SetFiscalData(CommonResponse):
     """
     The set fiscal data request
     """
+
     success: bool

@@ -1,4 +1,3 @@
-from typing import Union, Optional
 from urllib.parse import parse_qs
 
 from payme.classes.cards import Cards
@@ -22,7 +21,8 @@ class Receipts:
     """
     The Receipts class provides methods to interact with the Payme Receipts.
     """
-    def __init__(self, payme_id: str, payme_key: str, url: str) -> "Receipts":
+
+    def __init__(self, payme_id: str, payme_key: str, url: str) -> None:
         """
         Initialize the Receipts client.
 
@@ -34,25 +34,25 @@ class Receipts:
 
         headers = {
             "X-Auth": f"{payme_id}:{payme_key}",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
         }
         self.http = HttpClient(url, headers)
 
     def create(
         self,
         account: dict,
-        amount: Union[float, int],
-        description: Optional[str] = None,
-        detail: Optional[dict] = None,
-        timeout: int = 10
+        amount: t.Union[float, int],
+        description: t.Optional[str] = None,
+        detail: t.Optional[t.Dict] = None,
+        timeout: int = 10,
     ) -> response.CreateResponse:
         """
         Create a new receipt.
 
         :param account: The account details for the receipt.
         :param amount: The amount of the receipt.
-        :param description: Optional description for the receipt.
-        :param detail: Optional additional details for the receipt.
+        :param description: t.Optional description for the receipt.
+        :param detail: t.Optional additional details for the receipt.
         :param timeout: The request timeout duration in seconds (default 10).
         """
         method = "receipts.create"
@@ -60,7 +60,7 @@ class Receipts:
             "amount": amount,
             "account": account,
             "description": description,
-            "detail": detail
+            "detail": detail,
         }
         return self._post_request(method, params, timeout)
 
@@ -76,10 +76,7 @@ class Receipts:
             The request timeout duration in seconds (default is 10).
         """
         method = "receipts.pay"
-        params = {
-            "id": receipts_id,
-            "token": token
-        }
+        params = {"id": receipts_id, "token": token}
         return self._post_request(method, params, timeout)
 
     def send(
@@ -93,15 +90,10 @@ class Receipts:
         :param timeout: The request timeout duration in seconds (default 10).
         """
         method = "receipts.send"
-        params = {
-            "id": receipts_id,
-            "phone": phone
-        }
+        params = {"id": receipts_id, "phone": phone}
         return self._post_request(method, params, timeout)
 
-    def cancel(
-        self, receipts_id: str, timeout: int = 10
-    ) -> response.CancelResponse:
+    def cancel(self, receipts_id: str, timeout: int = 10) -> response.CancelResponse:
         """
         Cancel the receipt.
 
@@ -109,14 +101,10 @@ class Receipts:
         :param timeout: The request timeout duration in seconds (default 10).
         """
         method = "receipts.cancel"
-        params = {
-            "id": receipts_id
-        }
+        params = {"id": receipts_id}
         return self._post_request(method, params, timeout)
 
-    def check(
-        self, receipts_id: str, timeout: int = 10
-    ) -> response.CheckResponse:
+    def check(self, receipts_id: str, timeout: int = 10) -> response.CheckResponse:
         """
         Check the status of a cheque.
 
@@ -124,14 +112,10 @@ class Receipts:
         :param timeout: The request timeout duration in seconds (default 10).
         """
         method = "receipts.check"
-        params = {
-            "id": receipts_id
-        }
+        params = {"id": receipts_id}
         return self._post_request(method, params, timeout)
 
-    def get(
-        self, receipts_id: str, timeout: int = 10
-    ) -> response.GetResponse:
+    def get(self, receipts_id: str, timeout: int = 10) -> response.GetResponse:
         """
         Get the details of a specific cheque.
 
@@ -139,30 +123,23 @@ class Receipts:
         :param timeout: The request timeout duration in seconds (default 10).
         """
         method = "receipts.get"
-        params = {
-            "id": receipts_id
-        }
+        params = {"id": receipts_id}
         return self._post_request(method, params, timeout)
 
     def get_all(
         self, count: int, from_: int, to: int, offset: int, timeout: int = 10
     ) -> response.GetAllResponse:
         """
-        Get all cheques for a specific account.
+         Get all cheques for a specific account.
 
-        :param count: The number of cheques to retrieve.
-        :param from_: The start index of the cheques to retrieve.
-        :param to: The end index of the cheques to retrieve.
-        :param offset: The offset for pagination.
-       :param timeout: The request timeout duration in seconds (default 10).
+         :param count: The number of cheques to retrieve.
+         :param from_: The start index of the cheques to retrieve.
+         :param to: The end index of the cheques to retrieve.
+         :param offset: The offset for pagination.
+        :param timeout: The request timeout duration in seconds (default 10).
         """
         method = "receipts.get_all"
-        params = {
-            "count": count,
-            "from": from_,
-            "to": to,
-            "offset": offset
-        }
+        params = {"count": count, "from": from_, "to": to, "offset": offset}
         return self._post_request(method, params, timeout)
 
     def set_fiscal_data(
@@ -184,13 +161,13 @@ class Receipts:
         fiscal_date = check_params["c"][0]
 
         params = {
-            "id": receipt_id, # required
+            "id": receipt_id,  # required
             "fiscal_data": {
                 "terminal_id": terminal_id,
-                "receipt_id": int(fiscal_receipt_id), # required
+                "receipt_id": int(fiscal_receipt_id),  # required
                 "date": fiscal_date,
                 "fiscal_sign": fiscal_sign,
-                "qr_code_url": qr_code_url, # required
+                "qr_code_url": qr_code_url,  # required
             }
         }
         return self._post_request(method, params, timeout)
@@ -217,6 +194,7 @@ class Receipts:
         covering creation, payment, sending, cancellation, status checks,
         retrieval of a single receipt, and retrieval of multiple receipts.
         """
+
         # Helper to assert conditions with messaging
         def assert_condition(condition, message, test_case):
             self._assert_and_print(condition, message, test_case=test_case)
@@ -227,14 +205,14 @@ class Receipts:
                 account={"id": 12345},
                 amount=1000,
                 description="Test receipt",
-                detail={"key": "value"}
+                detail={"key": "value"},
             )
 
         # Test 1: Initialization check
         assert_condition(
             isinstance(self, Receipts),
             "Initialized Receipts class successfully.",
-            test_case="Initialization Test"
+            test_case="Initialization Test",
         )
 
         # Test 2: Create and Pay Receipt
@@ -242,21 +220,19 @@ class Receipts:
         assert_condition(
             isinstance(create_response, response.CreateResponse),
             "Created a new receipt successfully.",
-            test_case="Receipt Creation Test"
+            test_case="Receipt Creation Test",
         )
 
         # pylint: disable=W0212
         assert_condition(
             isinstance(create_response.result.receipt._id, str),
             "Created a valid receipt ID.",
-            test_case="Receipt ID Test"
+            test_case="Receipt ID Test",
         )
 
         # Prepare card and verification
         cards_create_response = self.__cards.create(
-            number="8600495473316478",
-            expire="0399",
-            save=True
+            number="8600495473316478", expire="0399", save=True
         )
         token = cards_create_response.result.card.token
         self.__cards.get_verify_code(token=token)
@@ -268,7 +244,7 @@ class Receipts:
         assert_condition(
             pay_response.result.receipt.state == 4,
             "Paid the receipt successfully.",
-            test_case="Payment Test"
+            test_case="Payment Test",
         )
 
         # Test 3: Create and Send Receipt
@@ -278,7 +254,7 @@ class Receipts:
         assert_condition(
             send_response.result.success is True,
             "Sent the receipt successfully.",
-            test_case="Send Test"
+            test_case="Send Test",
         )
 
         # Test 4: Create and Cancel Receipt
@@ -288,7 +264,7 @@ class Receipts:
         assert_condition(
             cancel_response.result.receipt.state == 50,
             "Cancelled the receipt successfully.",
-            test_case="Cancel Test"
+            test_case="Cancel Test",
         )
 
         # Test 5: Check Receipt Status
@@ -296,7 +272,7 @@ class Receipts:
         assert_condition(
             check_response.result.state == 50,
             "Checked the receipt status successfully.",
-            test_case="Check Test"
+            test_case="Check Test",
         )
 
         # Test 6: Get Receipt Details
@@ -304,27 +280,21 @@ class Receipts:
         assert_condition(
             get_response.result.receipt._id == receipt_id,
             "Retrieved the receipt details successfully.",
-            test_case="Get Test"
+            test_case="Get Test",
         )
 
         # Test 7: Retrieve All Receipts
         get_all_response = self.get_all(
-            count=1,
-            from_=1730322122000,
-            to=1730398982000,
-            offset=0
+            count=1, from_=1730322122000, to=1730398982000, offset=0
         )
         assert_condition(
             isinstance(get_all_response.result, list),
             "Retrieved all receipts successfully.",
-            test_case="Get All Test"
+            test_case="Get All Test",
         )
 
     # pylint: disable=W0212
     def _assert_and_print(
-        self,
-        condition: bool,
-        success_message: str,
-        test_case: Optional[str] = None
+        self, condition: bool, success_message: str, test_case: t.Optional[str] = None
     ):
         self.__cards._assert_and_print(condition, success_message, test_case)

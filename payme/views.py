@@ -34,7 +34,8 @@ def handle_exceptions(func):
             logger.error(f"Account does not exist: {exc} {args} {kwargs}")
             raise exceptions.AccountDoesNotExist(str(exc)) from exc
 
-        except ValidationError:
+        except ValidationError as exc:
+            logger.error(f"Invalid account identifier {exc}")
             raise exceptions.AccountDoesNotExist("Invalid account identifier.")
 
         except PaymeTransactions.DoesNotExist as exc:
