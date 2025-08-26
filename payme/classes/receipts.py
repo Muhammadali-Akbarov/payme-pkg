@@ -1,3 +1,5 @@
+import typing as t
+
 from urllib.parse import parse_qs
 
 from payme.classes.cards import Cards
