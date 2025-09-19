@@ -300,6 +300,7 @@ class PaymeWebHookAPIView(views.APIView):
                 "create_time": time_to_payme(transaction.created_at),
                 "perform_time": time_to_payme(transaction.performed_at),
                 "cancel_time": time_to_payme(transaction.cancelled_at),
+                "time": time_to_payme(transaction.created_at),
             })
 
         return result.as_resp()
