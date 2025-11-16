@@ -59,7 +59,7 @@ One time payment (Однаразовый платеж) configuration settings.py
 Example project: https://github.com/PayTechUz/shop-backend
 ```python
 
-PAYTECH_API_KEY = "your-api-key" # contact to @muhammadali_me on Telegram for getting api key 
+PAYTECH_API_KEY = "your-api-key" # contact with @muhammadali_me on Telegram for getting api key 
 
 PAYME_ID = "your-payme-id"
 PAYME_KEY = "your-payme-key"
@@ -74,7 +74,7 @@ Multi payment (Накопительный) configuration settings.py
 Example project: Coming soon
 ```python
 
-PAYTECH_API_KEY = "your-api-key" # contact to @muhammadali_me on Telegram for getting api key 
+PAYTECH_API_KEY = "your-api-key" # contact with @muhammadali_me on Telegram for getting api key 
 
 PAYME_ID = "your-payme-id"
 PAYME_KEY = "your-payme-key"
