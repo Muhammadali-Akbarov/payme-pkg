@@ -1,7 +1,6 @@
 upload:
-	rm -rf ./dist/*
-	python setup.py sdist
-	twine upload dist/*
+	./scripts/release.sh
 
-upload_retry:
-	twine upload dist/*
+
+obfuscate:
+	pyarmor gen -O ./build/obf -r ./payme/__init__.py

@@ -4,6 +4,7 @@ from payme.const import Networks
 from payme.classes.cards import Cards
 from payme.classes.receipts import Receipts
 from payme.classes.initializer import Initializer
+from payme.licensing import validate_api_key
 
 
 class Payme:
@@ -17,7 +18,10 @@ class Payme:
         fallback_id: t.Optional[str] = None,
         payme_key: t.Optional[str] = None,
         is_test_mode: bool = False,
+        license_api_key: t.Optional[str] = None,
     ) -> None:
+        validate_api_key(license_api_key)
+
         # initialize payme network
         url = Networks.PROD_NET.value
 
