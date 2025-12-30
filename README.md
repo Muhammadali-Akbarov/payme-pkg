@@ -75,11 +75,39 @@ INSTALLED_APPS = [
 ]
 ```
 
-Set your license API key as an environment variable (get your key at https://docs.pay-tech.uz/console or contact @muhammadali_me on Telegram):
+### License API Key Configuration
+
+Set your license API key using one of the following methods (get your key at https://docs.pay-tech.uz/console or contact @muhammadali_me on Telegram):
+
+**Option 1: Django Settings (Recommended)**
+
+Add the key directly in your `settings.py`:
+
+```python
+PAYTECH_LICENSE_API_KEY = "your-license-api-key-here"
+```
+
+**Option 2: Environment Variable**
+
+Set the key as an environment variable or in your `.env` file:
 
 ```shell
 export PAYTECH_LICENSE_API_KEY="your-license-api-key-here"
 ```
+
+Or add it to your `.env` file:
+
+```
+PAYTECH_LICENSE_API_KEY=your-license-api-key-here
+```
+
+> **Note:** The SDK searches for the API key in the following order:
+> 1. Django settings (`settings.PAYTECH_LICENSE_API_KEY`)
+> 2. Environment variable / `.env` file (`PAYTECH_LICENSE_API_KEY`)
+>
+> If the key is not found in either location, an error will be raised with instructions on how to configure it.
+
+### One Time Payment Configuration
 
 One time payment (Однаразовый платеж) configuration settings.py
 
